@@ -1,0 +1,450 @@
+#%RAML 1.0 Library
+
+uses:
+  # airPreferences: ../../../library/ota/air-preferences.raml
+  # commonTypes: ../../../library/ota/common-types.raml
+  # airCommonTypes: ../../../library/ota/air-common-types.raml
+  # simpleTypes: ../../../library/ota/simple-types.raml
+  airPreferences: ../air-preferences.raml
+  commonTypes: ../common-types.raml
+  airCommonTypes: ../air-common-types.raml
+  simpleTypes: ../simple-types.raml  
+
+types:
+  Itinerary_PricedItineraryType:
+    type: airCommonTypes.PricedItineraryType
+    additionalProperties: false 
+    properties: 
+      RPH:
+        description: "A unique ID for this priced itinerary that may be used elsewhere in the message."
+        type: simpleTypes.Numeric1to99
+        required: false    
+  OriginDestination_OriginDestinationInformationType:
+    type: commonTypes.OriginDestinationInformationType
+    additionalProperties: false 
+    properties: 
+#      AlternateLocationInfo:
+#        description: "Specifies alternate location(s) for the origin and/or destination."
+#        type: object
+#        required: false
+#        additionalProperties: false 
+#        properties: 
+#          OriginLocation:
+#            description: "Specifies alternate airport/city codes for the origin location."
+#            type: simpleTypes.ListOfStringLength1to8
+#            required: false
+#          DestinationLocation:
+#            description: "Specifies alternate airport/city codes for the destination location."
+#            type: simpleTypes.ListOfStringLength1to8
+#            required: false
+      RPH:
+        description: "A unique reference to this origin destination information."
+        type: simpleTypes.RPH_Type
+        required: false  
+  PresentedPurchased_AncillaryServiceDetailType:
+    type: airCommonTypes.AncillaryServiceDetailType
+    additionalProperties: false 
+    properties: 
+#      LandProductInfo:
+#        description: "Information about purchased land product(s), such as lounge passes."
+#        type: airCommonTypes.AirLandProductType
+#        required: false
+      PurchasedInd:
+        description: "If true, this offer was purchased."
+        type: boolean
+        required: false    
+  AirTraveler_AirTravelerType:
+    type: airCommonTypes.AirTravelerType
+    additionalProperties: false
+    properties:
+      RPH:
+        description: "A unique ID for this traveler that may be referenced elsewhere in this schema to associate the traveler with other information."
+        type: simpleTypes.RPH_Type
+        required: false
+      IsLeadInd:
+        description: "If true, indicates that this traveler is the lead traveler or main contact for the trip."  
+        type: boolean
+        required: false
+  TravelPreferences_AirSearchPrefsType:
+    type: airPreferences.AirSearchPrefsType
+    additionalProperties: false 
+    properties: 
+      FlexDatePref:
+        description: "To specify which portions of the journey the date is flexible."
+        enum: ['Outbound','Return','Both']
+        required: false
+      FlexWeekendInd:
+        description: "If true, days before or after the weekend day should be searched."
+        type: boolean
+        required: false
+      FlexLevelInd:
+        description: "If true, eligible for widest flex searches."
+        type: boolean
+        required: false
+#      NoFareBreakInd:
+#        description: "If true, no fare breaks in the itinerary apart from the turn point should be considered."
+#        type: boolean
+#        required: false
+      OriginDestinationRPHs:
+        description: "Refers to specific origin destination information within this request message."
+        type: simpleTypes.ListOfRPH
+        required: false
+  OTA_AirGetOfferRQ:
+    description: "The Get Offer request message provides trip and passenger characteristics to be used by an offer processing system to target relevant offers.Request criteria may be specified for the entire trip or by individual traveler and/or arranger and include any combination of the following-
+    >> Confirmed booking -including air itinerary, traveler/arranger, purchased offers, payment, pricing and ticketing information
+    >> Pre-booking -including origin/destination, itinerary, traveler/arranger preferences and specific flight information
+    >> Baggage -including item type, quantity, description, origin/destination, marketing/operating carriers and traveler/itinerary association
+    >> Seat information -including marketing classification, requested quantity and traveler/itinerary association
+    >> Offers to include and/or exclude
+    >> Offers that have already been presented and/or purchased
+    Additional supported business functionality includes-
+    >> Offer family encoding by airline suppliers and/or ATPCO
+    >> Detailed point of sale information
+    >> Pricing structure flexibility, including display/ pricing currency(s), ticketing country/ city, and loyalty program redemption support
+    >> Offer stages that specify the stage in the journey at which the ancillary offer request is being made or the offer was purchased, e.g. shopping and check-in
+    >> Travel insurance product offers included with ancillary offers"
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      POS:
+#        description: "Point of Sale identification that identifies the party or connection channel making the request and is used for message authentication. Terminal, entity, position, channel information and message password may be included."
+#        type: commonTypes.POS_Type
+#        required: true
+      PriceStructure:
+        description: "Offer pricing structure request information, including display and pricing currency overrides. If no display or pricing currency information is provided, the display and pricing currency will default to the value in POS/Source/@ISOCurrency. The ticketing currency code is set in the ISOCurrency attribute in POS/Source.If no DisplayCurrency or PricingCurrency codes are provided, the display and pricing currency will default to the value in POS/Source/@ISOCurrency. "
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          ExcludePointsInd:
+            description: "If true, redemption point quantities should NOT be included in the results."
+            type: boolean
+            required: false
+          TicketingCountryCode:
+            description: "The country code where the ticket will be/ has been issued in ISO 3166 encoding. ISO 3166 Alpha-3 Country Codes- http-//en.wikipedia.org/wiki/ISO_3166-1_alpha-3 If this code is entered, it overrides the TicketingCityCode. "
+            type: simpleTypes.ISO3166
+            required: false
+#          TicketingCityCode:
+#            description: "The city or airport code where the ticket will be/ has been issued in IATA encoding. If using IATA airport codes- http-//www.airport-technology.com/codes/ "
+#            type: simpleTypes.UpperCaseAlphaNumericLength3to5
+#            required: false
+          DisplayCurrency:
+            description: "The requested display currency in ISO 4217 encoding. (Reference)- http-//www.opentraveldevelopersnetwork.com/Supported_ISO_Standards.php (More Info)- http-//www.opentraveldevelopersnetwork.com/2012A_SchemaDoc/DisplayCurrency "
+            type: simpleTypes.ISO4217
+            required: false
+          PricingCurrency:
+            description: "The requested pricing/filing currency in ISO 4217 encoding. CAD = Canadian Dollar | USD = United States Dollar | EUR = Euro http-//www.opentraveldevelopersnetwork.com/Supported_ISO_Standards.php "
+            type: simpleTypes.ISO4217
+            required: false
+      RequestCriterion:
+        description: "A container with request criteria used to determine the ancillary offer response. Note that the structure of the elements allows criteria to be specified for the entire trip or by individual traveler and/or arranger."
+        type: object
+        additionalProperties: false 
+        properties: 
+          AC_FareBasisCode:
+            description: "Used to specify the fare basis code to be used in pricing for these flight segments"
+            type: object
+            required: false
+            additionalProperties: false
+            properties:
+              FlightSegmentRPH:
+                description: "Applicable flight segment."
+                type: simpleTypes.RPH_Type
+                required: false
+          ConfirmedBookingInfo:
+            description: "Reservation details for a completed booking.NOTE- This information only pertains to confirmed and booked reservations. All other offer criteria should be specified in the other elements in this message."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+#OTA Trim Begin              
+#              AirItinerary:
+#                description: "A collection of all flight segments for the booking."
+#                type: airCommonTypes.PricedItineraryType
+#                required: false
+#              Traveler:
+#                description: "All traveler information relevant to the booking."
+#                type: airCommonTypes.TravelerInfoType
+#                required: false
+##              Arranger:
+##                description: "All arranger information relevant to the booking. Note an arranger is defined as a person or entity associated with an air trip who will not be traveling. This is generally used to describe an individual or company paying for a ticket or making the travel plans."
+##                type: airCommonTypes.AirArrangerType
+##                required: false
+#              Payment:
+#                description: "All payment information relevant to the booking."
+#                type: commonTypes.PaymentFormType
+#                required: false
+#              Ticketing:
+#                description: "Information that specifies the ticketing arrangement or a summary of the associated ticket(s)."
+#                type: array
+#                required: false
+#                minItems: 0
+#                maxItems: 99
+#                items: airCommonTypes.TicketingInfoType
+#              Pricing:
+#                description: "Information applicable to the pricing of the booking."
+#                type: object
+#                required: false
+#                additionalProperties: false 
+#                properties: 
+#                  PricingIndicator:
+#                    description: "Specific information about the price."
+#                    type: array
+#                    minItems: 0
+#                    maxItems: 5
+#                    items: airCommonTypes.PricingInfoGroup
+#                  Account:
+#                    description: "Specifies an account code applicable to the pricing and reservation."
+#                    type: array
+#                    minItems: 0
+#                    maxItems: 5
+#                    items: 
+#                      additionalProperties: false 
+#                      properties: 
+#                        Code:
+#                          description: "The account code applicable to the fare."
+#                          type: simpleTypes.StringLength1to32
+#                  Comment:
+#                    description: "A comment applicable to all the pricing information."
+#                    type: array
+#                    minItems: 0
+#                    maxItems: 10
+#                    items: commonTypes.FreeTextType
+##                  StatisticalCode:
+##                    description: "Used for domestic or international sales differentiation."
+##                    type: simpleTypes.AlphaNumericStringLength1to8
+##                    required: false
+#                  ValidatingAirlineCode:
+#                    description: "The validating airline code for the ticketing."
+#                    type: simpleTypes.AlphaNumericStringLength1to8
+#                    required: false
+#                  DepartureDate:
+#                    description: "The departure date of the first leg of the booked itinerary."
+#                    type: simpleTypes.DateOrDateTimeType
+#                    required: false
+#                  PriceType:
+#                    description: "Used to specify the type of price."
+#                    type: simpleTypes.AlphaNumericStringLength1to8
+#                    required: false
+##                  NUC_Rate:
+##                    description: "The neutral unit currency rate."
+##                    type: number
+##                    required: false
+##                  ExchangeRate:
+##                    description: "The currency exchange rate."
+##                    type: number
+##                    required: false
+#              PurchasedOffers:
+#                description: "Information pertaining to any merchandising offers purchased by the traveler and/or arranger associated with this booking."
+#                type: airCommonTypes.AirPurchasedOfferType
+#                required: false
+#OTA Trim End                
+              BookingReferenceID:
+                description: "The passenger PNR or other booking reference ID."
+                type: array
+                required: false
+                minItems: 0
+                maxItems: 99
+                items: commonTypes.UniqueID_Type
+#OTA Trim Begin                
+#              LastModified:
+#                description: "Specifies the date the reservation was last modified."
+#                type: simpleTypes.DateOrDateTimeType
+#                required: false
+#OTA Trim End                
+          AirItinerary:
+            description: "Air itinerary information, including a choice between (non-priced) air itinerary information or priced air itinerary information and itinerary upgrade instructions."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+#OTA Trim Begin              
+#              ItineraryUpgrade:
+#                description: "Information about how to upgrade the itinerary."
+#                type: object
+#                required: false
+#                additionalProperties: false 
+#                properties: 
+#                  UpgradeSegment:
+#                    description: "Information about upgrading a particular segment into a new class."
+#                    type: array
+#                    minItems: 0
+#                    items: 
+#                      additionalProperties: false 
+#                      properties: 
+#                        ItinerarySegmentRPH:
+#                          description: "A reference to the  segment that is being upgraded from AirItinerary or PricedAirItinerary."
+#                          type: simpleTypes.RPH_Type
+#                        MarketingResBookDesigCode:
+#                          description: "The Marketing Carrier Reservation Booking Designator (RBD) to upgrade to."
+#                          type: simpleTypes.UpperCaseAlphaLength1to2
+#                          required: false
+#                        OperatingResBookDesigCode:
+#                          description: "The Operating Carrier Reservation Booking Designator (RBD) to upgrade to."
+#                          type: string
+#                          required: false
+#OTA Trim End                          
+              Itinerary:
+                description: "Air itinerary information at flight segment detail that pertains to the trip as a whole with optional pricing information."
+                type: array
+                minItems: 0
+                maxItems: 99
+                items: Itinerary_PricedItineraryType
+#          Arranger:
+#            description: "Information about a person or entity associated with an air trip who will not be traveling. This is generally used to describe an individual or company paying for a ticket or making the travel plans."
+#            type: [object, airCommonTypes.AirArrangerType]
+#            required: false
+#            additionalProperties: false 
+#            properties: 
+#              RPH:
+#                description: "A unique ID for this arranger that may be referenced elsewhere in this schema to associate the arranger with other information."
+#                type: simpleTypes.RPH_Type
+#                required: false
+#OTA Trim Begin
+#          BaggageInfo:
+#            description: "Information about traveler(s) and their baggage for baggage services offers."
+#            type: array
+#            required: false
+#            minItems: 0
+#            items: airCommonTypes.BaggageQueryType
+#          IncludeExclude:
+#            description: "Service items, including service type, product group(s), and sub-group(s), to be required, included or excluded in the offer response."
+#            type: array
+#            required: false
+#            minItems: 0
+#            maxItems: 999
+#            items: airCommonTypes.AncillaryServiceActionType
+#          OriginDestination:
+#            description: "Origin and Destination location and time information for the trip."
+#            type: array
+#            required: false
+#            minItems: 0
+#            maxItems: 10
+#            items: OriginDestination_OriginDestinationInformationType
+#          PresentedPurchased:
+#            description: "Offers that have already been presented to and/or purchased during this session. Note that purchased offers associated with a confirmed booking are in the ConfirmedBookingInfo/ PurchasedOffersInfo element. "
+#            type: array
+#            required: false
+#            minItems: 0
+#            maxItems: 999
+#            items: PresentedPurchased_AncillaryServiceDetailType
+#OTA Trim End            
+          PricingQualifier:
+            description: "Additional pricing information, including restrictions, promotions and tax exemptions."
+            type: array
+            required: false
+            minItems: 0
+            maxItems: 9
+            items: airCommonTypes.AirPricingQualifierType
+#OTA Trim Begin            
+#          SeatInfo:
+#            description: "Seats preferences and change information used for seat marketing."
+#            type: object
+#            required: false
+#            additionalProperties: false 
+#            properties: 
+#              DetailedInfo:
+#                description: "Detailed seat request information, including quantity, aircraft equipment and cabin class and sub-class information."
+#                type: array
+#                minItems: 0
+#                maxItems: 99
+#                items: airCommonTypes.AirSeatMarketingClassType
+#              TotalReqSeatQty:
+#                description: "The calculated number of required seats, e.g.- 0 for Infant On Lap, 1 for Normal Passenger and 2 for Oversized Passenger. This may be used to determine if two seats need to be together."
+#                type: integer
+#                minimum: 1
+#                required: false
+#              ChangeInd:
+#                description: "If true, this is a seat re-accommodation request. In this scenario, two instances of DetailedInfo should be used, one for the original equipment and one for the changed equipment."
+#                type: boolean
+#                required: false
+#          SpecificFlight:
+#            description: "Specific flight number and airline that availability is being requested for."
+#            type: airCommonTypes.SpecificFlightInfoType
+#            required: false
+#          Traveler:
+#            description: "A choice between traveler quantities and age classification OR detailed traveler information."
+#            type: object
+#            required: false
+#            additionalProperties: false
+#            properties:
+#              PassengerTypeQuantity:
+#                type: array
+#                maxItems: 10
+#                items: airCommonTypes.PassengerTypeQuantityType
+#              AirTraveler:
+#                type: array
+#                maxItems: 99
+#                items: AirTraveler_AirTravelerType
+#OTA Trim End                
+#
+# These done exist in OTA model added in case. 
+# as per vsts task 492 it was 
+#  /ServiceListRQ/TravelerIDs/ ->
+#          /OTA_AirGetOfferRQ/RequestCriterion/Traveler
+#
+#              PaxType: # TO DO Are these needed ?? In IMD Under TravelerIDs
+#                type: 
+#                required: false
+#              AssociationID:
+#                type: 
+#                required: false
+#              FQTVInfo:
+#                type: object
+#                required: false
+#                additionalProperties: false
+#                properties:
+#                  FFNumber:
+#                    type: 
+#                    required: false
+#                  FFCompanyCode:
+#                    type: 
+#                    required: false
+#                  FLX:
+#                    type: object
+#                    required: false
+#                    additionalProperties: false
+#                    properties:
+#                      PassengerTierStatus:
+#                        type: object
+#                        required: false
+#                        additionalProperties: false 
+#                        properties: 
+#                          tierDescription:
+#                            type: object
+#                            required: false
+#                      passengerTierTypeCode:
+#                        type: object
+#                        required: false
+#OTA Trim Begin
+#          TravelPreferences:
+#            description: "Travel preference information that applies to the entire trip, including flight type, cabin type and vendor preferences."
+#            type: array
+#            required: false
+#            minItems: 0
+#            maxItems: 10
+#            items: TravelPreferences_AirSearchPrefsType
+#OTA Trim End            
+#          TripInsurance:
+#            description: "Third-party trip insurance information."
+#            type: airCommonTypes.AirInsuranceOfferType
+#            required: false
+          # TPA_Extensions by passed
+#          OfferStage:
+#            description: "Specifies the journey stage at which the ancillary offer request is being made, e.g. shopping and check-in. If used, this is considered an offer processing system \"actionable\" value. Check with your trading partners to ensure they support this level of offer processing. "
+#            enum: ['Shopping','BookingConfirmation','PostConfirmation','CheckIn']
+#            required: false
+#          TripInsuranceInd:
+#            description: "If true, trip insurance offers are being requested."
+#            type: boolean
+#            required: false
+#          CodeSource:
+#            description: "The source for service code and sub-code definitions. Note that this may be overidden elsewhere in the message by entering a value into an @CodeSource attribute."
+#            enum: ['AirlineInternal','ATPCO']
+          # TPA_Extensions by passed
+#          MaxOfferQty:
+#            description: "The maximum number of offers desired in the response. This is typically used to constrain the offer results, allowing the processing engine to return the most relevant offers. It is recommended that you confirm that your trading partners support this functionality before implementing. "
+#            type: integer
+#            minimum: 1
+#            required: false

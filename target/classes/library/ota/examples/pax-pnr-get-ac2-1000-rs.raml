@@ -1,0 +1,279 @@
+#%RAML 1.0 NamedExample
+value: {
+  "AirReservation": [
+    {
+      "AirItinerary": {
+        "OriginDestinationOptions": [
+          {
+            "RefNumber": 7,
+            "FlightSegment": [
+              {
+                "DepartureDateTime": "2018-09-02T11:00:00",
+                "ArrivalDateTime": "2018-09-02T12:15:00",
+                "StopQuantity": 2,
+                "RPH": "1",
+                "FlightNumber": "8712",
+                "ResBookDesigCode": "A",
+                "Status": "30",
+                "MealCode": "Meal",
+                "DepartureDay": "Sat",
+                "DepartureAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "2"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "YUL",
+                  "Terminal": "2"
+                },
+                "Equipment": [
+                  {
+                    "AirEquipType": "77W"
+                  }
+                ],
+                "MarketingAirline": {
+                  "Code": "AC",
+                  "CompanyShortName": "Air Canada"
+                },
+                "OperatingAirline": {
+                  "Code": "AC",
+                  "CompanyShortName": "Air Canada"
+                },
+                "AC_JourneyDuration": "PT01H19M",
+                "BookingClassAvails": [
+                  {
+                    "BookingClassAvail": [
+                      {
+                        "ResBookDesigCode": "K",
+                        "AC_UpgradeEligibility": {
+                          "LoyalLevel": "Gold",
+                          "Eligible": true,
+                          "CustLoyalty": {
+                            "MembershipID": "1234567",
+                            "ProgramID": "AM"
+                          },
+                          "UpgradeOptions": [
+                            {
+                              "UpgradeCabin": "Business",
+                              "RequiredCredits": 1,
+                              "UpgradeWindow": "P0Y0M5D",
+                              "UpgradeFee": {
+                                "Amount": 120,
+                                "CurrencyCode": "CAD",
+                                "DecimalPlaces": 2
+                              }
+                            }
+                          ]
+                        }
+                      }
+#                      {
+#                        "AC_SecureFlight": true
+#                      },
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "PriceInfo": {
+        "ItinTotalFare": [
+          {
+            "BaseFare": {
+              "Amount": 1208.23,
+              "CurrencyCode": "CAD",
+              "DecimalPlaces": 2
+            },
+            "TotalFare": {
+              "Amount": 2856.29,
+              "CurrencyCode": "CAD",
+              "DecimalPlaces": 2
+            }
+          }
+        ],
+        "PTC_FareBreakdowns": [
+          {
+            "PassengerTypeQuantity": {
+              "Code": "ADT",
+              "Quantity": 2
+            },
+            "FareBasisCodes": [
+              {
+                "Content": "KKXNNZO6"
+              }
+            ],
+            "PassengerFare": [
+              {
+                "BaseFare": {
+                  "Amount": 435,
+                  "CurrencyCode": "CAD",
+                  "DecimalPlaces": 2
+                },
+                "Taxes": {
+                  "Amount": 148.67,
+                  "Tax": [
+                    {
+                      "TaxCode": "CA",
+                      "Amount": 25.91
+                    }
+                  ]
+                },
+                "Fees": {
+                  "Fee": [
+                    {
+                      "Amount": 400.76,
+                      "FeeCode": "YQ"
+                    }
+                  ]
+                },
+                "TotalFare": {
+                  "Amount": 984.43,
+                  "CurrencyCode": "CAD",
+                  "DecimalPlaces": 2
+                },
+                "AC_FareFamily": {
+                  "Content": "Adult",
+                  "FlightNumber": "1234",
+                  "ResBookDesigCode": "A"
+                },
+                "AC_eTicketNumber": "12222",
+                "AC_Fare": [
+                  {
+                    "FlightNumber": "1234",
+                    "Amount": 1222.22,
+                    "Surcharges": 87.33
+                  }
+                ]
+              }
+            ],
+            "TravelerRefNumber": [
+              {
+                "RPH": "1"
+              }
+            ]
+          },
+          {
+            "PassengerTypeQuantity": {
+              "Code": "CHD",
+              "Quantity": 1
+            },
+            "FareBasisCodes": [
+              {
+                "Content": "KKXNNZO6"
+              }
+            ],
+            "TravelerRefNumber": [
+              {
+                "RPH": "3"
+              }
+            ]
+          }
+        ]
+      },
+      "TravelerInfo": {
+        "AirTraveler": [
+          {
+            "AccompaniedByInfantInd": true,
+            "PassengerTypeCode": "ADT",
+            "BirthDate": "1980-09-02",
+            "Gender": "Female",
+            "PersonName": {
+              "NamePrefix": [
+                "Ms."
+              ],
+              "GivenName": [
+                "Maryna"
+              ],
+              "Surname": "Fergus"
+            },
+            "Telephone": [
+              {
+                "CountryAccessCode": "1",
+                "AreaCityCode": "416",
+                "PhoneNumber": "432-1233",
+                "PhoneLocationType": "HME",
+                "PhoneTechType": "CEL"
+              }
+            ],
+            "Email": [
+              {
+                "Content": "john.smith@gmail.com"
+              }
+            ],
+            "CustLoyalty": [
+              {
+                "ProgramID": "12345TFR",
+                "MembershipID": "8262224",
+                "LoyalLevel": "Gold",
+                "VendorCode": [
+                  "AM"
+                ]
+              }
+            ],
+            "TravelerRefNumber": {
+              "RPH": "3"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "Fulfillment": {
+        "PaymentDetails": [
+          {
+            "PaymentTransactionTypeCode": "Air",
+            "PaymentCard": {
+              "ExpireDate": "1021",
+              "CardCode": "MC",
+              "CardNumber": {
+                "PlainText": "111122223333"
+              }
+            },
+            "PaymentAmount": [
+              {
+                "Amount": 1234.32,
+                "CurrencyCode": "USD"
+              },
+              {
+                "Amount": 123.32,
+                "CurrencyCode": "CAD"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "Ticketing": [
+        {
+          "TicketingStatus": "WIP",
+          "RequestedTicketingDate": "2018-09-17T08:45:00",
+          "TicketType": "eTicket"
+        }
+      ]
+#      "TicketAdvisory": [
+#        {
+#          "Content": "In Progress"
+#        },
+#        {
+#          "Content": "Approved"
+#        }
+#      ]
+    },
+    {
+      "BookingReferenceID": [
+        {
+          "Type": "PNR",
+          "ID": "123456789",
+          "CompanyName": {
+            "Code": "AM",
+#            "CodeContext": "Sys"
+          }
+        }
+      ]
+    },
+    {
+      "LastModified": "2018-09-17T08:45:00"
+    }
+  ]
+}

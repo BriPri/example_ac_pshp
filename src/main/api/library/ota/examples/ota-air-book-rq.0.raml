@@ -1,0 +1,217 @@
+#%RAML 1.0 NamedExample
+
+value: 
+   {
+   "POS":{
+     "Source":[{
+       "ISOCountry": "CA",
+       "ISOCurrency": "CAD",
+       "AirportCode": "CDG"
+     }]
+   },
+  "AirItinerary": {
+    "OriginDestinationOptions": [
+      {
+        "FlightSegment": [
+          {
+            "DepartureDateTime": "2018-09-02T11:00:00",
+            "ArrivalDateTime": "2018-09-02T12:15:00",
+            "StopQuantity": 0,
+            "RPH": "1",
+            "FlightNumber": "871",
+            "ResBookDesigCode": "K",
+            "MealCode": "Meal",
+            "DepartureAirport": {
+              "LocationCode": "CDG",
+              "Terminal": "2"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "YUL"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "77W"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03*2?O=11?FG=1?T=RT?M=I?AD=2?CH=1?FF=TG?R=0?C=K?E=77W?ML=MS?DT=2A?X=0?D=07H15?FB=8922?PB=9115?TF=3840.72?AF=3840.72?DP=2?SF=Y"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "FlightSegment": [
+          {
+            "DepartureDateTime": "2018-09-16T17:00:00",
+            "ArrivalDateTime": "2018-09-16T18:21:00",
+            "StopQuantity": 0,
+            "RPH": "2",
+            "FlightNumber": "835",
+            "ResBookDesigCode": "V",
+            "DepartureAirport": {
+              "LocationCode": "YUL"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "YYZ",
+              "Terminal": "1"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "333"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "MarriageGrp": "01",
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03*2?O=21?FG=75?T=RT?M=I?AD=2?CH=1?FF=FL?R=27?C=V?E=333?AT=1?X=0?D=01H21?FB=68213?PB=68185?TF=3840.72?AF=3840.72?DP=2"
+              }
+            ]
+          },
+          {
+            "DepartureDateTime": "2018-09-16T19:35:00",
+            "ArrivalDateTime": "2018-09-17T08:45:00",
+            "StopQuantity": 0,
+            "RPH": "3",
+            "FlightNumber": "880",
+            "ResBookDesigCode": "V",
+            "MealCode": "No Meal Service",
+            "DateChangeNbr": "1",
+            "DepartureAirport": {
+              "LocationCode": "YYZ",
+              "Terminal": "1"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "CDG",
+              "Terminal": "2A"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "77W"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "MarriageGrp":"01",
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03*2?O=22?FF=FL?C=V?E=77W?ML=KM?DT=1?AT=2A?X=0?DD2=1?D=07H10?SF=Y"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+
+  
+  "TravelerInfo": {
+    "AirTraveler": [
+      {
+        "BirthDate": "1987-07-05",
+        "PassengerTypeCode": "ADT",
+        "AccompaniedByInfantInd": false,
+        "Gender": "Male",
+        "PersonName": {
+          "NamePrefix": ["MR"],
+          "GivenName": ["Basic"],
+          "Surname": "Canadian"
+        },
+        "Telephone": [
+          {
+            "CountryAccessCode": "1",
+            "AreaCityCode": "555",
+            "PhoneNumber": "5555555"
+          }
+        ],
+        "Email": [
+          {
+            "Content": "ssorensen@farelogix.com"
+          }
+        ],
+        "TravelerRefNumber": {
+          "RPH": "1"
+        }
+      },
+      {
+        "BirthDate": "1989-02-17",
+        "PassengerTypeCode": "ADT",
+        "AccompaniedByInfantInd": false,
+        "Gender": "Female",
+        "PersonName": {
+          "NamePrefix": ["MRS"],
+          "GivenName": ["BASICA"],
+          "Surname": "Canadian"
+        },
+        "TravelerRefNumber": {
+          "RPH": "2"
+        }
+      },
+      {
+        "BirthDate": "2013-02-19",
+        "PassengerTypeCode": "CHD",
+        "AccompaniedByInfantInd": false,
+        "Gender": "Male",
+        "PersonName": {
+          "NamePrefix": ["MR"],
+          "GivenName": ["Joey"],
+          "Surname": "Canadian"
+        },
+        "TravelerRefNumber": {
+          "RPH": "3"
+        }
+      }
+    ]
+  },
+  "Fulfillment": {
+    "PaymentDetails": [
+      {
+        "PaymentCard": {
+          "CardType": {
+            Content: "VISA"
+          },
+          "CardCode": "VI",
+          "CardNumber": {
+            "PlainText": "4111111111111111"
+          },
+          "ExpireDate": "1021",
+          "CardHolderName": "basic canadian",
+#          "Telephone": [
+#            {
+#              "PhoneNumber": "15555555555"
+#            }
+#          ],
+#          "Email": [
+#            {
+#              "Content": "ssorensen@farelogix.com"
+#            }
+#          ]
+        }
+      }
+    ],
+    "DeliveryAddress": {
+      "AddressLine": ["121 john street"],
+      "CityName": "toronto",
+      "PostalCode": "m5v2e2",
+      "StateProv": {
+        "Content": "Ontario",
+        "StateCode": "ON"
+      },
+      "CountryName": {
+        "Content": "Canada",
+        "Code": "CA"
+      }
+    }
+  }
+}

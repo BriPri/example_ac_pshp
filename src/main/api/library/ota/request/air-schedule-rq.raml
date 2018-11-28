@@ -1,0 +1,50 @@
+#%RAML 1.0 Library
+
+usage: AirScheduleRQ
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  airPreferences: ../../../library/ota/air-preferences.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  commonPrefs: ../../../library/ota/common-prefs.raml
+
+types:
+  OTA_AirScheduleRQ:
+    description: "The Schedule Request message requests Flight Schedules for a city pair. Optional request information can include- Time / Time Window; Connecting cities; and Client Preferences (airlines, cabin, flight types etc.) The request can be narrowed to request schedules for a specific airline or specific flight."
+    type: commonTypes.MaxResponsesGroup
+    required: false
+    additionalProperties: false 
+    properties: 
+#      POS:
+#        description: "Point of sale object."
+#        type: commonTypes.POS_Type
+#        required: false
+      OriginDestinationInformation:
+        description: "Origin and Destination location, and time information for the Air Schedule request."
+#        type: [object, commonTypes.DOW_PatternGroup, commonTypes.OriginDestinationInformationType]
+        type: [object, commonTypes.OriginDestinationInformationType]
+      FlightInfo:
+        description: "Specific airline and flight number for which a schedule is being requested."
+        type: airCommonTypes.SpecificFlightInfoType
+        required: false
+      VendorPref:
+        description: "Specify vendors to include and exclude from the response."
+        type: array
+        required: false
+        minItems: 0
+        maxItems: 99
+        items: commonPrefs.CompanyNamePrefType
+      FlightTypePref:
+        description: "Flight Type Preferences to qualify Air Schedule request."
+        type: array
+        required: false
+        minItems: 0
+        maxItems: 3
+        items: airPreferences.FlightTypePrefGroup
+      EquipPref:
+        description: "Equipment Preference to qualify Air Schedule request."
+        type: array
+        required: false
+        minItems: 0
+        maxItems: 9
+        items: airPreferences.EquipmentTypePref

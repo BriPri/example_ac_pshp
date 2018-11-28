@@ -1,0 +1,50 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "PricedItineraries": [
+    {
+      "AirItinerary": {
+        "OriginDestinationOptions": [
+          {
+            "RefNumber": 1,
+            "FlightSegment": [
+              {
+                "FlightNumber": "868",
+                "DepartureAirport": {
+                  "LocationCode": "YYZ"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "LHR"
+                },
+                "BookingClassAvails": [
+                  {
+                    "BookingClassAvail": [
+                      {
+                        "ResBookDesigCode": "K",
+                        "ResBookDesigQuantity": "9"
+                      }
+                    ]
+                  }
+                ],
+                "ArrivalDateTime": "2018-08-29T21:00:00",
+                "DepartureDateTime": "2018-08-29T09:10:00",
+                "MarketingAirline": {
+                  "Code": "AC"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "AirItineraryPricingInfo": {
+        "PTC_FareBreakdowns": [
+          {
+            "PassengerTypeQuantity": {
+              "Code": "ADT"
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

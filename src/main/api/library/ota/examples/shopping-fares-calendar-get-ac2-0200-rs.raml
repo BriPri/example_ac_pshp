@@ -1,0 +1,80 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "PricedItineraries": [{
+    "AirItinerary": {
+      "OriginDestinationOptions": [{
+        "FlightSegment": [{
+          "DepartureDateTime": "2018-06-25T09:45:00",
+          "ArrivalDateTime": "2018-06-25T14:45:00",
+          "StopQuantity": 1,
+          "FlightNumber": "1204",
+          "ResBookDesigCode": "Y",
+          "E_TicketEligibility": "Eligible",
+          "MealCode": "Breakfast",
+          "DepartureAirport": {
+            "LocationCode": "YYZ"
+          },
+          "ArrivalAirport": {
+            "LocationCode": "YVR",
+            "Terminal": "1"
+          },
+          "Equipment": [{
+            "AirEquipType": "777"
+          }],
+          "MarketingAirline": {
+            "Code": "AC",
+            "CompanyShortName": "Air Canada"
+          },
+          "OperatingAirline": {
+            "Code": "AC",
+            "CompanyShortName": "Air Canada"
+          },
+          "BookingClassAvails": [{
+            "BookingClassAvail": [{
+              "ResBookDesigCode": "Y",
+              "ResBookDesigQuantity": "2",
+              "RPH": "1",
+              "AC_UpgradeEligibility": {
+                "Eligible": true,
+                "LoyalLevel": "A",
+                "CustLoyalty": {
+                  "MembershipID": "C12345",
+                  "ProgramID": "AC"
+                },
+                "UpgradeOptions": [
+                  {
+                    "UpgradeCabin": "Business",
+                    "RequiredCredits": 1,
+                    "UpgradeClassAvailability": "1",
+                    "UpgradeWindow": "P0Y0M5D",
+                    "UpgradeFee": {
+                      "Amount": 1200.00
+                    }
+                  }
+                ]
+#                "UpsellOption": [
+#                  {
+#                    "ResBookDesigCode": "Y",
+#                    "ResBookDesigQuantity": "1",
+#                    "RequiredCredits": "1"
+#                  }
+#                ]
+              }
+            }]
+          }],
+          "AC_JourneyDuration": "PT01H19M"
+        }]
+        #, Fixed the JSON (Sudhish-- unrelated to OTA Trim Change)
+      }]
+    },
+    "AirItineraryPricingInfo":{
+      "ItinTotalFare": [{
+        "BaseFare":{
+          "CurrencyCode": "CAD",
+          "Amount": 0.00
+          }
+      }]
+      }
+  }]
+}

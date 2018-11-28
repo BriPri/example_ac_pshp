@@ -1,0 +1,174 @@
+#%RAML 1.0 Library
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+
+  FlightSegment_Type:
+    description: "A collection of one or more legs that are defined as a single flight number."
+    type: [object, commonTypes.SmokingIndicatorGroup, airCommonTypes.FlightSegmentType]
+#    type: [object, airCommonTypes.FlightSegmentType]
+    additionalProperties: false
+    properties:
+      Comment:
+        description: "Any special comments on the leg. eg. operated by  XX."
+        type: array
+        minItems: 0
+        maxItems: 10
+        required: false
+        items: commonTypes.FreeTextType
+      MarketingCabin:
+        description: "Identifies the marketing name for the cabin. This is the supplier cabin identifier as opposed to the generic industry term for the cabin."
+        type: array
+        minItems: 0
+        maxItems: 9
+        required: false
+        items: airCommonTypes.MarketingCabinType
+      ArrivalAirport:
+        description: "Departure point of flight segment."
+        type: commonTypes.ArrivalAirport_Type
+        required: false
+      DepartureAirport:
+        description: "Departure point of flight segment."
+        type: commonTypes.DepartureAirport_Type
+        required: false
+      Equipment:
+        description: "The type of equipment used for the flight.Specifies the aircraft equipment type."
+        type: array
+        minItems: 0
+        required: false
+        items: commonTypes.EquipmentType
+      MarketingAirline:
+        description: "The marketing airline. This is required for use with scheduled airline messages but may be omitted for requests by tour operators."
+        type: airCommonTypes.FlightSegmentType_MarketingAirline
+        required: false
+      DaysOfOperation:
+        description: "Identifies the days of week the flight operates."
+        type: commonTypes.OperationSchedulesType
+        required: false
+      BookingClass:
+        description: "Reservation booking codes for a particular flight segment."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            Meal:
+              description: "Identifies any meal and/or beverage services that are provided."
+              type: array
+              required: false
+              minItems: 0
+              maxItems: 5
+              items:
+                additionalProperties: false
+                properties:
+                  MealCode:
+                    description: "Meal offered in this booking class for the flight."
+                    type: airCommonTypes.MealServiceType
+                    required: false
+            ResBookDesigCode:
+              description: "A reservation booking code for this flight segment."
+              type: simpleTypes.UpperCaseAlphaLength1to2
+              #added per the IMD for AC2-1400
+            AC_FareFamily:
+              description: "Shows fare family of each flight in the itinerary"
+              type: airCommonTypes.AC_FareFamily
+              required: false
+              additionalProperties: false
+      TrafficRestrictionInfo:
+        description: "Traffic restriction information for a specific flight."
+        type: array
+        minItems: 0
+        maxItems: 9
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            Code:
+              description: "A restriction in coded format that may affect the flight schedule. Refer to OpenTravel Code list Traffic Restriction Code (TRC)."
+              type: simpleTypes.OTA_CodeType
+              required: false
+            Text:
+              description: "A restriction in text format that may affect the flight schedule."
+              type: string
+              required: false
+      JourneyDuration:
+        description: "The duration of the flight from departure location to destination location."
+        type: string
+        pattern: -?P([0-9]+Y)?([0-9]+M)?([0-9]+D)?(T([0-9]+H)?([0-9]+M)?([0-9]+(\.[0-9]+)?S)?)?
+        required: false
+      OnTimeRate:
+        description: "Specifies the Dept. of Transport on time rate of the  flight."
+        type: simpleTypes.Percentage
+        required: false
+      ScheduleValidStartDate:
+        description: "Identifies the start date for the scheduled flight."
+        type: date-only
+        required: false
+      ScheduleValidEndDate:
+        description: "Identifies the end date for the scheduled flight."
+        type: date-only
+        required: false
+      ParticipationLevelCode:
+        description: "To specify the level of participation by a vendor in another system. Refer to OpenTravel Code List Participation Level Code (PLC)."
+        type: simpleTypes.OTA_CodeType
+        required: false
+      DateChangeNbr:
+        description: "When present, contains the number of days by which the flight's arrival date differs from its departure date."
+        type: string
+        required: false
+      FLIFO_Ind:
+        description: "When true, FLIFO information exists for this flight."
+        type: boolean
+        required: false
+
+  OTA_AirScheduleRS:
+    description: "The Schedule Response message contains Flight Schedules for a city pair. A set of OriginDestinationOptions is returned, each of which contains one or more (connecting) flights that serve the city pair. For each flight the following information is returned- Origin and destination airports; Departure and arrival times; Days of Operation; Effective Date and End Date; Equipment; Meal Information; and Codeshare information. This message contains similar information to the OTA_AirAvailabilityRS message except it does not contain inventory availability."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      Warnings:
+        description: "Warnings"
+        type: commonTypes.WarningsType
+        required: false
+      OriginDestinationOptions:
+        description: "Holds the collection of flight options for this origin-destination pair. There maybe limits imposed by individual supplier that are below the maximum occurrences for this element."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          OriginDestinationOption:
+            description: "Flight option for this origin-destination pair. "
+            type: array
+            minItems: 0
+            maxItems: 999
+            items:
+              additionalProperties: false
+              properties:
+                FlightSegment:
+                  description: "A collection of one or more legs that are defined as a single flight number"
+                  type: array
+                  minItems: 0
+                  maxItems: 4
+                  items: FlightSegment_Type
+                Comment:
+                  description: "Used to specify comment information for a group of flight segments."
+                  type: array
+                  required: false
+                  minItems: 0
+                  maxItems: 10
+                  items: commonTypes.FreeTextType
+          OriginCode:
+            description: "The airport code where the journey commences."
+            type: simpleTypes.StringLength1to8
+            required: false
+          DestinationCode:
+            description: "The airport code where the journey ends."
+            type: simpleTypes.StringLength1to8
+            required: false

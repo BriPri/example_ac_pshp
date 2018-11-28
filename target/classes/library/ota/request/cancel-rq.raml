@@ -1,0 +1,163 @@
+#%RAML 1.0 Library
+
+uses:
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  Reason_FreeTextType:
+    description: "Cancellation reason."
+    type: object
+    additionalProperties: false
+    properties:
+      Content:
+        type: commonTypes.FreeTextType
+      Type:
+        description: "In many cases the description repeats, this will allow you to define the information that is being sent, typically used when multiple occurrences of FreeTextType/CancellationReason are being sent."
+        type: simpleTypes.StringLength0to64
+        required: false
+
+  Traveler_PersonNameType:
+    description: "The specific traveler(s) whose reservation for the specified Origin and Destination pair are to be canceled. If none are specified, the request will cancel all travelers."
+    type: object
+    additionalProperties: false
+    properties:
+      Content:
+        type: commonTypes.PersonNameType
+      DocID:
+        description: "Unique number assigned by authorities to document."
+        type: simpleTypes.StringLength1to32
+        required: false
+      DocType:
+        description: "Indicates the type of document (e.g. Passport, Military ID, Drivers License, national ID, Vaccination Certificate). Refer to OpenTravel Code List Document Type (DOC)."
+        type: simpleTypes.OTA_CodeType
+        required: false
+
+  UniqueID_UniqueID_Type:
+    description: "This allows a user to send more than one UniqueID where there is more than one UniqueID associated to a single reservation (e.g. confirmation number and PNR record locator)."
+    type: object
+    additionalProperties: false
+    properties:
+      Content:
+        type: commonTypes.UniqueID_Type
+      Reason:
+        description: "The reason for the cancellation."
+        type: simpleTypes.StringLength1to64
+        required: false
+
+  OTA_CancelRQ:
+    description: "A generic message, available as an action on several OpenTravel services which requests a server to cancel the booking identified by the UniqueID element."
+    type: commonTypes.ReqRespVersion
+    required: false
+    additionalProperties: false
+    properties:
+#      POS:
+#        description: "This identifies the party making the request. Trading partners may define their own UniqueID."
+#        type: commonTypes.POS_Type
+#        required: false
+      UniqueID:
+        description: "This allows a user to send more than one UniqueID where there is more than one UniqueID associated to a single reservation (e.g. confirmation number and PNR record locator)."
+        type: array
+        minItems: 0
+        maxItems: 5
+        required: false
+        items: UniqueID_UniqueID_Type
+      Verification:
+        description: "This is to be used for verification that the record being canceled is the specific record requested. This is optional and is intended to provide a more secure mechanism to ensure the correct record is being canceled."
+        type: commonTypes.VerificationType
+        required: false
+      Segment:
+        description: "Used to specify segments to be cancelled."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            ItinSegNbr:
+              description: "Number identifying the segment item to be cancelled."
+              type: integer
+              minimum: 0
+              required: false
+            FirstItinSegNbr:
+              description: "The beginning number in a range that identifies the first segment  item to be cancelled."
+              type: integer
+              minimum: 0
+              required: false
+            LastItinSegNbr:
+              description: "The last number in a range that identifies the last segment  item to be cancelled."
+              type: integer
+              minimum: 0
+              required: false
+      OriginAndDestinationSegment:
+        description: "Used to request segments for a specific Origin and Destination pair to be canceled. Specific segments are requested by specifying segment information and specific traveler(s) are requested by specifying the traveler information."
+        type: array
+        minItems: 0
+        maxItems: 9
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            OriginLocation:
+              description: "The travel origin location."
+              type: commonTypes.LocationType
+            DestinationLocation:
+              description: "The travel destination location."
+              type: commonTypes.LocationType
+            Traveler:
+              description: "The specific traveler(s) whose reservation for the specified Origin and Destination pair are to be canceled. If none are specified, the request will cancel all travelers."
+              type: array
+              minItems: 0
+              maxItems: 99
+              required: false
+              items: Traveler_PersonNameType
+            Segment:
+              description: "The specific  segment(s) to be canceled. If none are specified, the request will cancel all segments in the journey."
+              type: array
+              minItems: 0
+              maxItems: 9
+              required: false
+              items:
+                additionalProperties: false
+                properties:
+                  DepartureStation:
+                    description: "The departure point of a segment."
+                    type: commonTypes.LocationType
+                  ArrivalStation:
+                    description: "Arrival point  of a train segment."
+                    type: commonTypes.LocationType
+      CancellationOverrides:
+        description: "A collection of cancellation rule overrides."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          CancellationOverride:
+            description: "Used to override a cancellation rule."
+            type: commonTypes.CancelRuleType
+            required: false
+      Reasons:
+        description: "A collection of reasons for this cancellation."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          Reason:
+            description: "Cancellation reason."
+            type: array
+            minItems: 1
+            maxItems: 99
+            items: Reason_FreeTextType
+      CancellationContactPerson:
+        description: "Information on the person who cancelled the reservation."
+        type: commonTypes.ContactPersonType
+        required: false
+        # TPA_Extensions by passed
+      CancelType:
+        description: "Specifies the type of action requested when more than one function could be handled by the message."
+        type: simpleTypes.TransactionActionType
+      TravelSector:
+        description: "The travel segment type to be cancelled. Refer to OpenTravel Codelist Travel Sector (TVS)."
+        type: simpleTypes.OTA_CodeType
+        required: false

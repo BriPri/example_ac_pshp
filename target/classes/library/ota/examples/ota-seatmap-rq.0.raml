@@ -1,0 +1,34 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "SeatMapRequests": [
+    {
+      "FlightSegmentInfo": {
+        "FlightNumber": "1804",
+        "DepartureDateTime": "2018-09-23T12:10:00",
+        "DepartureAirport": {
+          "LocationCode": "YYZ"
+        },
+        "ArrivalAirport": {
+          "LocationCode": "MBJ"
+        },
+        "MarketingAirline": {
+          "Code": "AC"
+        }
+      },
+      "SeatDetails": {
+        "ResBookDesignations": [
+          {
+            "ResBookDesigCode": "V"
+          }
+        ]
+      }
+    }
+  ],
+  "BookingReferenceID": [
+    {
+      "Type": "0.AAA.X",
+      "ID": "MPBCPA"
+    }
+  ]
+}

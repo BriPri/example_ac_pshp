@@ -1,0 +1,47 @@
+#%RAML 1.0 Library
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  OTA_AirRulesRQ:
+    description: "The Rules Request message requests text rules for a specific fare class code for an airline and city pair on a specific date. Optional information negotiated fare contract codes to be included in the message. The rules request contains similar to a Fare Rules entry on an airline CRS or GDS."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+#      POS:
+#        description: "Point of sale object."
+#        type: commonTypes.POS_Type
+      RuleReqInfo:
+        description: "The Rule Request Information required to return all applicable fare rule categories."
+        type: [object, airCommonTypes.FareInfoType]
+        additionalProperties: false
+        properties:
+          SubSection:
+            type: array
+            minItems: 0
+            maxItems: 99
+            required: false
+            items:
+              additionalProperties: false
+              properties:
+                SubTitle:
+                  type: simpleTypes.StringLength1to32
+                  required: false
+                SubCode:
+                  type: simpleTypes.StringLength1to16
+                  required: false
+                SubSectionNumber:
+                  type: simpleTypes.StringLength1to8
+                  required: false
+          LanguageRequested:
+            description: "Specifies the language in which the rules should be returned."
+            type: simpleTypes.AlphaNumericStringLength1to8
+            required: false
+          AbbreviatedRuleTextInd:
+            description: "When true, the abbreviated rule text should be returned, not the full rule text."
+            type: boolean
+            required: false

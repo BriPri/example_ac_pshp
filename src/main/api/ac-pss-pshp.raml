@@ -1,0 +1,126 @@
+#%RAML 1.0
+title: ac-pss-pshp.raml
+version: v1
+baseUri: https://0.0.0.0:8092/v1
+description: EIP PSS PAIP service orchestrations
+
+mediaType:
+  application/json
+
+uses:
+  PSSCommon: library/pss/common-types.raml
+  AirPriceRQ: library/ota/request/air-price-rq.raml
+  AirPriceRS: library/ota/response/air-price-rs.raml
+  AirLowFareSearchRQ : library/ota/request/air-low-fare-search-rq.raml
+  AirLowFareSearchRS : library/ota/response/air-low-fare-search-rs.raml
+   
+/status:
+  type: PSSCommon.ServerStateResource
+  get:
+    is: [ PSSCommon.PApiLayerOptions ]
+          
+# After discussions with Arturo & look at ICM for ac2-0400
+# 1 - Fare_InformativePricingWithoutPNR_18_1 (Stateful version - we want a context for MiniRules_GetFromPricing)
+# 2 - MiniRules_GetFromPricing_11_1 (needs Context) (returns if its refundable, changeable etc)
+# 3 - Service_StandaloneCatalogue_18_1 (stateless) (need to know the baggae allowance)
+# 4 - MiniRules_GetFromRec_17_2 (not needed)
+/shopping:  
+  /itinerary/get:
+    post: # expected to be used by AC2-400
+      # added queryParam in response to need for AC2-0400 (see work item 611)
+      queryParameters:
+        minirules:
+          description: When true, retrieve minirules during the prebooking flow.
+          type: boolean
+          default: false
+          required: false
+#      is: ["EIP_Headers", "ListSize", "ErrorResponse400", "ErrorInternal500"]
+      description: | # updated based on discussion with Renaud
+        Given passenger types, booking class and specific flight iteneraries (known flight(s) on specific date(s)/time(s)) will provide:
+          more detailed flight information
+          available seating in the cabin (when low)
+          available optional ancilaries
+          a full price breakdown (including tax information) for the flight and individual ancilaries
+      body:
+        application/json:
+          type: AirPriceRQ.OTA_AirPriceRQ # changed based on discussion with renaud
+          example: !include library/ota/examples/shopping-itinerary-get-ac2-0400-rq.raml
+      responses:
+        200:
+          body:
+            application/json:
+              type: AirPriceRS.OTA_AirPriceRS # changed based on discussion with renaud AirFareDisplayRS.OTA_AirFareDisplayRS
+              example: !include library/ota/examples/shopping-itinerary-get-ac2-0400-rs.raml
+
+  /search/get:
+    post:
+      description: |
+        Flight shopping. Given an origin/destination, departure date range and number of passengers (0 or more, default 1) the reponse will contain all flights that have any availability (so 0 is all flights) as well as providing plane info, itinerary information, for each class provides pricing, basic rules and amount of seats available.
+  #    is: [PSSCommon.EIP_Headers, PSSCommon.ListSize, PSSCommon.ErrorResponse400, PSSCommon.ErrorInternal500]
+  # uncomment the above back when the full implementation is done
+      body:
+        application/json:
+          type: AirLowFareSearchRQ.OTA_AirLowFareSearchRQ
+          example: !include library/ota/examples/shopping-fares-calendar-get-ac2-0200-rq.raml
+      responses:
+        200:
+          body:
+            application/json:
+              type: AirLowFareSearchRS.OTA_AirLowFareSearchRS
+              example: !include library/ota/examples/shopping-fares-calendar-get-ac2-0200-rs.raml
+  /search/upsell/get:
+    post:
+      description: |
+        Based on the results of a previous POST /shopping/search/get request, select a specific itinerary to continue the search for an upsell search.  The returned values are the cheapest alternatives for the selected itinerary.
+      is: [PSSCommon.EIP_Headers, PSSCommon.ListSize, PSSCommon.ErrorResponse400, PSSCommon.ErrorInternal500]
+      queryParameters:
+        pricedItinerarySequenceNumber:
+          description: The sequence number to the itinerary to use to continue the search.
+          type: integer
+          minimum: 1
+          required: true
+          example: 1
+        DepartureDateTime: 
+          description: "The date and time of the flight segment departure."
+          type: datetime-only
+          required: true
+          example: "2018-08-29T09:10:00"
+        DepartureAirport:
+          description: "Departure point of flight segment."
+          type: string
+          minLength: 3
+          maxLength: 3
+          required: true
+          example: "YYZ"
+        ArrivalAirport:
+          description: "Arrival point of flight segment."
+          type: string
+          minLength: 3
+          maxLength: 3
+          required: true
+          example: "LHR"
+      body:
+        application/json:
+          type: AirLowFareSearchRS.OTA_AirLowFareSearchRS
+          example: !include library/ota/examples/shopping-fares-upsell-get-ac2-0200-rq.raml
+      responses:
+        200:
+          body:
+            application/json:
+              type: AirLowFareSearchRS.OTA_AirLowFareSearchRS
+              example: !include library/ota/examples/shopping-fares-upsell-get-ac2-0200-rs.raml
+
+  /ancillaries/get:
+    post:
+      # AC2U  AirPriceRS for Ancillary Options Retail
+      # Will be used when PAX has selected the offer and then asking for catalogue
+      # Will call altea Service_StandaloneCatalogue_16_1
+      description: Search for ancillaries.
+      body:
+        application/json:
+      responses:
+        200:
+          body:
+            application/json:
+              type: AirPriceRS.OTA_AirPriceRS 
+              example: !include library/ota/examples/shopping-ancillaries-get-ac2-0300-rs.raml

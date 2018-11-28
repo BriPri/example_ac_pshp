@@ -1,0 +1,122 @@
+#%RAML 1.0 Library
+
+usage: AirRulesRS
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  FareRuleResponseInfo_FareRuleResponseInfoType:
+    type: FareRuleResponseInfoType
+    additionalProperties: false
+    properties:
+      ItemNumber:
+        description: "Specifies an item number associated with the information in this fare rule."
+        type: simpleTypes.Numeric1to999
+        required: false
+  AdvisoryInfo_FreeTextType:
+    type: commonTypes.FreeTextType
+    additionalProperties: false
+    properties:
+      AdvisoryCode:
+        description: "Specifies the type of advisory information."
+        type: simpleTypes.StringLength1to8
+        required: false
+  OTA_AirRulesRS:
+    description: "The Rules Response message contains a set of text (human readable) rule information paragraphs. Each paragraph is identified by a rule code. This message contains similar information to a standard airline CRS or GDS Fare Rules Response message."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      Warnings:
+        description: "Standard way to indicate successful processing of an OpenTravel message, but  one in which warnings are generated."
+        type: commonTypes.WarningsType
+        required: false
+      FareRuleResponseInfo:
+        description: "Provides fare rules and the applicable fare rule categories"
+        type: array
+        minItems: 0
+        maxItems: 999
+        required: false
+        items: FareRuleResponseInfo_FareRuleResponseInfoType
+#      Success:
+#        description: "Standard way to indicate successful processing of an OpenTravel message. Returning an empty element of this type indicates success."
+#        type: commonTypes.SuccessType
+#        required: false
+#      Errors:
+#        description:
+#        type: commonTypes.ErrorsType
+#        required: false
+  FareRuleResponseInfoType:
+    description: "The collection of Fare Rule requests and the applicable Fare Rule categories."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      FareRuleInfo:
+        description: "The Fare Rule Info as per the request."
+        type: [object, airCommonTypes.FareInfoType]
+        additionalProperties: false
+        properties:
+          LanguageRequested:
+            description: "Specifies the language in which the rules should be returned."
+            type: simpleTypes.AlphaNumericStringLength1to8
+            required: false
+          LanguageReturned:
+            description: "Specifies the language in which the rules are returned."
+            type: simpleTypes.AlphaNumericStringLength1to8
+            required: false
+      FareRules:
+        description: "The applicable Fare Rule categories."
+        type: commonTypes.FormattedTextType
+      Routing:
+        description: "Specifies the routing for all the fares."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            Info:
+              description: "The routing direction and city airports for the direction."
+              type: array
+              minItems: 0
+              maxItems: 99
+              required: false
+              items:
+                additionalProperties: false
+                properties:
+                  Direction:
+                    description: "The direction of the routing, such as to or from."
+                    type: simpleTypes.StringLength1to8
+                    required: false
+                  Text:
+                    description: "The routing text associated with the direction."
+                    type: string
+                    required: false
+            Number:
+              description: "A routing number for the fare."
+              type: simpleTypes.Numeric1to9999
+              required: false
+            RoutingConstructedInd:
+              description: "If true, the routing was constructed. If false, it was not constructed."
+              type: boolean
+              required: false
+            MaximumPermittedMileage:
+              description: "The maximum permitted mileage for the fare associated to this rule."
+              type: integer
+              required: false
+            RoutingRestriction:
+              description: "Restriction information about the routing."
+              type: simpleTypes.StringLength1to128
+              required: false
+      AdvisoryInfo:
+        description: "Advisory information that applies to all the rule information."
+        type: array
+        minItems: 0
+        maxItems: 15
+        required: false
+        items: AdvisoryInfo_FreeTextType

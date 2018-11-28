@@ -1,0 +1,105 @@
+#%RAML 1.0 Library
+
+#      UnsignedLong: adding the maximum as it should be is too large for raml parser. Throws error:
+#      Raml parser uncaught exception: java.lang.String cannot be cast to java.lang.Number
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  UnsignedLong:
+    type: number
+    minimum: 0
+   # maximum: 18446744073709551615
+  UnsignedByte:
+    type: integer
+    minimum: 0
+    maximum: 255
+  AC_TicketDocumentRS:
+    description: "The AC_TicketDocumentRS response contains the successful/unsuccessful data of an AC_TicketDocumentRQ request."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      TicketDocumentDetails:
+        description: "A collection of AirReservation"
+        type: array
+        required: false
+        minItems: 0
+        maxItems: 9
+        items:
+          additionalProperties: false
+          properties:
+            AirReservation:
+              description: "Contains booking/ticketing information pertaining to a completed and ticketed reservation."
+              type: [object, airCommonTypes.AirReservationType]
+              required: false
+              additionalProperties: false
+              properties:
+                CreateDateTime:
+                  description: "Provides the original PNR creation date/time."
+                  required: false
+                  type: simpleTypes.DateOrDateTimeType
+            ConjunctionInfo:
+              description: "Conjunction info for conjuctive ticket set."
+              type: array
+              required: false
+              minItems: 0
+              items:
+                additionalProperties: false
+                properties:
+                  FirstTicketNumber:
+                    description: "Ticket number of the first coupon in the set."
+                    type: UnsignedLong
+                    required: false
+                  NextTicketNumber:
+                    description: "Ticket number of the next coupon in the set."
+                    type: array
+                  PreviousTicketNumber:
+                    description: "Ticket number of the previous coupon in the set."
+                    type: array
+                    required: false
+                    minItems: 0
+                    items: UnsignedLong
+                  LastTicketNumber:
+                    description: "Ticket number of the last coupon in the set."
+                    type: UnsignedLong
+                    required: false
+                  ConjunctionRPH:
+                    description: "Index of ticket in the conjunctive set."
+                    type: simpleTypes.RPH_Type
+                  ConjunctionTotal:
+                    description: "Total number of tickets in conjunctive set."
+                    type: UnsignedByte
+            TicketDisplay:
+              description: "A collection of native ticket document displays. Returned when  details are unavailable."
+              type: array
+              minItems: 0
+              maxItems: 9
+              required: false
+              items:
+                additionalProperties: false
+                properties:
+                  Text:
+                    type: array
+                    required: false
+                    items: string # GUESSED. No type in XSD
+                  TicketNumber:
+                    description: "Ticket Number"
+                    type: integer # GUESSED. No type in XSD
+            TicketNumber:
+              description: "Ticket Number"
+              type: integer # GUESSED. No type in XSD
+      Warnings:
+        description: "Standard way to indicate successful processing of an OpenTravel message, but one in which warnings are generated."
+        type: commonTypes.WarningsType
+        required: false
+      Cancel:
+        description: "AWG to revisit. "
+        type: boolean
+        required: false
+      PriceInd:
+        description: "When true, pricing was requested along with the booking."
+        type: boolean
+        required: false

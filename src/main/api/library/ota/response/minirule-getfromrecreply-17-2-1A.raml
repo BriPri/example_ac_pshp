@@ -1,0 +1,1010 @@
+#%RAML 1.0 Library
+
+types:
+  MiniRule_GetFromRecReply:
+    description: "Retrieve Mini-Rules from a Record"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      responseDetails:
+        description: "Provides the output status of  retrieve Mini-Rules"
+        type: ResponseAnalysisDetailsType
+        required: false
+      errorWarningGroup:
+        description: "Error group"
+        type: array
+        minItems: 0
+        maxItems: 5
+        items: ErrorGroupType
+      language:
+        type: LanguageBatchTypeU
+        required: false
+      mnrByPricingRecord:
+        description: "Mini-rules corresponding to a TST or PQR (Offers)"
+        type: array
+        minItems: 0
+        maxItems: 999
+        items:
+          additionalProperties: false
+          properties:
+            pricingRecordId:
+              type: ItemReferencesAndVersionsType
+              required: false
+            errorWarningGroup:
+              description: "Error group"
+              type: array
+              minItems: 0
+              required: false
+              items: ErrorGroupType
+            offerRef:
+              description: "Offer Tattoo. It's returned only in case the mini-rules are retrieved from a PQR."
+              type: array
+              minItems: 0
+              required: false
+              items: ElementManagementSegmentType_104354S
+            paxRef:
+              description: "Passenger or infant reference"
+              type: array
+              minItems: 0
+              required: false
+              items: ReferenceInformationType
+            paxTypeLoc:
+              type: array
+              minItems: 0
+              maxItems: 99
+              items:
+                additionalProperties: false
+                properties:
+                  paxCode:
+                    type: StatusType
+                    required: false
+                  paxTypeDescription:
+                    type: FreeTextInformationType_190956S
+                    required: false
+            fareComponentInfo:
+              description: "List of fare components and their corresponding segments"
+              type: array
+              minItems: 0
+              maxItems: 16
+              required: false
+              items:
+                additionalProperties: false
+                properties:
+                  fareQualifierDetails:
+                    description: "Fare Basis code"
+                    type: FareQualifierDetailsType
+                    required: false
+                  fareComponentRef:
+                    description: "Fare component reference and reference of it's associated Pricing Unit"
+                    type: ReferenceInfoType
+                    required: false
+                  originAndDestination:
+                    description: "origin and destination corresponding to the Fare component"
+                    type: OriginAndDestinationDetailsTypeI
+                    required: false
+                  originDestinLoc:
+                    type: array
+                    minItems: 0
+                    maxItems: 2
+                    required: false
+                    items:
+                      additionalProperties: false
+                      properties:
+                        originDestinCode:
+                          type: StatusType
+                          required: false
+                        originDestinDescription:
+                          type: FreeTextInformationType_190956S
+                          required: false
+                  segmentRefernce:
+                    description: "segment Tattoo corresponding to Fare Component"
+                    type: array
+                    minItems: 0
+                    maxItems: 99
+                    required: false
+                    items: ElementManagementSegmentType
+            listSituation:
+              type: array
+              minItems: 0
+              maxItems: 99
+              required: false
+              items:
+                additionalProperties: false
+                properties:
+                  listSituationDum:
+                    type: DummySegmentTypeI
+                    required: false
+                  situationCode:
+                    type: StatusType
+                    required: false
+                  situationDescription:
+                    type: FreeTextInformationType_190956S
+                    required: false
+            mnrRulesInfoGrp:
+              type: array
+              minItems: 0
+              maxItems: 600
+              required: false
+              items: MiniRulesRegulPropertiesType
+  AlphaString_Length1To6:
+    description: "Format limitations- a..6"
+    type: string
+    minLength: 1
+    maxLength: 6
+  AlphaNumericString_Length1To199:
+    description: "Format limitations- an..199"
+    type: string
+    minLength: 1
+    maxLength: 199
+  AlphaNumericString_Length1To3:
+    description: "Format limitations- an..3"
+    type: string
+    minLength: 1
+    maxLength: 3
+  NumericInteger_Length1To99:
+    description: "Format limitations- n..99"
+    type: integer
+    #pattern: ^-?[0-9]{1,99}$
+  AlphaNumericString_Length1To320:
+    description: "Format limitations- an..320"
+    type: string
+    minLength: 1
+    maxLength: 320
+  AlphaNumericString_Length1To25:
+    description: "Format limitations- an..25"
+    type: string
+    minLength: 1
+    maxLength: 25
+  AlphaNumericString_Length1To5:
+    description: "Format limitations- an..5"
+    type: string
+    minLength: 1
+    maxLength: 5
+  AlphaNumericString_Length1To35:
+    description: "Format limitations- an..35"
+    type: string
+    minLength: 1
+    maxLength: 35
+  AlphaNumericString_Length1To10:
+    description: "Format limitations- an..10"
+    type: string
+    minLength: 1
+    maxLength: 10
+  AlphaNumericString_Length1To60:
+    description: "Format limitations- an..60"
+    type: string
+    minLength: 1
+    maxLength: 60
+  NumericInteger_Length1To60:
+    description: "Format limitations- n..60"
+    type: integer
+#    pattern: ^-?[0-9]{1,60}$
+  AlphaNumericString_Length1To70:
+    description: "Format limitations- an..70"
+    type: string
+    minLength: 1
+    maxLength: 70
+  AlphaNumericString_Length1To4:
+    description: "Format limitations- an..4"
+    type: string
+    minLength: 1
+    maxLength: 4
+  NumericInteger_Length1To3:
+    description: "Format limitations- n..3"
+    type: integer
+    maximum: 999
+#    pattern: ^-?[0-9]{1,3}$
+  AlphaString_Length1To3:
+    description: "Format limitations- a..3"
+    type: string
+    minLength: 1
+    maxLength: 3
+  AlphaNumericString_Length1To20:
+    description: "Format limitations- an..20"
+    type: string
+    minLength: 1
+    maxLength: 20
+  NumericInteger_Length1To15:
+    description: "Format limitations- n..15"
+    type: integer
+#    pattern: ^-?[0-9]{1,15}$
+  AlphaNumericString_Length1To7:
+    description: "Format limitations- an..7"
+    type: string
+    minLength: 1
+    maxLength: 7
+  NumericDecimal_Length1To35:
+    description: "Format limitations- n..35"
+    type: number
+    required: false
+  AlphaNumericString_Length1To512:
+    description: "Format limitations- an..512"
+    type: string
+    minLength: 1
+    maxLength: 512
+  Time24_HHMM:
+    description: "Time format- 24H. All digits are mandatory . Example- from 0000 to 2359"
+    type: string
+    pattern: ^([0-1][0-9]|2[0-3])[0-5][0-9]$
+  AdditionalFareQualifierDetailsType:
+    description: "To specify the fare basis and ticket designator codes."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      rateClass:
+        description: "Contains fare basis code"
+        type: AlphaNumericString_Length1To35
+        required: false
+  ApplicationErrorDetailType:
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      errorCode:
+        description: "Code identifying the data validation error condition."
+        type: AlphaNumericString_Length1To5
+        required: false
+      errorCategory:
+        description: "Identification of a code list."
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      errorCodeOwner:
+        description: "Code identifying the agency responsible for a code list."
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  ApplicationErrorInformationType:
+    description: "To identify the type of application error within a message."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      errorDetails:
+        description: "Application error details."
+        type: ApplicationErrorDetailType
+        required: false
+  CategDescrType:
+    description: "To identify an ATPCO Fare Category"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      descriptionInfo:
+        description: "Category description information"
+        type: CategoryDescriptionType
+        required: false
+      processIndicator:
+        description: "Category processing indicator"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  CategoryDescriptionType:
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      number:
+        description: "Category number from ATPCO naming conventions (C05 for Advance Purchase restrictions, C06 for Minimun stay ...)"
+        type: NumericInteger_Length1To3
+        required: false
+      code:
+        description: "Category Code (ATPCO component code, e.g ADV for Advance purchase, STP for stopover restrictions, ELG for eligibility restrictions...)"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaString_Length1To3
+      name:
+        description: "Category Name as per ATPCO ADVANCE PURCHASE MINIMUM STAY MAXIMUM STAY ..."
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To20
+      language:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      encoding:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      freeText:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To320
+  DateAndTimeDetailsType:
+    description: "To provide date and time details relative to flight movements."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      qualifier:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      date:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To35
+      time:
+        type: array
+        minItems: 0
+        required: false
+        items: Time24_HHMM
+  DateAndTimeInformationType:
+    description: "To convey information regarding estimated or actual dates and times of operational events"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      dateAndTimeDetails:
+        description: "DATE AND TIME DETAILS"
+        type: array
+        minItems: 0
+        maxItems: 400
+        required: false
+        items: DateAndTimeDetailsType
+  DummySegmentTypeI:
+    description: "To serve the purpose of a mandatory segment at the beginning of a group and to avoid segment collision."
+    type: object
+    required: false
+  ElementManagementSegmentType:
+    description: "To specify the PNR segments/elements references and action to apply"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      reference:
+        description: "Segment Tattoo"
+        type: array
+        minItems: 0
+        required: false
+        items: ReferencingDetailsType
+  ElementManagementSegmentType_104354S:
+    description: "To specify the PNR segments/elements references and action to apply"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      reference:
+        description: "Offers Tattoo"
+        type: array
+        minItems: 0
+        required: false
+        items: ReferencingDetailsType_153016C
+  ErrorGroupType:
+    description: "Conveys a potential error."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      errorOrWarningCodeDetails:
+        description: "The details of error/warning code."
+        type: ApplicationErrorInformationType
+        required: false
+      errorWarningDescription:
+        description: "The desciption of warning or error."
+        type: array
+        minItems: 0
+        required: false
+        items: FreeTextInformationType
+  FareQualifierDetailsType:
+    description: "To specify flight product information detail"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      additionalFareDetails:
+        description: "Conveys Fare Basis code"
+        type: AdditionalFareQualifierDetailsType
+        required: false
+  FreeTextDetailsType:
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      textSubjectQualifier:
+        description: "Literal text"
+        type: AlphaNumericString_Length1To3
+        required: false
+      language:
+        description: "Language"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      source:
+        description: "Error text retreived from canned message DB"
+        type: AlphaNumericString_Length1To3
+        required: false
+      encoding:
+        description: "Text encoding"
+        type: AlphaNumericString_Length1To3
+        required: false
+  FreeTextDetailsType_267063C:
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      textSubjectQualifier:
+        type: AlphaNumericString_Length1To3
+        required: false
+      informationType:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To4
+      companyId:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To35
+      language:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      source:
+        type: AlphaNumericString_Length1To3
+        required: false
+      encoding:
+        type: AlphaNumericString_Length1To3
+        required: false
+  FreeTextInformationType:
+    description: "Used to convey the free text and associated language, encoding."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      freeTextDetails:
+        description: "Free text details"
+        type: FreeTextDetailsType
+        required: false
+      freeText:
+        description: "Free text and message sequence numbers of the remarks."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: AlphaNumericString_Length1To199
+  FreeTextInformationType_190956S:
+    description: "Used to convey the free text and associated language, encoding."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      freeTextDetails:
+        type: FreeTextDetailsType_267063C
+        required: false
+      freeText:
+        description: "Free text and message sequence numbers of the remarks."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: AlphaNumericString_Length1To320
+  ItemNumberIdentificationType:
+    description: "Goods identification for a specified source"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      number:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To35
+  ItemNumberType:
+    description: "To specify an item number"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      itemNumberDetails:
+        type: array
+        minItems: 0
+        maxItems: 99
+        items: ItemNumberIdentificationType
+  ItemReferencesAndVersionsType:
+    description: "Exchange and link unique identifiers"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      referenceType:
+        type: AlphaNumericString_Length1To3
+        required: false
+      uniqueReference:
+        type: NumericInteger_Length1To99
+        required: false
+  LanguageBatchTypeU:
+    description: "To specify a language."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      languageQualifier:
+        type: AlphaNumericString_Length1To3
+        required: false
+      languageDetails:
+        type: array
+        minItems: 0
+        required: false
+        items: LanguageDetailsBatchTypeU
+  LanguageDetailsBatchTypeU:
+    description: "To identify a language."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      languageCode:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      languageName:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To35
+  LocationIdentificationBatchType:
+    description: "Identification of a location by code or name"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      code:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To35
+  MiniRulesRegulPropertiesType:
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      mnrCatInfo:
+        description: "Minirules Category information"
+        type: CategDescrType
+        required: false
+      mnrCatLoc:
+        type: array
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            catOrder:
+              type: ItemNumberType
+              required: false
+            catAssumption:
+              type: array
+              minItems: 0
+              required: false
+              items: FreeTextInformationType_190956S
+      mnrFCInfoGrp:
+        description: "Minirules Fare Components information group"
+        type: array
+        minItems: 0
+        maxItems: 16
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            refInfo:
+              description: "Categories numbers and fare component reference on which categories apply"
+              type: ReferenceInfoType_217032S
+              required: false
+            locationInfo:
+              description: "Place/location information"
+              type: array
+              minItems: 0
+              maxItems: 16
+              items: PlaceLocationIdentificationType
+      mnrDateInfoGrp:
+        description: "Minirule Dates information"
+        type: array
+        minItems: 0
+        maxItems: 16
+        items:
+          additionalProperties: false
+          properties:
+            dateInfo:
+              description: "Date Info"
+              type: DateAndTimeInformationType
+              required: false
+            valueInfo:
+              description: "Number of units"
+              type: array
+              minItems: 0
+              required: false
+              items: NumberOfUnitsType
+            mnrDateLoc:
+              type: array
+              minItems: 0
+              maxItems: 20
+              required: false
+              items: RuleInformationType
+      mnrMonInfoGrp:
+        description: "Minirules monetary info group"
+        type: array
+        minItems: 0
+        maxItems: 99
+        items:
+          additionalProperties: false
+          properties:
+            monetaryInfo:
+              description: "Monetary info"
+              type: MonetaryInformationType
+              required: false
+            valueInfo:
+              description: "Number of units"
+              type: array
+              minItems: 0
+              required: false
+              items: NumberOfUnitsType
+            mnrMonLoc:
+              type: array
+              minItems: 0
+              maxItems: 20
+              required: false
+              items: RuleInformationType
+      mnrRestriAppInfoGrp:
+        description: "Minirules restriction applicability group"
+        type: array
+        minItems: 0
+        maxItems: 99
+        items:
+          additionalProperties: false
+          properties:
+            mnrRestriAppInfo:
+              description: "Minirules restriction applicability information"
+              type: StatusType_217033S
+              required: false
+            mnrRestriAppLoc:
+              type: array
+              minItems: 0
+              maxItems: 20
+              required: false
+              items: RuleInformationType
+  MonetaryInformationDetailsType:
+    description: "To specify the type of monetary amount, the amount, and the currency code."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      typeQualifier:
+        type: AlphaNumericString_Length1To3
+        required: false
+      amount:
+        description: "Amount"
+        type: array
+        minItems: 0
+        required: false
+        items: NumericDecimal_Length1To35
+      currency:
+        description: "Currency"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  MonetaryInformationType:
+    description: "To convey monetary amounts, rates and percentages."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      monetaryDetails:
+        type: array
+        minItems: 0
+        maxItems: 20
+        required: false
+        items: MonetaryInformationDetailsType
+  NumberOfUnitDetailsType:
+    description: "Identification of number of units and its purpose."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      numberOfUnit:
+        type: array
+        minItems: 0
+        required: false
+        items: NumericInteger_Length1To15
+      unitQualifier:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  NumberOfUnitsType:
+    description: "To specify the number of units required"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      quantityDetails:
+        description: "Number of Unit Details"
+        type: array
+        minItems: 0
+        maxItems: 99
+        items: NumberOfUnitDetailsType
+  OriginAndDestinationDetailsTypeI:
+    description: "To convey the origin and destination of a journey."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      origin:
+        description: "Origin of the fare component"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To25 
+      destination:
+        description: "Destination of the Fare Component"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To25
+  PlaceLocationIdentificationType:
+    description: "To identify a place or a location and/or related locations."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      locationType:
+        type: AlphaNumericString_Length1To3
+        required: false
+      locationDescription:
+        type: array 
+        minItems: 0
+        required: false
+        items: LocationIdentificationBatchType
+  ReferenceInfoType:
+    description: "To provide specific Hotel reference identification."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      referenceDetails:
+        description: "Fare component Id or Pricing Unit Id"
+        type: array
+        minItems: 0
+        maxItems: 2
+        required: false
+        items: ReferencingDetailsType_153016C
+  ReferenceInfoType_217032S:
+    description: "To provide specific Hotel reference identification."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      referenceDetails:
+        type: array 
+        minItems: 0
+        maxItems: 999
+        required: false
+        items: ReferencingDetailsType_153016C
+  ReferenceInformationType:
+    description: "Used to convey the passenger references."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      passengerReference:
+        description: "Used to convey the passenger tatoo"
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: ReferencingDetailsType
+  ReferencingDetailsType:
+    description: "To provide reference identification."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      type:
+        description: "Passenger Type"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To10
+      value:
+        description: "Passenger or infant Tatoo"
+        type: array
+        minItems: 0
+        required: false
+        items: NumericInteger_Length1To60
+  ReferencingDetailsType_153016C:
+    description: "To provide reference identification."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      type:
+        description: "FC for Fare Component or PU for pricing unit"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To10
+      value:
+        description: "Fare Componenet ID or Pricing Unit Id"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To60
+  ResponseAnalysisDetailsType:
+    description: "To specify the type of query and the processing status associated with this response."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      statusCode:
+        description: "\"O\" if the request is processed. Further information provided in the repley.  \"N\" if an error occured. More details about the error is returned in error group"
+        type: AlphaString_Length1To6
+        required: false
+  RuleDetailsTypeU:
+    description: "To indicate the coded rule, a number and it's              relation to the rule, a start day of service, a              monetary amount associated to the rule, and              additional information associated with the rule"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      type:
+        type: AlphaNumericString_Length1To3
+        required: false
+      quantity:
+        type: array
+        minItems: 0
+        required: false
+        items: NumericInteger_Length1To15
+      quantityUnit:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      qualifier:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      daysOfOperation:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To7
+      amount:
+        type: array
+        minItems: 0
+        required: false
+        items: NumericDecimal_Length1To35
+      amountQualifier:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      currency:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  RuleInformationType:
+    description: "To specify rule information and rule status."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      ruleDetails:
+        type: array
+        minItems: 0
+        required: false
+        items: RuleDetailsTypeU
+      ruleText:
+        type: RuleTextTypeU
+        required: false
+  RuleTextTypeU:
+    description: "To specify the text rule"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      textType:
+        type: AlphaNumericString_Length1To70
+        required: false
+      infoType:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To4
+      freeText:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To512
+      language:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      encoding:
+        type: AlphaNumericString_Length1To3
+        required: false
+  StatusDetailsType:
+    description: "To specify a status, the action to be taken, and an additional qualification of the status."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      indicator:
+        description: "list of status/qualifiers Either His for Historical or     Crt for Current"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      action:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      type:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      description:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To70
+  StatusDetailsType_299275C:
+    description: "To specify a status, the action to be taken, and an additional qualification of the status."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      indicator:
+        description: "list of status/qualifiers Either His for Historical or     Crt for Current"
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+      action:
+        type: array
+        minItems: 0
+        required: false
+        items: AlphaNumericString_Length1To3
+  StatusType:
+    description: "To advise the requester system the status of the reply"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      statusInformation:
+        description: "STATUS DETAILS"
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: StatusDetailsType
+  StatusType_217033S:
+    description: "To advise the requester system the status of the reply"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      statusInformation:
+        description: "STATUS DETAILS"
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: StatusDetailsType_299275C

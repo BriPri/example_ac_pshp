@@ -1,0 +1,52 @@
+#%RAML 1.0 NamedExample
+
+value:
+   {
+   "POS":{
+     "Source":[{
+       "ISOCountry": "CA",
+       "ISOCurrency": "CAD",
+       "AirportCode": "YYZ"
+     }]
+   },
+  "Fulfillment": {
+    "PaymentDetails": [
+      {
+        "PaymentCard": {
+          "CardType": {
+            "Content": "VISA"
+          },
+          "CardCode": "VI",
+          "CardNumber": {
+            "PlainText": "4111111111111111"
+          },
+          "ExpireDate": "1021",
+          "CardHolderName": "basic canadian",
+          "Address": {
+            "AddressLine": ["121 john street"],
+            "CityName": "Toronto",
+            "PostalCode": "m5v2e2",
+            "StateProv": {
+              "Content": "Ontario",
+              "StateCode": "ON"
+            },
+            "CountryName": {
+              "Content": "Canada",
+              "Code": "CA"
+            }
+          }
+        },
+        "PaymentAmount": [
+          {
+            "CurrencyCode": "CAD",
+            "DecimalPlaces": 2,
+            "Amount": 759.65
+          }
+        ],
+      }
+    ]
+  },
+  "BookingReferenceID": {
+    "ID": "XHL3H"
+  }
+}

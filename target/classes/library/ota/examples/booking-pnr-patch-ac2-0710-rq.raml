@@ -1,0 +1,143 @@
+#%RAML 1.0 NamedExample
+
+value: {
+   "POS":{
+     "Source":[{
+       "ISOCountry": "CA",
+       "ISOCurrency": "CAD",
+       "AirportCode": "CDG"
+     }]
+   },
+  "AirBookModifyRQ": {
+    "BookingReferenceID": [{
+      "Type": "0.AAA.X",
+      "ID": "MPBCPA"
+    }],
+    "ModificationType": "8",
+    "AirItinerary": {
+      "OriginDestinationOptions": [{
+        "FlightSegment": [{
+          "ArrivalDateTime": "2018-09-02T12:15:00",
+          "DepartureDateTime": "2018-09-02T11:00:00",
+          "FlightNumber": "871",
+          "ResBookDesigCode": "K",
+          "DepartureAirport": {
+            "LocationCode": "CDG"
+          },
+          "ArrivalAirport": {
+            "LocationCode": "YUL"
+          },
+          "MarketingAirline": {
+            "Code": "AC"
+          },
+          "Comment": [{
+            "Content": "QI=44B8000C29F92F03*2?O=11?FG=1?T=RT?M=I?AD=2?CH=1?FF=TG?R=0?C=K?E=77W?ML=MS?DT=2A?X=0?D=07H15?FB=8922?PB=9115?TF=3840.72?AF=3840.72?DP=2?SF=Y"
+          }]
+        }]
+      }]
+    },
+    "TravelerInfo": {
+      "AirTraveler": [{
+        "PassengerTypeCode": "ADT",
+        "PersonName": {
+          "NamePrefix": ["MR"],
+          "GivenName": ["Basic"],
+          "MiddleName": ["Middle"],
+          "Surname": "Canadian"
+        },
+        "TravelerRefNumber": {
+          "RPH": "1"
+        }
+      }]
+    },
+    "Fulfillment": {
+      "PaymentDetails": [{
+        "PaymentCard": {
+          "CardType": {
+            "Content": "VISA"
+          },
+          "CardCode": "VI",
+          "CardNumber": {
+            "PlainText": "4111111111111111"
+          },
+          "ExpireDate": "1021",
+          "SeriesCode": {
+            "Token": "AEGHV234AUD54367"
+          }
+        },
+        "PaymentAmount": [{
+          "Amount": 1234.45,
+          "CurrencyCode": "CAD"
+        }]
+      }],
+      "DeliveryAddress": {
+        "AddressLine": ["121 john street"],
+        "CityName": "toronto",
+        "PostalCode": "m5v2e2",
+        "StateProv": {
+          "Content": "Ontario",
+          "StateCode": "ON"
+        },
+        "CountryName": {
+          "Content": "Canada",
+          "Code": "CA"
+        }
+      }
+    },
+    "Ticketing": [{
+      "TicketAdvisory": [{
+
+      }]
+    }]
+  },
+  "AirReservation": {
+    "BookingReferenceID": [{
+      "Type": "0.AAA.X",
+      "ID": "MPBCPA"
+    }],
+    "Fulfillment": {
+      "PaymentDetails": [{
+        "PaymentCard": {
+          "CardType": {
+            "Content": "VISA"
+          },
+          "CardCode": "VI",
+          "CardNumber": {
+            "PlainText": "4111111111111111"
+          },
+          "ExpireDate": "1021",
+          "SeriesCode": {
+            "Token": "AEGHV234AUD54367"
+          }
+        },
+        "PaymentAmount": [{
+          "Amount": 1234.45,
+          "CurrencyCode": "CAD"
+        }]
+      }],
+      "DeliveryAddress": {
+        "AddressLine": ["121 john street"],
+        "CityName": "toronto",
+        "PostalCode": "m5v2e2",
+        "StateProv": {
+          "Content": "Ontario",
+          "StateCode": "ON"
+        },
+        "CountryName": {
+          "Content": "Canada",
+          "Code": "CA"
+        }
+      }
+    },
+    "TravelerInfo": {
+      "SpecialReqDetails": [{
+        "SeatRequests": [{
+          "SeatNumber": "14C",
+          "FlightNumber": "1234",
+          "TravelerRefNumberRPHList": ["1"],
+          "FlightRefNumberRPHList": ["1"]
+        }]
+      }]
+    }
+  }
+}

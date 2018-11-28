@@ -1,0 +1,320 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "AirReservation": [
+    {
+      "AirItinerary": {
+        "OriginDestinationOptions": [{
+          "FlightSegment": [
+            {
+              "Status": "1A",
+              "BookingClassAvails": [{
+                "BookingClassAvail": [{
+                  "AC_UpgradeEligibility": {
+                    "LoyalLevel": "A",
+                    "Eligible": true,
+                    "UpgradeOptions": [{
+                      "UpgradeCabin": "Business",
+                      "RequiredCredits": 1,
+                      "UpgradeFee": {
+                        "Amount": 1200.00,
+                        "CurrencyCode": "CAD",
+                        "DecimalPlaces": 2
+                      }
+                    }]
+                  }
+                }]
+              }]
+            }]
+          }]
+        },
+        "PriceInfo": {
+          "ItinTotalFare": [
+            {
+              "NegotiatedFareCode": "F3",
+              "BaseFare": {
+                "Amount": 1208.00
+              },
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin              
+              "AC_ChargesRefundSummary": {
+                "Charges": [{
+                  "ChargeTypeCode": "AddCharges",
+                  "BaseFare": {
+                    "Amount": "1208.00"
+                  },
+                  "Taxes": {
+                    "Amount": "120.00",
+                    "Tax": [{
+                      "TaxCode": "CA",
+                      "Amount": 120.00
+                    }]
+                  },
+                  "TotalFare": {
+                    "Amount": 1328.00
+                  },
+                  "Fees": {
+                    "Fee": [{
+                      "FeeCode": "YQ",
+                      "Amount": 120.00
+                    }]
+                  },
+                  "TotalExtraCharges": {
+                    "Amount": 120.00,
+                    "CurrencyCode": "CAD"
+                  },
+                  "EquivFare": {
+                    "Amount": 120.00,
+                    "CurrencyCode": "CAD"
+                  }
+                }]
+              },
+ #Temp FIX for OTA Trim End               
+              "AC_FareFamily": {
+                "Content": "Content",
+                "ResBookDesigCode": "V",
+                "FlightNumber": "1234"
+              }
+              #,
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin                 
+#              "AC_ImportantInformationOfConfirmationPage": {
+#                "CarryOnBaggagePolicy": {
+#                  "CarryOnBaggageRestrictions": {
+#                    "StandardArticle": {
+#                      "Number": 123.0,
+#                      "MaximumSize": {
+#                        "InCentimeter": 158.0,
+#                        "InInches": 62.0
+#                      }
+#                    },
+#                    "PersonalArticle": {
+#                      "Number": 123.0,
+#                      "MaximumSize": {
+#                        "InCentimeter": 158.0,
+#                        "InInches": 62.0
+#                      }
+#                    }
+#                  }
+#                },
+#                "CheckedBaggagePolicy": {
+#                  "CheckedBaggageRestrictions": {
+#                    "Economyclass": {
+#                      "Number": 123.0,
+#                      "MaximumSize": {
+#                        "IN_CENT": 158.0,
+#                        "InInches": 62.0
+#                      },
+#                      "MaximumWeight": {
+#                        "InKG": 23.0,
+#                        "InLB": 60.0
+#                      }
+#                    },
+#                    "ExecutiveClass": {
+#                      "Number": 123.0,
+#                      "MaximumSize": {
+#                        "IN_CENT": 158.0,
+#                        "InInches": 62.0
+#                      },
+#                      "MaximumWeight": {
+#                        "InKG": 32.0,
+#                        "InLB": 70.0
+#                      }
+#                    }
+#                  }
+#                },
+#                "CheckInAndBoardingTimes": {
+#                  "Region": [{
+#                    "Info": "information",
+#                    "CheckIn": {
+#                      "Recommended": "12:05:00",
+#                      "CutOffTime": "12:25:00"
+#                    },
+#                    "BoardingGate": {
+#                     "CutOffTime": "13:25:00"
+#                    }
+#                  }]
+#                }
+#              }
+#Temp FIX for OTA Trim Emd
+            }
+          ],
+          "PTC_FareBreakdowns": [
+            {
+              "PassengerTypeQuantity": {
+                "Code": "ADT",
+                "Quantity": 2
+              },
+              "FareBasisCodes": [
+                {
+                  "Content": "KKXNNZO6"
+                },
+                {
+                  "Content": "VKWNCFRW"
+                }
+              ],
+              "PassengerFare": [
+                {
+                  "BaseFare": {
+                    "Amount": 435.00,
+                    "CurrencyCode": "CAD",
+                    "DecimalPlaces": 2
+                  },
+                  "Taxes": {
+                    "Amount": 148.67,
+                    "Tax": [
+                      {
+                        "TaxCode": "CA",
+                        "Amount": 25.91
+                      }
+                    ]
+                  },
+                  "Fees": {
+                    "Fee": [
+                      {
+                        "Amount": 400.76,
+                        "FeeCode": "YQ"
+                      }
+                    ]
+                  },
+                  "TotalFare": {
+                    "Amount": 984.43,
+                    "CurrencyCode": "CAD",
+                    "DecimalPlaces": 2
+                  },
+                  "AC_eTicketNumber": "30465876954325",
+#Added to resolve OTA Trim Compatibility issues temporarily                  
+#Temp FIX for OTA Trim Begin                  
+#                  "AC_Additional_Charges_Details": {
+#                    "Additional_Charge": [{
+#                      "Amount": "984.43",
+#                      "Tax": "10.00",
+#                      "Taxes": {
+#                        "Tax": [{
+#                          "TaxCode": "CA",
+#                          "Amount": "25.91"
+#                        }]
+#                      }
+#                    }],
+#                    "Rebook_Fee": {
+#                      "Amount": "984.43",
+#                      "Tax": "10.00"
+#                    }
+#                  },
+#Temp FIX for OTA Trim End                  
+                  "AC_Fare": [{
+                    "FlightNumber": "1234",
+                    "Amount": 984.43,
+                    "Surcharges": 30.09
+                  }],
+                  "AC_FareFamily": {
+                    "Content": "Content",
+                    "ResBookDesigCode": "V",
+                    "FlightNumber": "1234"
+                  }
+                  #,
+#Added to resolve OTA Trim Compatibility issues temporarily                  
+#Temp FIX for OTA Trim Begin                   
+#                  "AC_Discount": [{
+#                    "Code": "1",
+#                    "Amount": 100.00,
+#                    "Description": "Discount description",
+#                    "FlightNumber": "1234",
+#                    "Taxes": {
+#                      "Amount": 10.00,
+#                      "Tax": {
+#                        "TaxCode": "CA",
+#                        "Amount": 10.00
+#                      }
+#                    }
+#                  }]
+#Temp FIX for OTA Trim End                   
+                }
+              ]
+            }
+          ]
+        },
+        "TravelerInfo": {
+          "AirTraveler": [
+            {
+              "BirthDate": "1987-07-05",
+              "PassengerTypeCode": "ADT",
+              "Gender": "Male",
+              "PersonName": {
+                "NamePrefix": ["MR"],
+                "GivenName": ["Basic"],
+                "Surname": "Canadian"
+              },
+              "Telephone": [
+                {
+                  "CountryAccessCode": "1",
+                  "AreaCityCode": "555",
+                  "PhoneNumber": "5555555",
+                  "PhoneLocationType": "1",
+                  "PhoneTechType": "1"
+                }
+              ],
+              "Email": [
+                {
+                  "Content": "ssorensen@farelogix.com"
+                }
+              ],
+              "CustLoyalty": [{
+                "ProgramID": "AC",
+                "MembershipID": "C12345",
+                "LoyalLevel": "Gold",
+                "VendorCode": ["AC"]
+              }]
+            }
+          ],
+          "SpecialReqDetails": [{
+            "SpecialServiceRequests": [{
+              "FlightRefNumberRPHList": ["1"],
+              "TravelerRefNumberRPHList": ["1"],
+              "SSRCode": "WCHR",
+              "Status": "30",
+              "Number": 4,
+              "Text": "Text associated with remark"
+            }]
+          }]
+        },
+        "Fulfillment": {
+          "PaymentDetails": [{
+            "PaymentTransactionTypeCode": "Air",
+            "PaymentCard": {
+              "CardType": {
+                "Content": "VISA" 
+              },
+              "CardCode": "VI",
+              "CardNumber": {
+                "PlainText": "4111111111111111"
+              },
+              "ExpireDate": "1021",
+              "SeriesCode": {
+                "Token": "AEGHV234AUD54367"
+              }
+            },
+            "PaymentAmount": [{
+              "Amount": 1200.00,
+              "CurrencyCode": "CAD"
+            }]
+          }]
+        },
+        "Ticketing": [{
+          "TicketingStatus": "OK",
+          "RequestedTicketingDate": "2017-08-09T15:10:00",
+          "TicketType": "eTicket",
+          "PseudoCityCode": "YYC"
+        }],
+        "BookingReferenceID": [{
+          "Type": "ADO",
+          "ID": "MPBCPA",
+          "CompanyName": {
+            "Code": "AC"
+#            "CodeContext": "AC1"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,50 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "Segment":
+  [
+  {
+    "ItinSegNbr": 1
+  }
+  ],
+  "OriginAndDestinationSegment":
+  [
+    {
+      "OriginLocation": {
+        "LocationCode": "YYZ"
+      },
+      "DestinationLocation":{
+        "LocationCode": "YEG"
+      }
+    }
+  ],
+  "Verification":{
+    "StartLocation":{
+      "AssociatedDateTime": "2002-07-01T13:50:05"
+    },
+    "Vendor":[{
+      "CompanyShortName": "Air Canada"
+    }]
+  },
+  "CancellationContactPerson": {
+    "PersonName": {
+      "Surname": "Canadian",
+      "GivenName": ["Basic"],
+      "DefaultInd": true,
+      "Document":{
+        "DocID": "ZZ200000",
+        "DocType": "2"
+      }
+    },
+    "BirthDate": "1977-08-29"
+  },
+  "CancellationOverrides": {
+    "CancellationOverride":{
+      "Amount": 1234,
+      "DecimalPlaces": 2,
+      "CurrencyCode": "CAD",
+      "Type": "Charge"
+    }
+  },
+  "CancelType": "Cancel"
+}

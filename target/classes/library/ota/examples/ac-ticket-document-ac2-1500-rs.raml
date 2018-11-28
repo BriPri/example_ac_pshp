@@ -1,0 +1,196 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "TicketDocumentDetails":[
+  {
+    "TicketNumber": 12345,
+    "AirReservation": {
+      "BookingReferenceID":[
+      {
+        "Type": "21A",
+        "ID": "DKEF",
+        "CompanyName":{
+          "Code": "AC323"
+#          "CodeContext": "AB"
+          }
+      }
+      ],
+      "AirItinerary":{
+        "OriginDestinationOptions":[{
+          "FlightSegment": [
+          {
+            "DepartureDateTime": "2016-02-28T16:41:41",
+            "ArrivalDateTime": "2016-02-28T16:41:41",
+            "StopQuantity": 12,
+            "FlightNumber": "7966A",
+            "ResBookDesigCode": "YT",
+            "MealCode": "Lunch",
+            "Status": "8K.DKW.X",
+            "DepartureDay": "Mon",
+            "DepartureAirport":{
+              "LocationCode": "YEG"
+             },
+            "ArrivalAirport":{
+              "LocationCode": "YEG",
+              "Terminal": "XYZ"
+            },
+            "Equipment": [
+            {
+              "AirEquipType": "AIR"
+            }
+            ],
+            "MarketingAirline":{
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+              }
+          }
+          ]
+          }]
+        },
+      "TravelerInfo":{
+        "AirTraveler": [
+        {
+          "AccompaniedByInfantInd": true,
+          "PassengerTypeCode": "kEa",
+          "BirthDate": "2015-05-23",
+          "Gender": "Male",
+          "PersonName":{
+            "NamePrefix": ["Mr"],
+            "GivenName": ["Jerry"],
+            "Surname": "Hansen"
+            }
+        }
+        ]
+        },
+      "Ticketing":[
+      {
+        "TicketType": "Paper",
+        "TicketingStatus": "9K2.YEG",
+        "PseudoCityCode": "YYZ"
+      }
+      ],
+      "EMD_Info":[
+      {
+        "TotalFltSegQty": 1,
+        "EMD_Type": "EMD-S",
+        "AgentID":[
+        {
+          "Type": "KR2",
+          "ID": "AgentID"
+        }
+        ],
+        "PaymentDetail":[
+        {
+          "PaymentCard":{
+            "CardCode": "AX",
+            "CardNumber":{
+              "PlainText": "103494839285"
+              },
+            "CardType": {
+              "Content": "AmericanExpress"
+              }
+            },
+          "PaymentAmount":[
+          {
+            "ApprovalCode": "EKDIWNFL"
+          }
+          ]
+#          "PrivacyGroup": {
+#            "ShareMarketInd": "Yes"
+#          }
+        }
+        ],
+        "OriginDestination":{
+          "OriginCityCode": "YEG",
+          "DestinationCityCode": "YYZ"
+          },
+        "Endorsement":{
+          "Info": "endorsement info"
+          },
+        "BaseFare":[
+        {
+          "Amount": 1234,
+          "CurrencyCode": "USD",
+          "DecimalPlaces": 2
+        }
+        ],
+        "TotalFare":[
+        {
+          "Amount": 1234,
+          "CurrencyCode": "CAD",
+          "DecimalPlaces": 2
+        }
+        ],
+        "Taxes":{
+          "Tax": [
+          {
+            "TaxCode": "AB",
+            "Amount": 12354
+          }
+          ]
+          },
+        "UnstructuredFareCalc":[
+        {
+          "Info": "Fare Calc info"
+        }
+        ],
+#        "FareInfo":{
+#          "TourCode": "CODE"
+#          },
+        "TicketDocument":[
+        {
+          "TicketDocumentNbr": "2341",
+          "Type": "Ticket",
+          "DateOfIssue": "2015-05-23",
+          "CouponInfo":[
+          {
+            "Number": 1,
+            "CouponReference": "1234",
+            "FareBasisCode": "431`",
+            "Status": "K",
+            "CouponItinerarySeqNbr": 55,
+            "DateOfService": "2016-02-28T16:41:41",
+            "SoldFlightSegmentRPH": "7865",
+            "ValidatingAirline":{
+              "Code": "Code"
+              }
+          }
+          ]
+        }
+        ],
+      "FareComponent": {
+        "PriceableUnit": [
+        {
+          "Number": "AC654",
+          "FareComponentDetail": [
+          {
+            "Number": 4,
+            "CouponSequence": [
+            {
+              "OriginCityCode": "YEG"
+            }
+            ],
+            "BaseAmount":[
+            {
+              "Amount": 123,
+              "CurrencyCode": "CAD"
+            }
+            ]
+          }
+          ]
+        }
+        ],
+      "TotalConstructionAmount":[
+      {
+        "Purpose": "Base",
+        "Amount": 123,
+        "CurrencyCode": "CAD"
+      }
+      ]
+        }
+      }
+      ]
+      }
+  }
+  ]
+  }

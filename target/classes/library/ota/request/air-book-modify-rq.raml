@@ -1,0 +1,43 @@
+#%RAML 1.0 Library
+
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  OTA_AirBookModifyRQ:
+    description: "The AirBook Modify Request message requests the system to modify an existing booking for one or more identified passengers. The message may be used for any kind of modification to a booking file, i.e. a modification to existing flight segments and special service information the addition of new elements, a name change or a booking file split. Analogous to the TTY process, existing data is submitted as well as the modified data. Attribute 'Operation' indicates the way elements have to be changed. Flight segments as well as seats- and special service requests will indicate a modification using the appropriate Status attribute."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+      POS:
+        description: "This identifes the party making the modification request. Trading partners are open to define their own UniqueID."
+        type: commonTypes.POS_Type
+      AirBookModifyRQ:
+        description: "Contains the new value of data which is to be modified."
+        type: [object, airCommonTypes.AirReservationType]
+        additionalProperties: false 
+        properties: 
+          ModificationType:
+            description: "Specifies the type of booking modification being requested. Refer to OpenTravel Code List Modification Type (MOD)."
+            type: simpleTypes.OTA_CodeType
+            required: false
+          ReduceToNbr:
+            description: "The number of passengers that should remain in the passenger booking record following a modification to reduce the number in party."
+            type: simpleTypes.Numeric1to999
+            required: false
+          ClaimPNR_Ind:
+            description: "When true, indicates a request to claim the booking by the sending party."
+            type: boolean
+            required: false
+      AirReservation:
+        description: "Contains all booking information of the current reservation, in this case of the reservation which is to be modified."
+        type: airCommonTypes.AirReservationType
+        required: false
+      ResStatus:
+        description: "Specifies an action to be taken following the modification of the booking."
+        type: simpleTypes.TransactionActionType
+        required: false

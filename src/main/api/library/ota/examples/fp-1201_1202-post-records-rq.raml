@@ -1,0 +1,34 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "POS": {
+    "Source": [{
+      "ISOCountry": "CA",
+      "ISOCurrency": "CAD",
+      "AirportCode": "YYZ"
+    }]
+  },
+  "AirItinerary": {
+    "OriginDestinationOptions": [{
+      "FlightSegment": [{
+      "DepartureDateTime": "2018-11-07T14:00:00",
+      "ArrivalDateTime": "2018-11-07T15:14:00",
+      "FlightNumber": "414",
+      "ResBookDesigCode": "K",
+      "DepartureAirport": {
+         "LocationCode": "YYZ"
+       },
+       "ArrivalAirport": {
+         "LocationCode": "YUL"
+       },
+       "MarketingAirline": {
+         "Code": "AC"
+       },
+       "OperatingAirline": {
+         "Code": "AC"
+       },
+       "NumberInParty": 1
+     }]
+   }]
+ }
+}

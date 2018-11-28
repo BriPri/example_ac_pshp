@@ -1,0 +1,89 @@
+#%RAML 1.0 NamedExample
+
+value: {
+
+  "PricedItineraries": [
+    {
+      "AirItinerary": {
+        "OriginDestinationOptions": [{
+            "FlightSegment": [{
+              "DepartureAirport": {
+                "LocationCode": "YYZ"
+              },
+              "DepartureDateTime": "2018-07-07T09:45:00",
+              "ArrivalAirport": {
+                "LocationCode": "YVR"
+              },
+              "ArrivalDateTime": "2018-08-07T09:45:00",
+              "StopQuantity": 1,
+              "FlightNumber": "1204",
+              "ResBookDesigCode": "Y",
+              "MealCode": "Breakfast",
+              "Equipment": [{
+                "AirEquipType": "777"
+              }],
+              "MarketingAirline": {
+                "CompanyShortName": "Air Canada",
+                "Code": "AC"
+              },
+              "OperatingAirline": {
+                "CompanyShortName": "Air Canada",
+                "Code": "AC"
+              },
+              "AC_JourneyDuration": "PT01H19M"
+            }]
+        }]
+      },
+      "AirItineraryPricingInfo": {
+        "AC_Discounts": [
+          {
+            "ID": "1",
+            "Discount_Name": "AC Discount",
+            "RewardProgram": "AC Gold",
+            "Discount_Type": "Type A",
+            "Discount_Value": "Value",
+            "Discount_Fare": {
+              "Amount": 100,
+              "CurrencyCode": "CAD",
+              "DecimalPlaces": 2,
+              "Type": "AC Discount",
+              "TaxIncluded": "TBD",
+              "Taxes": {
+                "Amount": 100,
+                "Tax": {
+                  "TaxCode": "123456",
+                  "Amount": 100,
+                  "RPH": "1"
+                }
+              }
+            },
+            "Remarks": {
+              "Value_id": "1234"
+            },
+            "Redemption": {
+              "UnitControlled": "2",
+              "AvailableUnits": 2
+            }
+          }
+        ],
+        "ItinTotalFare": [{
+          "BaseFare": {
+            "CurrencyCode": "CAD"
+          }
+        }]
+      },
+      "AC_TravellerInfoSummary": {
+        "AirTravelerAvail": {
+          "PassengerTypeQuantity": {
+            "Quantity": 2
+          },
+          "AirTraveler": {
+            "PassengerTypeCode": "XXX",
+            "TravelerRefNumber": ["1"]
+          }
+        }
+      }
+    }
+  ]
+
+}

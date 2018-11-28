@@ -1,0 +1,32 @@
+#%RAML 1.0 NamedExample
+
+value: 
+   {
+    "AirReservation": [
+      "Fulfillment": {
+        "PaymentDetails": [
+          {
+            "PaymentCard": {
+              "CardType": {
+                "Content": "VISA"
+              },
+              "CardCode": "VI",
+              "CardNumber": {
+                "PlainText": "4111111111111111"
+              },
+              "ExpireDate": "1021",
+              "CardHolderName": "basic canadian"
+            },
+            "PaymentAmount": [
+              {
+                "CurrencyCode": "CAD",
+                "DecimalPlaces": 2,
+                "Amount": 759.65,
+                "ApprovalCode": "XG123YF"
+              }
+            ]            
+          }
+        ]
+      }
+    ]
+}

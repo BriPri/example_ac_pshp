@@ -1,0 +1,286 @@
+#%RAML 1.0 Library
+
+usage: AirFareDisplayRQ
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  airPreferences: ../../../library/ota/air-preferences.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+
+  OriginDestinationInformation_OriginDestinationInformationType:
+    type: object
+    additionalProperties: false
+    properties:
+      Content:
+        type: commonTypes.OriginDestinationInformationType
+      RPH:
+        description: "A placeholder for OriginDestinationInformation to be referenced wihin the OTA_AirLowFareSearchRS message. PricedItineraryType carries the reference to this RPH."
+        type: simpleTypes.RPH_Type
+        required: false
+
+  PassengerTypeQuantity_PassengerTypeQuantityType:
+    type: object
+    additionalProperties: false
+    properties:
+      Content: 
+        type: airCommonTypes.PassengerTypeQuantityType
+      ReductionPref:
+        description: "Specify a desired reduction amount or percentage for this passenger type"
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          Amount:
+            description: "The desired reduction amount."
+            type: simpleTypes.Money
+            required: false
+          Currency:
+            description: "The desired reduction currency."
+            type: simpleTypes.AlphaLength3
+            required: false
+          Percent:
+            description: "The desired reduction percentage."
+            type: simpleTypes.Percentage
+            required: false
+          PreferLevel:
+            type: simpleTypes.PreferLevelType
+            required: false
+
+  OTA_AirFareDisplayRQ:
+    description: "The air fare display request enables display of fares between a given city pair."
+    type: commonTypes.MaxResponsesGroup
+    required: false
+    additionalProperties: false 
+    properties: 
+#      POS:
+#        description: "Point of sale object."
+#        type: commonTypes.POS_Type
+#        required: false
+      OriginDestinationInformation:
+        description: "Origin and Destination location as well as all fare related detail information required for fare display."
+        type: array
+        minItems: 0
+        maxItems: 5
+        items: OriginDestinationInformation_OriginDestinationInformationType
+      SpecificFlightInfo:
+        description: "Specify actual airline, flight number, or booking class."
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          Content:
+            type: airCommonTypes.SpecificFlightInfoType
+          BookingReferenceID:
+            description: "This is the identifier returned by the booking system, also referred to as a PNR locator, confirmation number or reservation number from where the flight information is taken from."
+            type: string
+            required: false
+      TravelPreferences:
+        description: "Contains travel preference information."
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          Content:
+            type: airPreferences.AirSearchPrefsType
+          FareApplicationTypePref:
+            description: "Indicates the journey type for which fares are required e.g. OneWay, Return, HalfReturn."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+              FareApplicationType:
+                description: "The journey type for which fares are required can be OneWay, Return or HalfReturn."
+                type: airCommonTypes.FareApplicationType
+              PreferLevel:
+                type: simpleTypes.PreferLevelType
+                required: false
+          FareTypePref:
+            description: "Indicates the type of fare required e.g. unrestricted, excursion etc."
+            type: array
+            minItems: 0
+            maxItems: 5
+            items: airCommonTypes.FareTypePrefGroup
+          FareAccessTypePref:
+            description: "Indicates the fare calculation type e.g. (PointToPoint, Through, Joint, Private.)"
+            type: array
+            minItems: 0
+            maxItems: 5
+            items: 
+              additionalProperties: false 
+              properties: 
+                NegotiatedFareCodes:
+                  description: "Container for multiple negotiated fare codes"
+                  type: object
+                  required: false
+                  additionalProperties: false 
+                  properties: 
+                    NegotiatedFareCode:
+                      description: "Account code required to access fares"
+                      type: array
+                      minItems: 0
+                      maxItems: 99
+                      items: 
+                        additionalProperties: false 
+                        properties: 
+                          Content:
+                            type: string
+                          Code:
+                            description: "Negotiated fare code to use when retrieving fare contracts"
+                            type: simpleTypes.StringLength1to16
+                          CodeContext:
+                            description: "Optional indicator to specify code list used"
+                            type: simpleTypes.StringLength1to32
+                            required: false
+                FareAccess:
+                  description: "Fare calculation type (e.g. PointToPoint, Through, Joint, Private.)"
+                  type: airPreferences.FareAccessPrefType
+                  required: false
+                PreferLevel:
+                  type: simpleTypes.PreferLevelType
+                  required: false
+          BookingClassPref:
+            description: "Booking Classes (RBD's) to include or exclude.)"
+            type: array
+            minItems: 0
+            maxItems: 5
+            items: 
+              additionalProperties: false 
+              properties: 
+                ResBookDesigCode:
+                  description: "The booking class code."
+                  type: simpleTypes.AlphaLength1to2
+                PreferLevel:
+                  type: simpleTypes.PreferLevelType
+                  required: false
+          PricingPrefs:
+            description: "Specify whether prices returned should include Taxes, Services, Fees."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+#              ExchangeRates:
+#                description: "Container for exchange rate elements."
+#                type: object
+#                required: false
+#                additionalProperties: false 
+#                properties: 
+#                  ExchangeRate:
+#                    description: "Specify a particular exchange rate to use in the response."
+#                    type: array
+#                    minItems: 0
+#                    maxItems: 10
+#                    items: commonTypes.ExchangeRateGroup
+              IncludeTaxInd:
+                description: "When true, response should include taxes."
+                type: boolean
+                required: false
+              IncludeServiceFeesInd:
+                description: "When true, response should include service fee information."
+                type: boolean
+                required: false
+              OverrideCurrency:
+                description: "Specifies the currency for pricing that overrides that in point of sale. Use ISO 4217, 3 alpha code."
+                type: simpleTypes.AlphaLength3
+                required: false
+              AlternateCurrency:
+                description: "Specifies the alternate currency for pricing other than that in point of sale or the override currency. Use ISO 4217, 3 alpha code."
+                type: simpleTypes.AlphaLength3
+                required: false
+              IncludeBaseAmtInd:
+                description: "If true, the base amount should be returned in the response.  If false, it does not need to be returned."
+                type: boolean
+                required: false
+              MaxRateAmount:
+                description: "The maximum rate that a traveler is willing to pay."
+                type: simpleTypes.Money
+                required: false
+              MaxCalculatedRateAmount:
+                description: "The maximum calculated rate that a traveler is willing to pay."
+                type: simpleTypes.Money
+                required: false
+              CurrencyOption:
+                description: "May be used to specify why an override currency is being included."
+                enum: ['FilingCurrency','ConvertToCurrency']
+                required: false
+          GlobalIndicatorPref:
+            description: "Specify global direction preferences (e.g. AP- Atlantic Ocean, PA, Pacific Ocean etc.)"
+            type: array
+            minItems: 0
+            maxItems: 5
+            items: 
+              additionalProperties: false 
+              properties: 
+                GlobalIndicatorCode:
+                  description: "AP-Atlantic Ocean; PA - Pacific Ocean; WH - Western Hemisphere; EH - Eastern Hemisphere; PO - Polar Route; TS - Trans Siberia Route; AP - Atlantic/Pacific Round-the-World"
+                  enum: ['AT','PA','WH','EH','PO','TS','AP','SP']
+                  required: false
+                CodeContext:
+                  description: "The code list from which the global indicator code is valid. "
+                  type: simpleTypes.StringLength1to32
+                  required: false
+                PreferLevel:
+                  type: simpleTypes.PreferLevelType
+                  required: false
+          DistributorInfoInd:
+            description: "If true, the distributor information should be returned with the fare."
+            type: boolean
+            required: false
+          TicketDesignatorCode:
+            description: "Specifies that the fare being requested is for this ticket designator code."
+            type: simpleTypes.StringLength1to16
+            required: false
+          HistoricalFareInfoDate:
+            description: "If the fare request is for a previously issued ticket, this is the date on which it was issued."
+            type: simpleTypes.DateOrDateTimeType
+            required: false
+          ReqFareLoadDateInd:
+            description: "If true, the fare load date information is being requested."
+            type: boolean
+            required: false
+      TravelerInfoSummary:
+        description: "Information regarding the numbers and types of passengers."
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          PassengerTypeQuantity:
+            description: "Specify number of passengers using Passenger Type Codes."
+            type: array
+            minItems: 0
+            maxItems: 10
+            items: PassengerTypeQuantity_PassengerTypeQuantityType
+      Account:
+        description: "Specifies an account code for which fares are requested."
+        type: array
+        minItems: 0
+        maxItems: 99
+        items: 
+          additionalProperties: false 
+          properties: 
+            CodeOnlyFaresInd:
+              description: "If true, return only the fares for the specified account code. If false, also return other fares."
+              type: boolean
+              required: false
+            Code:
+              description: "The account code for which fares are requested."
+              type: simpleTypes.StringLength1to32
+              required: false
+      Offer:
+        description: "Merchandising offers associated with the fare or traveler."
+        type: airCommonTypes.AirOfferChoiceType
+        required: false
+      DirectFlightsOnly:
+        description: "Request direct flights on between the given locations. "
+        type: boolean
+        required: false
+      AvailableFlightsOnly:
+        description: "Include only flights with available booking codes (when True or when attribute not present)."
+        type: boolean
+        required: false
+      DisplayOrder:
+        description: "Specifies the order in which fare contracts should be returned."
+        type: airCommonTypes.DisplayOrderType
+        required: false

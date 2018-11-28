@@ -1,0 +1,119 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "POS": {
+    "Source": [{
+      "ISOCountry": "CA",
+      "ISOCurrency": "CAD",
+      "AirportCode": "YYZ"
+    }]
+  },
+  "AirItinerary": {
+    "OriginDestinationOptions": [{
+      "RPH": "11",
+      "FlightSegment": [{
+        "DepartureDateTime": "2018-11-07T14:00:00",
+        "ArrivalDateTime": "2018-11-07T15:14:00",
+        "StopQuantity": 0,
+        "RPH": "1",
+        "FlightNumber": "414",
+        "ResBookDesigCode": "K",
+        "DepartureAirport": {
+          "LocationCode": "YYZ",
+          "Terminal": "1"
+        },
+        "ArrivalAirport": {
+          "LocationCode": "YUL"
+        },
+        "Equipment": [{
+          "AirEquipType": "320"
+        }],
+        "MarketingAirline": {
+          "Code": "AC"
+        },
+        "OperatingAirline": {
+          "Code": "AC"
+        },
+        "NumberInParty": 1,
+        "Status": "HK"        
+      }]
+    }]
+  },
+  "PriceInfo": {
+    "ParticipationLevel": "UFP",
+    "PriceRequestInformation": {
+      "AccountCode": "012345"
+    }
+  },
+  "TravelerInfo": {
+    "AirTraveler": [{
+      "BirthDate": "1987-07-05",
+      "PassengerTypeCode": "ADT",
+      "AccompaniedByInfantInd": false,
+      "Gender": "Male",
+      "PersonName": {
+        "NamePrefix": ["MR"],
+        "GivenName": ["Monty"],
+        "Surname": "PANE"
+      },
+      "TravelerRefNumber": {
+        "RPH": "1"
+      },
+      "Telephone": [{
+         "PhoneNumber": "16471234567"
+      }],
+      "Email": [{
+        "Content": "ssorensen@farelogix.com"
+       }],
+       "CustLoyalty": [{
+         "MembershipID": "305678944",
+         "ProgramID": "AC"
+        }],
+        "Document": [{
+          "ExpireDate": "2021-01-01",
+           "BirthDate": "2001-01-01",
+           "Gender": "Male",
+           "DocHolderName": "PANE",
+           "AdditionalPersonNames": ["MONTY"],
+           "DocID": "123456789 SC123",
+           "DocIssueCountry": "US",
+           "AC_DocType": "Nexus"
+        }],
+        "Address": [{
+          "StateProv": {
+            "StateCode": "ON"
+          },
+          "CountryName": {
+            "Code": "CA"
+          },
+          "CityName": "Edmonton",
+          "AddressLine": ["123 Fake Street"]
+        }]
+       }
+    ],
+    "SpecialReqDetails": [{
+      "SeatRequests": [{
+        "SeatPreference": ["W"],
+        "TravelerRefNumberRPHList": ["1"],
+        "FlightRefNumberRPHList": ["1"]
+      }],
+      "SpecialServiceRequests": [{
+          "SSRCode": "MEAL",
+          "FlightRefNumberRPHList": ["1"]
+        },
+        {
+          "SSRCode": "PASS",
+          "Airline": {
+            "CompanyShortName": "AC"
+          },
+          "Text": "text"
+        }
+      ]
+    }]
+  },
+  "Fulfillment": {
+    "PaymentDetails": [{
+      "Remark": "FLIGHTPASS1234567890123-2"
+    }]
+  }
+}

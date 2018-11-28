@@ -1,0 +1,80 @@
+#%RAML 1.0 NamedExample
+
+value: {
+    "AvailableFlightsOnly": true,
+    "OriginDestinationInformation": [
+      {
+        "DepartureDateTime": {
+          "WindowBefore": "P0D",
+          "Content": "2018-09-02T00:00:00"
+        },
+        "OriginLocation": {
+          "LocationCode": "CDG"
+        },
+        "DestinationLocation": {
+          "LocationCode": "YUL"
+        }
+      },
+      {
+        "DepartureDateTime": {
+          "WindowBefore": "P0D",
+          "Content": "2018-09-16T00:00:00"
+        },
+        "OriginLocation": {
+          "LocationCode": "YUL"
+        },
+        "DestinationLocation": {
+          "LocationCode": "CDG"
+        }
+      }
+    ],
+    "TravelerInfoSummary": {
+      "AirTravelerAvail": [
+        {
+          "PassengerTypeQuantity": [
+            {
+              "Code": "ADT",
+              "Quantity": 1
+            }
+          ],
+          "AirTraveler": {
+            "PassengerTypeCode": "ADT",
+            "AccompaniedByInfantInd": false,
+            "TravelerRefNumber": {
+              "RPH": "1"
+            }
+          }
+        },
+        {
+          "PassengerTypeQuantity": [
+            {
+              "Code": "ADT",
+              "Quantity": 1
+            }
+          ],
+          "AirTraveler": {
+            "PassengerTypeCode": "ADT",
+            "AccompaniedByInfantInd": false,
+            "TravelerRefNumber": {
+              "RPH": "2"
+            }
+          }
+        },
+        {
+          "PassengerTypeQuantity": [
+            {
+              "Code": "CHD",
+              "Quantity": 1
+            }
+          ],
+          "AirTraveler": {
+            "PassengerTypeCode": "CHD",
+            "AccompaniedByInfantInd": false,
+            "TravelerRefNumber": {
+              "RPH": "3"
+            }
+          }
+        }
+      ]
+    }
+  }

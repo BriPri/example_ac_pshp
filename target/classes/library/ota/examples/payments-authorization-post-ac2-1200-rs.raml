@@ -1,0 +1,36 @@
+#%RAML 1.0 NamedExample
+
+value:  {
+"Authorization":[{
+  "AuthorizationDetail":{
+    "CreditCardAuthorization": {
+      "CurrencyCode": "CAD",
+      "DecimalPlaces": 2,
+      "Amount": 23495,
+      "CreditCard":{
+        "CardType": {
+          "Content": "VISA"
+        },
+        "CardHolderRPH": "12345678"
+        }
+    },
+    "AccountAuthorization": {
+      "CurrencyCode": "CAD",
+      "Amount": 12344,
+      "DecimalPlaces": 2,
+      "AccountInfo":{
+        "AccountName": "Charles Maxmillion",
+        "AccountID": "CR43CE3264",
+        "Code": "5"
+      }
+    }
+  },
+  "AuthorizationResult":{
+    "AuthorizationCode": "TDK3939D",
+    "Result": "Approved",
+    "ApprovalDateTime": "2018-09-02T11:00:00",
+    "AddressResultCode":"432CD3",
+    "CVC_Result": "Match"
+  }
+  }]
+}

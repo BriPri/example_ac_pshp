@@ -1,0 +1,78 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "OriginDestinationInformation": [{
+    "DepartureDateTime": {
+      "Date": "2018-09-20T08:00:00",
+      "WindowBefore": "P2D",
+      "WindowAfter": "P2D"
+    },
+    "OriginLocation": {
+      "LocationCode": "YYZ"
+    },
+    "DestinationLocation": {
+      "LocationCode": "YVR"
+    }
+  }],
+  "TravelerInfoSummary": {
+    "AirTravelerAvail": [{
+      "PassengerTypeQuantity": [{
+        "Code": "ADT",
+        "Quantity": 1
+      }],
+      "AirTraveler": {
+        "PassengerTypeCode": "ADT",
+        "AccompaniedByInfantInd": false #OTA Trim Begin,
+#        "TravelerRefNumber": {
+#          "RPH": "2"
+#        }
+#OTA Trim End
+      }
+    }],
+#    NTP Promo Code Goes Here
+    "PriceRequestInformation":{
+      "DiscountPricing":{
+        "TicketDesignatorCode": "7KWNE3X1"
+      },
+      "AC_CFF": ["CSCF", "CFC"]
+    }
+#    "PriceRequestInformation": {
+#      "Account": [
+#
+#      ],
+#      "FareRestrictionPref": [
+#
+#      ],
+#      "NegotiatedFareCode": [{
+#        "CodeListAirGroup": {
+#          "Code": "RW"
+#        }
+#      }],
+#      "RebookOption": [
+#
+#      ],
+#      "SegmentOverride": [
+#
+#      ],
+#      "Tax": [
+#
+#      ]
+#    }
+  },
+  "SpecificFlightInfo": {
+    "Airline": {
+      "Code": "AC"
+#      "CodeContext": "V"
+    }
+  },
+  "TravelPreferences":[{
+    "AC_CompanyIdentities":[{
+      "CompanyQualifier": "F",
+      "AirlineCode": "AC"
+    },
+    {
+      "CompanyQualifier": "X",
+      "AirlineCode": "UA"
+    }]
+  }]
+}

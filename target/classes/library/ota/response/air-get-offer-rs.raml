@@ -1,0 +1,104 @@
+#%RAML 1.0 Library
+
+uses:
+  airPreferences: ../../../library/ota/air-preferences.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  AirTraveler_AirTravelerType:
+    type: airCommonTypes.AirTravelerType
+    additionalProperties: false
+    properties:
+      RPH:
+        description: "A unique ID for this traveler that may be referenced elsewhere in this schema to associate the traveler with other information."
+        type: simpleTypes.RPH_Type
+        required: false
+      IsLeadInd:
+        description: "If true, indicates that this traveler is the lead traveler or main contact for the trip."  
+        type: boolean
+        required: false
+  OTA_AirGetOfferRS:
+    description: "The Get Offer response message returns relevant offers that meet the search criteria. Returned information includes- >> Pricing structure details-including exchange rates, currency overrides and accepted payment currency that apply to all offers unless override information is provided elsewhere in the message
+  >> Priced offers-Priced offer information, including offer name and description, maximum and minimum offer quantity(s), service family, pricing details including redemption mile pricing, booking instructions, restrictions, penalties, multimedia, commissions and currency overrides
+  Developer Notes-
+  >> This message may also include Warnings from business processing rules or Errors if the request did not succeed."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      Success:
+#        description: "Standard way to indicate successful processing of an OpenTravel message. Returning an empty element of this type indicates success."
+#        type: commonTypes.SuccessType
+#        required: false
+      Warnings:
+        description: "Standard way to indicate successful processing of an OpenTravel message, but one in which warnings are generated."
+        type: commonTypes.WarningsType
+        required: false
+      PriceStructure:
+        description: "Offer pricing structure information (including exchange rates, currency overrides and accepted payment currency) that apply to all offers unless override information is provided within PricedOffer. This currency and exchange information applies to all offer results unless specifically overidden in the xxxxx element. "
+#        type: [object, commonTypes.ExchangeRateGroup]
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          TicketingCountryCode:
+            description: "The country code where the ticket will be/ has been issued in ISO 3166 encoding. http-//www.opentraveldevelopersnetwork.com/Supported_ISO_Standards.php "
+            type: simpleTypes.ISO3166
+            required: false
+#          TicketingCityCode:
+#            description: "The city or airport code where the ticket will be/ has been issued in IATA encoding. http-//www.opentraveldevelopersnetwork.com/Supported_IATA_Standards.php "
+#            type: simpleTypes.UpperCaseAlphaNumericLength3to5
+#            required: false
+          DisplayCurrency:
+            description: "The display currency in ISO 4217 encoding. CAD = Canadian Dollar | USD = United States Dollar | EUR = Euro http-//www.opentraveldevelopersnetwork.com/Supported_ISO_Standards.php "
+            type: simpleTypes.AlphaLength3
+            required: false
+          PricingCurrency:
+            description: "The pricing/filing currency in ISO 4217 encoding. CAD = Canadian Dollar | USD = United States Dollar | EUR = Euro http-//www.opentraveldevelopersnetwork.com/Supported_ISO_Standards.php "
+            type: simpleTypes.AlphaLength3
+            required: false
+          DecimalPlaces:
+            description: "The number of decimal places for the display and pricing currency(s). USD 8500 with \"2\" Decimal Places represents $85. http-//www.iso.org/iso/support/faqs/faqs_widely_used_standards/widely_used_standards_other/currency_codes/currency_codes_list-1.htm This is equivalent to the ISO 4217 standard \"minor unit\" and is typically used when the amount provided includes the minor unit of currency without a decimal point. "
+            type: integer
+            minimum: 0
+            required: false
+#          BaseNUC_Amount:
+#            description: "The base neutral unit of construction amount."
+#            type: simpleTypes.Money
+#            required: false
+      PricedOffer:
+        description: "Priced offer information, including offer name and description, service family, pricing details, booking instructions,  penalties, multimedia and currency overrides."
+        type: array
+        minItems: 0
+        items: airCommonTypes.AirPricedOfferType
+      SeatMap:
+        description: "Seat map(s) containing the results of the request."
+        type: array
+        minItems: 0
+        items: airCommonTypes.SeatMapDetailsType
+      AirItineraryInfo:
+        description: "A collection of all flight segments for the booking."
+        type: airCommonTypes.PricedItineraryType
+        required: false
+      Traveler:
+        description: "A choice between traveler quantities and age classification OR detailed traveler information."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          PassengerTypeQuantity:
+            type: array
+            maxItems: 10
+            required: false
+            items: airCommonTypes.PassengerTypeQuantityType
+          AirTraveler:
+            type: array
+            maxItems: 99
+            required: false
+            items: AirTraveler_AirTravelerType
+#      Errors:
+#        description: "Error(s) that occurred during the processing of a message."
+#        type: commonTypes.ErrorsType
+#        required: false

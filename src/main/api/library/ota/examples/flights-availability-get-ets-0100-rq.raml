@@ -1,0 +1,51 @@
+#%RAML 1.0 NamedExample
+
+value:  {
+  "OriginDestinationInformation": [
+    {
+      "DepartureDateTime": {
+        "Date": "2018-12-11T08:00:00",
+        "WindowBefore": "P2D",
+        "WindowAfter": "P2D",
+      },
+      "ArrivalDateTime":{
+        "Date": "2018-12-11T10:30:00"
+      },
+      "OriginLocation": {
+        "LocationCode": "YYZ"
+      },
+      "DestinationLocation": {
+        "LocationCode": "EWR"
+      },
+    },
+    {
+      "DepartureDateTime": {
+        "Date": "2018-12-20T08:00:00",
+        "WindowBefore": "P2D",
+        "WindowAfter": "P2D",
+      },
+      "OriginLocation": {
+        "LocationCode": "EWR"
+      },
+      "DestinationLocation": {
+        "LocationCode": "YYZ"
+      },
+    }
+  ],
+  "BookedFlightSegment": [
+    {
+      "OperatingAirline": {
+        "Code": "AC"
+      },
+      "MarketingAirline": {
+        "Code": "AC"
+      }
+    }
+  ],
+  "SpecificFlightInfo": {
+    "FlightNumber": "8424",
+    "Airline": {
+      "Code": "AC"
+    }
+  }
+}

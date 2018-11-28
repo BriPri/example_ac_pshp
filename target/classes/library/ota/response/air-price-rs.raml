@@ -1,0 +1,129 @@
+#%RAML 1.0 Library
+
+usage: AirLowPriceRS
+
+uses:
+  # airCommonTypes: ../../../library/ota/air-common-types.raml
+  # commonTypes: ../../../library/ota/common-types.raml
+  # simpleTypes: ../../../library/ota/simple-types.raml
+  airCommonTypes: ../air-common-types.raml
+  commonTypes: ../common-types.raml
+  simpleTypes: ../simple-types.raml
+
+types:
+  OTA_AirPriceRS:
+    description: "The Pricing Response message contains a Priced Itinerary. This includes- The set of flights sent in the Pricing request message; Pricing information including taxes and full fare breakdown for each passenger type; Ticketing information; and Fare Basis Codes and the information necessary to make a Fare Rules entry. This message contains similar information to a standard airline CRS or GDS itinerary pricing response message."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+##      Success:
+##        description: "Success: Standard way to indicate successful processing of an OpenTravel message. Returning an empty element of this type indicates success."
+##        type: commonTypes.SuccessType
+##        required: false
+      Warnings:
+        description: "Standard way to indicate successful processing of an OpenTravel message, but one in which warnings are generated."
+        type: commonTypes.WarningsType
+        required: false
+      PricedItineraries:
+        description: "Provides priced itinerary information."
+        type: airCommonTypes.PricedItinerariesType
+        required: false
+#OTA Trim Begin        
+#      BookingReferenceID:
+#        description: "Used to identify the PNR containing the itinerary that was priced."
+#        type: commonTypes.UniqueID_Type
+#        required: false
+#      PricingOverview:
+#        description: "Pricing information which applies to all the priced itineraries."
+#        type: object
+#        required: false
+#        additionalProperties: false
+#        properties:
+#          FareInfo:
+#            description: "Fare information that applies to all of the priced itineraries."
+#            type: airCommonTypes.FareType
+#            required: false
+#          Notes:
+#            description: "Free text information that applies to all the priced itineraries."
+#            type: array
+#            minItems: 0
+#            maxItems: 99
+#            items: commonTypes.FreeTextType
+#          Account:
+#            description: "An account code that applies to all the priced itineraries."
+#            type: array
+#            minItems: 0
+#            maxItems: 5
+#            required: false
+#            items:
+#              additionalProperties: false
+#              properties:
+#                Code:
+#                  description: "The account code."
+#                  type: simpleTypes.StringLength1to32
+#          PTC_FareBreakdowns:
+#            description: "A collection of fares by PTC code. The fare information for a specific PTC code for all of the priced itineraries."
+#            type: array
+#            required: false
+#            minItems: 1
+#            maxItems: 20
+#            items: airCommonTypes.PTCFareBreakdownType
+#          PricingIndicator:
+#            description: "Pricing information for all the priced itineraries."
+#            type: array
+#            minItems: 0
+#            maxItems: 20
+#            required: false
+#            items: airCommonTypes.PricingInfoGroup
+#          Type:
+#            description: "Specifies how the pricing was done."
+#            type: simpleTypes.AlphaNumericStringLength1to14
+#            required: false
+#          StatisticalCode:
+#            description: "Used for domestic or international sales differentiation."
+#            type: simpleTypes.AlphaNumericStringLength1to8
+#            required: false
+#          ValidatingAirlineCode:
+#            description: "The code of the validating airline carrier."
+#            type: simpleTypes.AlphaNumericStringLength1to8
+#            required: false
+#          PriceQuoteDate:
+#            description: "The date that pricing was done."
+#            type: simpleTypes.DateOrDateTimeType
+#            required: false
+#          FirstTicketDate:
+#            description: "The first date this itinerary can be ticketed at this price."
+#            type: simpleTypes.DateOrDateTimeType
+#            required: false
+#          DepartureDate:
+#            description: "The first date of departure for this itinerary."
+#            type: simpleTypes.DateOrDateTimeType
+#            required: false
+#      PrivateFareInfo:
+#        description: "Provides information concerning an airline private fare."
+#        type: object
+#        required: false
+#        additionalProperties: false
+#        properties:
+#          PTC_Code:
+#            description: "The passenger type code for this private fare."
+#            type: simpleTypes.StringLength1to8
+#            required: false
+##          QuoteID:
+##            description: "Used to identify a quote."
+##            type: simpleTypes.AlphaNumericStringLength1to2
+##            required: false
+#          FareComponentNbr:
+#            description: "Used to identify the leg pairing in a flight itinerary."
+#            type: simpleTypes.Numeric0to99
+#            required: false
+#          TextType:
+#            description: "Used to specify the type of information being sent in the Text field."
+#            type: simpleTypes.AlphaNumericStringLength1
+#            required: false
+#          Text:
+#            description: "Additional information for the airline private fare."
+#            type: simpleTypes.StringLength1to180
+#            required: false
+#OTA Trim End            

@@ -1,0 +1,47 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "AirTravelers": [{
+        "PassengerTypeCode": "ADT",
+        "PersonName": {
+          "GivenName": ["Sam"],
+          "Surname": "Jones"
+        },
+        "CustLoyalty": [{
+          "MembershipID": "C12345",
+          "ProgramID": "AC"
+        }]
+  }],
+  "BookingReferenceID": [
+    {
+      "Type": "0.AAA.X",
+      "ID": "MPBCPA"
+    }
+  ],
+  "SeatMapRequests": [{
+    "FlightSegmentInfo": {
+      "FlightNumber": "1804",
+      "FareBasisCode": "T14ULCTG",
+      "DepartureDateTime": "2018-09-23T12:10:00",
+      "ArrivalDateTime": "2018-09-23T17:10:00",
+      "DepartureAirport": {
+        "LocationCode": "YYZ"
+      },
+      "ArrivalAirport": {
+        "LocationCode": "MBJ"
+      },
+      "MarketingAirline": {
+        "Code": "AC"
+      },
+      "OperatingAirline": {
+        "Code": "AC"
+      }
+    },
+    "SeatDetails": {
+      "SeatUpgradeInd": false,
+      "ResBookDesignations": [{
+          "ResBookDesigCode": "V"
+      }]
+    }
+  }]
+}

@@ -1,0 +1,327 @@
+#%RAML 1.0 Library
+
+usage: AirDemandTicketRQ
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+
+  TravelAgencyServiceFee_CurrencyAmountGroup:
+    type: commonTypes.CurrencyAmountGroup
+    additionalProperties: false
+    properties:
+      Type:
+        description: "Specifies how the service fee has been determined, i.e., per person, total."
+        enum: ['PerPassenger','TransactionTotal','PerMCO']
+        required: false
+      EndorsementInfo:
+        description: "Remarks pertaining to the service fee."
+        type: simpleTypes.StringLength1to64
+        required: false
+      Reason:
+        description: "The reason for the service fee."
+        type: simpleTypes.StringLength1to64
+        required: false
+      AssocDocNumber:
+        description: "The number identifying a document associated with the service fee."
+        type: simpleTypes.AlphaNumericStringLength1to14
+        required: false      
+
+  PassengerName_PersonNameType:
+    type: commonTypes.PersonNameType
+    additionalProperties: false
+    properties:
+      RPH:
+        description: "Provides a unique reference to the passenger."
+        type: simpleTypes.RPH_Type
+        required: false
+      PassengerTypeCode:
+        description: "Used to identify the PTC code (passenger type code) for the passenger (e.g. infant)."
+        type: simpleTypes.AlphaLength3
+        required: false
+
+  Commission_CurrencyAmountGroup:
+    type: commonTypes.CurrencyAmountGroup
+    additionalProperties: false
+    properties:
+      Percent:
+        description: "The percentage value of the commission."
+        type: simpleTypes.Percentage
+        required: false
+      CapAmount:
+        description: "The highest monetary value that may be paid when the commission is a percent. For example, the commision may be 2 percent of the fare, but the monetary value may not exceed 20.00 USD."
+        type: simpleTypes.Money
+        required: false
+      AdditionalInd:
+        description: "When true, this is an additional commission."
+        type: boolean
+        required: false
+
+  CreditCardInfo_PaymentCardType:
+    type: commonTypes.PaymentCardType
+    additionalProperties: false
+    properties:
+      ApprovalCode:
+        description: "The credit card approval code."
+        type: simpleTypes.AlphaNumericStringLength1to8
+        required: false
+      CardPresentInd:
+        description: "When true, the credit card was present at the transaction."
+        type: boolean
+        required: false
+      ExtendedPaymentCode:
+        description: "Specifies the number of months that extended payment is allowed or an 'E' to indicate there is extended payment but no set number of months."
+        type: simpleTypes.AlphaNumericStringLength1to8
+        required: false
+      Amount:
+        description: "Specifies the amount for this form of payment."
+        type: simpleTypes.Money
+        required: false
+
+  PaymentInfo_CurrencyAmountGroup:
+    type: commonTypes.CurrencyAmountGroup
+    required: false
+    additionalProperties: false 
+    properties: 
+      CreditCardInfo:
+        description: "The details for the card when form of payment is a credit card."
+        type: array
+        minItems: 0
+        maxItems: 5
+        items: CreditCardInfo_PaymentCardType
+      PassengerRPH:
+        description: "Provides a unique reference to one or more passengers."
+        type: simpleTypes.ListOfRPH
+        required: false
+      PaymentType:
+        description: "Specifies the form of payment, i.e., check, cash, credit card.  Refer to OpenTravel Code List Payment Type (PMT)."
+        type: simpleTypes.OTA_CodeType
+      PrintFormOfPaymentInd:
+        description: "When true, the form of payment on the document requested."
+        type: boolean
+        required: false
+      Text:
+        description: "Textual information for the form of payment."
+        type: simpleTypes.StringLength0to128
+        required: false
+
+  OTA_AirDemandTicketRQ:
+    description: "Provides the capability of requesting that a company responsible for ticket fulfillment, such as a GDS, issue an electronic ticket and/or automated miscellaneous charge order (MCO).  The ticket fulfillment company would then issue the ticket using the current EDIFACT message."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      POS:
+#        description: "Specifies the point of ticketing information."
+#        type: commonTypes.POS_Type
+#        required: false
+      DemandTicketDetail:
+        description: "Specifies the information necessary for the issuer of the ticket to issue the ticket."
+        type: [object, commonTypes.CompanyID_AttributesGroup]
+        additionalProperties: false 
+        properties: 
+          MessageFunction:
+            description: "Specifies the ticketing function to be done - an ET, itinerary invoice, EMD, automated MCO or a combination of functions."
+            type: array
+            minItems: 0
+            maxItems: 4
+            required: false
+            items: 
+              additionalProperties: false 
+              properties: 
+                Function:
+                  description: "Specifies the ticketing function to be performed."
+                  enum: ['ET','ItineraryInvoice','AutomatedMCO','Interface','EMD']
+          BookingReferenceID:
+            description: "The PNR record locator for which a ticket is requested."
+            type: commonTypes.UniqueID_Type
+          CustomDiscountPricing:
+            description: "The information needed when a passenger presents a discount/promotional coupon for a dollar/percentage of the fare or when a passenger qualifies for a percentage discount such as a senior discount."
+            type: [commonTypes.CurrencyCodeGroup, airCommonTypes.DiscountPricingGroup]
+            required: false
+          PaymentInfo:
+            description: "The form of payment information  for the ticket to be issued."
+            type: array
+            minItems: 0
+            maxItems: 297
+            items: PaymentInfo_CurrencyAmountGroup
+            required: false
+          Endorsement:
+            description: "Remark provided to ensure common understanding between the passenger and the airline concerning any restrictions that may apply."
+            type: array
+            minItems: 0
+            maxItems: 6
+            required: false
+            items: 
+              additionalProperties: false 
+              properties: 
+                Info:
+                  description: "Specifies the endorsement information for the ticket to be issued."
+                  type: simpleTypes.StringLength1to255
+          Commission:
+            description: "Information specifying the commission to be paid."
+            type: array
+            minItems: 0
+            maxItems: 2
+            items: Commission_CurrencyAmountGroup
+            required: false
+          PassengerNameReference:
+            description: "A reference to the passenger name number to be ticketed.  A range of name numbers may also be requested."
+            type: array
+            minItems: 0
+            maxItems: 99
+            required: false
+            items: 
+              additionalProperties: false 
+              properties: 
+                SurnameRefNumber:
+                  description: "Specifies the surname name number."
+                  type: simpleTypes.Numeric1to99
+                  required: false
+                GivenNameRefNumber:
+                  description: "Specifies the given name number."
+                  type: simpleTypes.Numeric1to99
+                  required: false
+                RangePosition:
+                  description: "Specifies whether this is first or last passenger name number in a range."
+                  enum: ['First','Last']
+                  required: false
+                PassengerTypeCode:
+                  description: "Used to identify the PTC code (passenger type code) for the passenger (e.g. infant)."
+                  type: simpleTypes.AlphaLength3
+                  required: false
+          PassengerName:
+            description: "The name of the passenger as in the PNR."
+            type: array
+            minItems: 0
+            maxItems: 99
+            items: PassengerName_PersonNameType
+            required: false
+          FlightReference:
+            description: "A reference to a flight segment in a passenger name record."
+            type: array
+            minItems: 0
+            maxItems: 16
+            required: false
+            items: 
+              additionalProperties: false 
+              properties: 
+                FlightRefNumber:
+                  description: "The reference number for a flight segment in a passenger name record."
+                  type: simpleTypes.Numeric1to99
+                RangePosition:
+                  description: "Specifies whether the first or last flight segment reference number in a range."
+                  enum: ['First','Last']
+                  required: false
+          TravelAgencyServiceFee:
+            description: "The service fee information for an associated document, such as a miscellaneous charge order or TASF. This may be a fee the travel agent charges for a booking or for delivering an itinerary."
+            type: array
+            minItems: 0
+            maxItems: 99
+            items: TravelAgencyServiceFee_CurrencyAmountGroup
+            required: false
+          QueuePNR:
+            description: "Information to specify the queue on which a PNR should be placed after the ticket is isssued."
+            type: [object, commonTypes.QueueGroup]
+            required: false
+            additionalProperties: false 
+            properties: 
+              Date:
+                description: "The month and day of the queue on which the PNR is to be placed."
+                type: simpleTypes.DateOrMonthDay
+                required: false
+              DateRangeNumber:
+                description: "A number specifying a range of days (e.g., today plus 3, today plus 6) for the queue on which the PNR is to be placed."
+                type: integer
+                required: false
+          DocumentInstructions:
+            description: "A container of document instructions."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+              DocumentInstruction:
+                description: "A stored document instruction number to be used in ticketing."
+                type: array
+                minItems: 0
+                maxItems: 99
+                required: false
+                items: 
+                  additionalProperties: false 
+                  properties: 
+                    Number:
+                      description: "A document number to be used in ticketing the itinerary."
+                      type: simpleTypes.Numeric1to99
+              OverrideStoredInd:
+                description: "When true, the stored document instructions should not be used in ticketing."
+                type: boolean
+                required: false
+              UsePrimaryInd:
+                description: "When true, use the primary stored document instruction in ticketing."
+                type: boolean
+                required: false
+          PricingInstruction:
+            description: "An instruction for pricing the itinerary at the time of issuing a ticket."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+              UseStoredFareInd:
+                description: "When true, the fare stored in the booking record should be used instead of any stored pricing instructions."
+                type: boolean
+                required: false
+              Number:
+                description: "Provides a pricing instruction number to be used for pricing the itinerary at the time of issuing the ticket."
+                type: simpleTypes.Numeric1to99
+                required: false
+          EMD_Info:
+            description: "Provides the electronic miscellaneous document information for a previously issued EMD."
+            type: airCommonTypes.EMD_Type
+            required: false
+          Offer:
+            description: "Merchandising offers associated with the fare or traveler."
+            type: airCommonTypes.AirOfferChoiceType
+            required: false
+          BulkTicketInd:
+            description: "When true, a bulk ticket applies."
+            type: boolean
+            required: false
+          TourCode:
+            description: "A tour number that may be printed on the ticket or override an existing tour number in the PNR."
+            type: simpleTypes.StringLength1to16
+            required: false
+          IssuingAgentInfo:
+            description: "The agency information to be printed on the printed itinerary and/or invoice."
+            type: simpleTypes.StringLength0to128
+            required: false
+          TravelPurposeCode:
+            description: "Specifies the purpose of the trip, i.e., business, personal. Refer to OpenTravel Code List Travel Purpose (TVP)."
+            type: simpleTypes.OTA_CodeType
+            required: false
+          DestRegion:
+            description: "The destination code for the itinerary. Required for Canada and Bermuda BSP's."
+            type: simpleTypes.Numeric0to99
+            required: false
+          CarrierAgreementRef:
+            description: "Used to specify the carrier agreement code, also known as a contract code."
+            type: simpleTypes.AlphaNumericStringLength1to14
+            required: false
+          ValueCode:
+            description: "Encoded data relating to the fare agreement with the airline."
+            type: simpleTypes.AlphaNumericStringLength1to8
+            required: false
+          TicketingRecordNbr:
+            description: "Provides a ticketing record number to be used in the ticketing of the itinerary."
+            type: simpleTypes.Numeric1to99
+            required: false
+          ReturnAllTktNbrsInd:
+            description: "When true, all ticket numbers should be returned."
+            type: boolean
+            required: false
+          SuppressTktFeeInd:
+            description: "When true, the ticket fee information should not be printed on the itinerary/invoice."
+            type: boolean
+            required: false

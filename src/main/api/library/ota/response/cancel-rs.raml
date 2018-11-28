@@ -1,0 +1,61 @@
+#%RAML 1.0 Library
+
+uses:
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+  
+types:
+  OTA_CancelRS:
+    description: "Used to respond to a CancelRQ and may provide details about the cancellation."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      Status:
+        description: "Specifies the status for the transaction. Usually contains the action specifed in the request message."
+        type: simpleTypes.TransactionStatusType
+      Warnings:
+        description: "Used in conjunction with the success element to define one or more business errors."
+        type: commonTypes.WarningsType
+        required: false
+      UniqueID:
+        description: "Contains the reference(s) of the items being cancelled."
+        type: array
+        minItems: 0
+        maxItems: 5
+        required: false
+        items: commonTypes.UniqueID_Type
+      CancelInfoRS:
+        description: "May contain rules associated with canceling a reservation as well as the supplier's cancellation number."
+        type: commonTypes.CancelInfoRSType
+        required: false
+      Comment:
+        description: "Textual information regarding the cancellation."
+        type: commonTypes.ParagraphType
+        required: false
+      Segment:
+        description: "Used to specify a segment that has been cancelled."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items: 
+          additionalProperties: false 
+          properties: 
+            UniqueID:
+              description: "Contains the supplier's cancellation or confirmation number."
+              type: array
+              minItems: 0
+              maxItems: 2
+              required: false
+              items: commonTypes.UniqueID_Type
+            Warnings:
+              description: "Warning information for the segment that was requested to be cancelled."
+              type: commonTypes.WarningsType
+              required: false
+            ItinSegNbr:
+              description: "Number identifying the segment item that was cancelled."
+              type: integer
+              minimum: 0
+              required: false
+      

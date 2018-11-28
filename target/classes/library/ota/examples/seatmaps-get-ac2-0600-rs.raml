@@ -1,0 +1,103 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "SeatMapResponses": {
+    "SeatMapResponse": [
+      {
+        "FlightSegmentInfo": {
+          "FlightNumber": "1804",
+          "DepartureDateTime": "2018-09-23T12:10:00",
+          "ArrivalDateTime": "2018-09-23T15:10:00",
+          "DepartureAirport": {
+            "LocationCode": "YYZ"
+          },
+          "ArrivalAirport": {
+            "LocationCode": "MBJ"
+          },
+          "OperatingAirline": {
+            "CompanyShortName": "Air Canada Rouge",
+            "Code": "ZX"
+          },
+          "Equipment": [
+            {
+              "AirEquipType": "763"
+#              "Configuration": ""
+            }
+          ],
+          "MarketingAirline": {
+            "Code": "AC",
+            "CompanyShortName": "Air Canada"
+          }
+        },
+        "SeatMapDetails": [
+          {
+            "CabinClass": [
+              {
+                "RowInfo": [{
+                  "CabinType": "Economy",
+                  "RowNumber": 2,
+                  "SeatInfo": [{
+                    "Availability": {
+                      "Content": "SeatAvailable"
+                    },
+                    "Features": [{
+                        "Content": "Aisle"
+                      },
+                      {
+                        "Content": "ExitRow"
+                      }
+                    ],
+                    "Summary": {
+                      "SeatNumber": "2C"
+                    }
+                  }],
+                  "Characteristics": [{
+                      "Content": "NosmokingRow"
+                    },
+                    {
+                      "Content": "ExtraLegRoom"
+                    }
+                  ] 
+                }]
+              }
+            ],
+            "AC_Discounts": [{
+              "Code": "ACPromo123",
+              "Amount": 10,
+              "Description": "AC Promo 123",
+              "Is_Subtract": true,
+              "CurrencyCode": "CAD",
+              "Taxes": {
+                "Amount": 10.00,
+                "Tax": [{
+                  "TaxCode": "AY",
+                  "Amount": 10.00
+                }]
+              }
+            }]             
+          }
+        ],
+        "BookingReferenceID": [
+          {
+            "ID": "MPBCPA",
+            "Type": "0.AAA.X"
+          }
+        ]
+      }
+     ],
+    "AirTravelers": [
+      {
+        "PassengerTypeCode": "ADT",
+        "PersonName": {
+          "GivenName": ["BASIC"],
+          "Surname": "CANADIAN"
+        },
+        "CustLoyalty": [{
+          "MembershipID": "Q56GTF",
+          "ProgramID": "AA",
+          "LoyalLevel": "Gold"
+        }]
+      }
+    ]    
+  }
+}

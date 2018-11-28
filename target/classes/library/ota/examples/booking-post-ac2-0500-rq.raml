@@ -1,0 +1,149 @@
+#%RAML 1.0 NamedExample
+
+value: { #Removed an additional curly bracket (unrelated issue to OTA Trim)
+  "POS":{
+     "Source":[{
+       "ISOCountry": "CA",
+       "ISOCurrency": "CAD",
+       "AirportCode": "CDG"
+     }]
+   },
+  "AirItinerary": {
+    "OriginDestinationOptions": [{
+      "FlightSegment": [{
+        "DepartureDateTime": "2018-09-02T11:00:00",
+        "ArrivalDateTime": "2018-09-02T12:15:00",
+        "FlightNumber": "871",
+        "ResBookDesigCode": "K",
+        "DepartureAirport": {
+          "LocationCode": "CDG"
+        },
+        "ArrivalAirport": {
+          "LocationCode": "YUL"
+        },
+        "MarketingAirline": {
+          "Code": "AC"
+        },
+        "OperatingAirline": {
+          "Code": "AC"
+        }
+      }]
+    }]
+  },
+
+  "TravelerInfo": {
+    "AirTraveler": [{
+      "BirthDate": "1987-07-05",
+      "PassengerTypeCode": "ADT",
+      "Gender": "Male",
+      "PersonName": {
+        "NamePrefix": ["MR"],
+        "GivenName": ["Basic"],
+        "Surname": "Canadian"
+      },
+      "Telephone": [{
+        "CountryAccessCode": "1",
+        "AreaCityCode": "555",
+        "PhoneNumber": "5555555",
+        "PhoneLocationType": "HME",
+        "PhoneTechType": "CEL"
+      }],
+      "Email": [{
+        "Content": "ssorensen@farelogix.com"
+      }],
+      "CustLoyalty": [{
+        "MembershipID": "234AC",
+        "ProgramID": "AC123"
+      }],
+      "Address": [{
+        "StateProv": {
+          "StateCode": "ON",
+          "Content": "ON"
+        },
+        "CountryName": {
+          "Code": "CA",
+          "Content": "CA"
+        },
+        "CityName": "Edmonton",
+        "AddressLine": ["123 Fake Street"]
+      }]
+    }],
+    "SpecialReqDetails": [{
+      "Remarks": [{
+        "Content": "Remark string",
+        "RPH": "2"
+      }],
+      "SpecialRemarks": {
+        "SpecialRemark": [{
+          "RemarkType": "5",
+          "Text": "Text for remark"
+        }]
+      },
+      "SeatRequests": [{
+        "FlightNumber": "22",
+        "TravelerRefNumberRPHList": ["12345678"],
+        "FlightRefNumberRPHList": ["12345678"]
+      }]
+    }]
+  },
+  "PriceInfo": {
+    "AC_Discounts": [
+      {
+        "ID": "1",
+        "Discount_Name": "AC Discount",
+        "RewardProgram": "AC Gold",
+        "Discount_Type": "Type A",
+        "Discount_Value": "Value",
+        "Discount_Fare": {
+          "Amount": 100,
+          "CurrencyCode": "CAD",
+          "DecimalPlaces": 2,
+          "Type": "AC Discount",
+          "TaxIncluded": "TBD",
+          "Taxes": {
+            "Amount": 100,
+            "Tax": {
+              "TaxCode": "123456",
+              "Amount": 100,
+              "RPH": "1"
+            }
+          }
+        },
+        "Remarks": {
+          "Value_id": "1234"
+        },
+        "Redemption": {
+          "UnitControlled": "2",
+          "AvailableUnits": 2
+        }
+      }
+    ],
+    "ItinTotalFare": [{
+      "TotalFare":{
+        "Amount": 1234,
+        "CurrencyCode": "CAD",
+        "DecimalPlaces": 2
+      }
+    }],
+    "PriceRequestInformation": {
+      "AccountCode": "ABC"     
+    }
+#    "PTC_FareBreakdowns": [{
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin    
+#      "FareInfo": [{      
+#        "DiscountPricing": {
+#          "Discount": 23.25,
+#          "Type": "Amount",
+#          "Usage": "Minus"
+#        }
+#      }],
+#Temp FIX for OTA Trim End      
+#      "PassengerTypeQuantity": {
+#        "Age": 35,
+#        "Code": "code",
+#        "Quantity": 2
+#      }
+#    }]
+  }
+}

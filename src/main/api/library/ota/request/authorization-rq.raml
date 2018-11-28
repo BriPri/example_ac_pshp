@@ -1,0 +1,24 @@
+#%RAML 1.0 Library
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+
+types:
+  OTA_AuthorizationRQ:
+    description: "The Authorization message pair verifies and validates a traveler based on information for a bank account, credit card, or driver's license. Each of these can be validated with or without an address."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      POS:
+#        description: "Point of Sale identification that identifies the party or connection channel making the request and is used for message authentication. Terminal, entity, position, channel information and message password may be included."
+#        type: commonTypes.POS_Type
+#        required: false
+      AuthorizationDetail:
+        description: "Information with which the traveler's identification is verified and/or charges are authorized."
+        type: array
+        minItems: 0
+        maxItems: 99
+        items: airCommonTypes.AuthorizationType
+        # TPA_Extensions by passed

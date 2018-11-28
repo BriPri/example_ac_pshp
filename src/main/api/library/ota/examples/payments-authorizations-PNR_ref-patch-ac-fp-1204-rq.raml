@@ -1,0 +1,44 @@
+#%RAML 1.0 NamedExample
+
+value:  {
+"AuthorizationDetail": [
+  "CheckAuthorization": {
+    "CurrencyCode": "USD",
+    "DecimalPlaces": 2,
+    "Amount":35000
+    },
+  "AccountAuthorization":{
+    "CurrencyCode": "USD",
+    "DecimalPlaces": 2,
+    "Amount": 35000
+    },
+  "DriversLicenseAuthorization":{
+    "EffectiveDate": "2015-05-23",
+    "ExpireDate": "2020-05-23",
+    "Gender": "Male",
+    "DocHolderFormattedName":{
+      "NamePrefix": ["Mr."],
+      "GivenName": ["William"],
+      "MiddleName": ["Maxamillium"],
+      "Surname": "Wilson",
+      "Document": {
+        "DocID": "PS.PRT01010",
+        "DocType": "US.PSP"
+        },
+      "DefaultInd": false
+      },
+    "DocLimitations": [],
+    "DocID": "DOC012",
+    "BirthCountry": "US",
+    "BirthPlace": "Denver,Colorado,Larimer",
+    "DocHolderNationality": "CC",
+    "ContactName": "William Maxamillium Wilson",
+    "PostalCode": "80022"
+  },
+  "BookingReferenceID": {
+    "Type": "001.AAA.X",
+    "ID": "AIR001"
+  },
+  "RefNumber": "REF001"
+  ]
+}

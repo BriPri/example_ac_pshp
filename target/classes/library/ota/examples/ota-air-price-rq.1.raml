@@ -1,0 +1,212 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "AirItinerary": {
+    "OriginDestinationOptions": [
+      {
+        "RefNumber": 1,
+        "FlightSegment": [
+          {
+            "DepartureDateTime": "2018-09-02T11:00:00",
+            "ArrivalDateTime": "2018-09-02T12:15:00",
+            "StopQuantity": 0,
+            "FlightNumber": "871",
+            "ResBookDesigCode": "K",
+            "E_TicketEligibility": "Eligible",
+            "MealCode": "Meal",
+            "DepartureAirport": {
+              "LocationCode": "CDG",
+              "Terminal": "2A"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "YUL"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "77W"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "BookingClassAvails": [
+              "BookingClassAvail": [
+                {
+                  "ResBookDesigCode": "K",
+                  "ResBookDesigQuantity": "9",
+                  "RPH": "0"
+                }
+              ]
+            ],
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03?O=11?FG=1?T=RT?M=I?AD=2?CH=1?FF=TG?R=0?C=K?E=77W?ML=MS?DT=2A?X=0?D=07H15?FB=8922"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "RefNumber": 2,
+        "FlightSegment": [
+          {
+            "DepartureDateTime": "2018-09-16T17:00:00",
+            "ArrivalDateTime": "2018-09-16T18:21:00",
+            "StopQuantity": 0,
+            "FlightNumber": "835",
+            "ResBookDesigCode": "V",
+            "E_TicketEligibility": "Eligible",
+            "DepartureAirport": {
+              "LocationCode": "YUL"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "YYZ",
+              "Terminal": "1"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "333"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "BookingClassAvails": [
+              "BookingClassAvail": [
+                {
+                  "ResBookDesigCode": "V",
+                  "ResBookDesigQuantity": "9",
+                  "RPH": "27"
+                }
+              ]
+            ],
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03?O=21?FG=75?T=RT?M=I?AD=2?CH=1?FF=FL?R=27?C=V?E=333?AT=1?X=0?D=01H21?FB=68213"
+              }
+            ]
+          },
+          {
+            "DepartureDateTime": "2018-09-16T19:35:00",
+            "ArrivalDateTime": "2018-09-17T08:45:00",
+            "StopQuantity": 0,
+            "FlightNumber": "880",
+            "ResBookDesigCode": "V",
+            "E_TicketEligibility": "Eligible",
+            "MealCode": "No Meal Service",
+            "DateChangeNbr": "1",
+            "DepartureAirport": {
+              "LocationCode": "YYZ",
+              "Terminal": "1"
+            },
+            "ArrivalAirport": {
+              "LocationCode": "CDG",
+              "Terminal": "2A"
+            },
+            "Equipment": [
+              {
+                "AirEquipType": "77W"
+              }
+            ],
+            "MarketingAirline": {
+              "Code": "AC",
+              "CompanyShortName": "Air Canada"
+            },
+            "BookingClassAvails": [
+              "BookingClassAvail": [
+                {
+                  "ResBookDesigCode": "V",
+                  "ResBookDesigQuantity": "9",
+                  "RPH": "27"
+                }
+              ]
+            ],
+            "Comment": [
+              {
+                "Content": "QI=44B8000C29F92F03?O=22?FF=FL?C=V?E=77W?ML=KM?DT=1?AT=2A?X=0?DD2=1?D=07H10"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "TravelerInfoSummary": {
+    "AirTravelerAvail": [
+      {
+        "PassengerTypeQuantity": [
+          {
+            "Code": "ADT",
+            "Quantity": 1
+          }
+        ],
+        "AirTraveler": {
+          "PassengerTypeCode": "ADT",
+          "AccompaniedByInfantInd": false,
+          "Address": [
+            {
+              "StateProv": {
+                "StateCode": "ON",
+                "Content": "ON"
+              },
+              "CountryName": {
+                "Code": "CA",
+                "Content": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PassengerTypeQuantity": [
+          {
+            "Code": "ADT",
+            "Quantity": 2
+          }
+        ],
+        "AirTraveler": {
+          "PassengerTypeCode": "ADT",
+          "AccompaniedByInfantInd": false,
+          "Address": [
+            {
+              "StateProv": {
+                "StateCode": "ON",
+                "Content": "ON"
+              },
+              "CountryName": {
+                "Code": "CA",
+                "Content": "CA"
+              }
+            }
+          ]
+        }
+      },
+      {
+        "PassengerTypeQuantity": [
+          {
+            "Code": "CHD",
+            "Quantity": 1
+          }
+        ],
+        "AirTraveler": {
+          "PassengerTypeCode": "CHD",
+          "AccompaniedByInfantInd": false,
+          "Address": [
+            {
+              "StateProv": {
+                "StateCode": "ON",
+                "Content": "ON"
+              },
+              "CountryName": {
+                "Code": "CA",
+                "Content": "CA"
+              }
+            }
+          ]
+        }
+      }
+    ]
+  }
+}

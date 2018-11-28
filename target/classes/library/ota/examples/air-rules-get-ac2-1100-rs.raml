@@ -1,0 +1,49 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "FareRuleResponseInfo": [{
+    "FareRuleInfo":{
+      "DepartureDate": "2018-06-10T07:00:00",
+      "FareReference": [{
+        "ResBookDesigCode": "L"
+        }],
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin         
+#      "FilingAirline":{
+#        "CompanyShortName": "AC"
+#      },
+#      "MarketingAirline": [{
+#        "Code": "AC"
+#        }],
+#Temp FIX for OTA Trim End        
+      "DepartureAirport":{
+        "LocationCode": "YYZ"
+      },
+      "ArrivalAirport": {
+        "LocationCode": "YEG"
+      },
+      "Date":[{
+        "Type": "RestrictiveFareEffective"
+        }],
+      "FareInfo": [{
+        "FareBasisCode": "L0C4FL",
+        "Fare": {
+          "FareDescription": "Flex"
+        },
+        "PTC": [{
+          "PassengerTypeCode": "MUI"
+          }]
+        }]
+    },
+    "FareRules":{
+      "SubSection": [{
+        "SubTitle": "APP",
+        "Paragraph": [
+          {"Text": {"Content": "RU.RULE APPLICATION"}}, {"Text": {"Content": "FOR L0C4FL TYPE FARES"}},
+          {"Text": {"Content": "FLEX FARE TESTING"}},{"Text": {"Content": "APPLICATION"}},
+          {"Text": {"Content": "CLASS OF SERVICE"}},{"Text": {"Content": "THESE FARES APPLY FOR ECONOMY CLASS SERVICE."}}
+        ]
+        }]
+    }
+  }]
+}

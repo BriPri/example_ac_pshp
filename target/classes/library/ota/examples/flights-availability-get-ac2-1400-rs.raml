@@ -1,0 +1,43 @@
+#%RAML 1.0 NamedExample
+
+value:  {
+    "OriginDestinationOptions": {
+      "OriginCode": "YYZ",
+      "DestinationCode": "YVR",
+      "OriginDestinationOption": [{
+        "FlightSegment": [{
+          "DepartureDateTime": "2018-07-07T09:45:00",
+          "ArrivalDateTime": "2018-08-07T09:45:00",
+          "StopQuantity": 1,
+          "FlightNumber": "1204",
+          "JourneyDuration": "PT1H13M",
+          "DateChangeNbr": "1",
+          "DepartureAirport": {
+            "LocationCode": "YYZ"
+          },
+          "ArrivalAirport": {
+            "LocationCode": "YVR"
+          },
+          "Equipment": [{
+            "AirEquipType": "777"
+          }],
+          "MarketingAirline": {
+            "CompanyShortName": "Air Canada",
+            "Code": "AC"
+          },
+          "OperatingAirline":{
+            "CompanyShortName": "Air Canada",
+            "Code": "AC"
+          },
+          "BookingClass": [{
+            "ResBookDesigCode": "C",
+            "AC_FareFamily":{
+              "Content": "fare",
+              "FlightNumber": "1234A",
+              "ResBookDesigCode": "A"
+              }
+          }]
+        }]
+      }]
+    }
+}

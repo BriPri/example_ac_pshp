@@ -1,0 +1,81 @@
+#%RAML 1.0 Library
+
+usage: AuthorizationRS
+
+uses:
+  airPreferences: ../../../library/ota/air-preferences.raml
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  OTA_AuthorizationRS:
+    description: "Returns authorization or denial for a customer's form of payment."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      Success:
+#        description: "An element that is not intended to contain any data. The presence of this empty element in the response message indicates that the incoming request message was processed successfully."
+#        type: commonTypes.SuccessType
+#        required: false
+      Warnings:
+        description: "Optionally used in conjunction with the Success element to indicate that the recipient of the request message identified one or more business-level warnings and/or errors, but the message itself was successfully processed."
+        type: commonTypes.WarningsType
+        required: false
+      Authorization:
+        description: "Response information to an authorization request."
+        type: array
+        minItems: 1
+        maxItems: 99
+        items: 
+          additionalProperties: false 
+          properties: 
+            AuthorizationDetail:
+              description: "The original authorization request information."
+              type: airCommonTypes.AuthorizationType
+              required: false
+            AuthorizationResult:
+              description: "Result information from the authorization process."
+              type: object
+              required: false
+              additionalProperties: false 
+              properties: 
+                AuthorizationCode:
+                  description: "The unique code returned by the authorizing party. This is returned for successful authorizations."
+                  type: string
+                  pattern: ^[A-Za-z0-9]{1,12}$
+                  required: false
+                ApprovalDateTime:
+                  description: "The date and time that the approval was issued."
+                  type: simpleTypes.DateOrDateTimeType
+                  required: false
+                Result:
+                  description: "Information returned by the credit card vendor describing the results of the processing of the request."
+                  enum: ['Approved','ApprovedWithPositiveID','Denied','DeniedPickupCard','ReferToIssuer','EditError']
+                  required: false
+                AddressResultCode:
+                  description: "The result of the address validation."
+                  type: string
+                  pattern: ^[A-Za-z0-9]{1,6}$
+                  required: false
+                CVC_Result:
+                  description: "A response from the validation of the Card Verification Code (CVC/CSC- Card Security Code or CVV/CVS Card Verification Value), a security feature for credit card transactions."
+                  enum: ['Match','DoesNotMatch','NotProcessed','Required','IssuerNotCertified']
+                  required: false
+                Description:
+                  description: "Additional response information."
+                  type: simpleTypes.StringLength1to64
+                  required: false
+            Warnings:
+              description: "Defines one or more business errors for this authorization."
+              type: commonTypes.WarningsType
+              required: false
+            Comments:
+              description: "A collection of comments associated with the authorization information."
+              type: commonTypes.CommentType
+              required: false
+#      Errors:
+#        description: "Indicates that an error occurred in the processing of the incoming request message. An error is defined as a malformed XML message that could not be processed."
+#        type: commonTypes.ErrorsType
+#        required: false

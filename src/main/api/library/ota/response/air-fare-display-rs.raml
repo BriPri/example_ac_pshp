@@ -1,0 +1,551 @@
+#%RAML 1.0 Library
+
+usage: AirFareDisplayRS
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  airPreferences: ../../../library/ota/air-preferences.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+
+  SeasonalRange_Type:
+    type: commonTypes.DateTimeSpanGroup
+    additionalProperties: false
+    properties:
+      Direction:
+        description: "The direction associated with the seasonal fare."
+        type: simpleTypes.AirTripType
+        required: false 
+
+  ConnectionLocation_LocationType:
+    type: object
+    additionalProperties: false
+    properties:
+      Content: 
+        type: commonTypes.LocationType
+      IncludeIndicator:
+        description: "When true, the connection location is allowed. When false, the connection location is not allowed."
+        type: boolean
+        required: false
+
+#  DaysOfWeekRestriction_DOW_PatternGroup:
+#    type: commonTypes.DOW_PatternGroup
+#    additionalProperties: false 
+#    properties: 
+#      Application:
+#        description: "Identify whether the restriction applies to the outbound , return or both trip directions."
+#        type: simpleTypes.AirTripDirectionType
+#        required: false
+#      TripType:
+#        description: "Indicate the type of trip to which the restriction applies."
+#        type: simpleTypes.AirTripType
+#        required: false
+#      RestrictionExistsInd:
+#        description: "When true, indicates that a day of week restriction applies."
+#        type: boolean
+#        required: false
+#      IncludeExcludeUseInd:
+#        description: "When true, the days of week should be included (i.e. travel allowed on those days). When false, the days of week should be excluded (i.e. no travel allowed on those days.)"
+#        type: boolean
+#        required: false
+
+  OTA_AirFareDisplayRS:
+    description: "Response message contains the various fares for a given origin and destination, including some general fare conditions (e.g., minimum/maximum stay)."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+      Warnings:
+        description: "Standard way to indicate successful processing of an OpenTravel message, but one in which warnings are generated."
+        type: commonTypes.WarningsType
+        required: false
+      FareDisplayInfos:
+        description: "Container for multiple returned FareDisplayInfo elements."
+        type: [object, commonTypes.CompanyID_AttributesGroup]
+        required: false
+        additionalProperties: false 
+        properties: 
+          FareDisplayInfo:
+            description: "Standard fare information."
+            type: array
+            minItems: 1
+            items: 
+              additionalProperties: false 
+              properties: 
+                TravelDates:
+                  description: "Departure and Arrival Dates for this priced fare."
+                  type: object
+                  additionalProperties: false 
+                  properties: 
+                    DepartureDate:
+                      description: "The departure date used for the fare display."
+                      type: date-only
+                    ArrivalDate:
+                      description: "The arrival date used for the fare display."
+                      type: date-only
+                      required: false
+                    BlackoutDatesInd:
+                      description: "If true, blackout dates apply."
+                      type: boolean
+                      required: false
+                FareReference:
+                  description: "Fare reference can be used for either the fare basis code or the fare class code."
+                  type: simpleTypes.StringLength1to8
+                RuleInfo:
+                  description: "Information regarding restrictions governing use of the fare."
+                  type: object
+                  additionalProperties: false 
+                  properties: 
+                    Content:
+                      type: airCommonTypes.RuleInfoType
+                    RuleNumber:
+                      type: simpleTypes.AlphaNumericStringLength1to8
+                      required: false
+                    Tariff:
+                      type: simpleTypes.AlphaNumericStringLength1to8
+                      required: false
+                FilingAirline:
+                  description: "The airline that filed the fare(s)."
+                  type: commonTypes.CompanyNameType
+                MarketingAirline:
+                  description: "The marketing airline."
+                  type: array
+                  minItems: 0
+                  maxItems: 5
+                  items: commonTypes.CompanyNameType
+                DepartureLocation:
+                  description: "Departure point of flight segment."
+                  type: commonTypes.LocationType
+                ArrivalLocation:
+                  description: "Arrival point of flight segment."
+                  type: commonTypes.LocationType
+                Restrictions:
+                  description: "Container for multiple restriction elements"
+                  type: object
+                  required: false
+                  additionalProperties: false 
+                  properties: 
+                    Restriction:
+                      description: "Date time and flight restrictions. Each restriction is considered to be a logical 'AND' of the child restriction elements."
+                      type: array
+                      minItems: 0
+                      maxItems: 99
+                      items: 
+                        additionalProperties: false 
+                        properties: 
+                          DateRestriction:
+                            description: "Allows fare contract to include or exclude date ranges."
+                            type: array
+                            minItems: 0
+                            maxItems: 3
+                            items: 
+                              additionalProperties: false 
+                              properties: 
+                                Application:
+                                  description: "Identify whether the restriction applies to the outbound , return or both trip directions."
+                                  type: simpleTypes.AirTripDirectionType
+                                  required: false
+                                StartDate:
+                                  description: "The start of the date restriction."
+                                  type: datetime
+                                EndDate:
+                                  description: "The end of the date restriction."
+                                  type: datetime
+                                IncludeIndicator:
+                                  description: "When true, the date restriction period should be included (i.e., travel allowed within those dates). When false, the date restriction period should be excluded (ie., no travel allowed within those dates.)"
+                                  type: boolean
+                                  required: false
+#                          DaysOfWeekRestriction:
+#                            description: "Allows Fare Contract to be restricted to certain days of the week for outbound, return or all journey directions."
+#                            type: array
+#                            minItems: 0
+#                            maxItems: 3
+#                            items: DaysOfWeekRestriction_DOW_PatternGroup
+                          TimeRestrictions:
+                            description: "Container for time of day restrictions."
+                            type: object
+                            required: false
+                            additionalProperties: false 
+                            properties: 
+                              TimeRestriction:
+                                description: "Allows fare contract to be restricted by time of day."
+                                type: array
+                                minItems: 0
+                                maxItems: 10
+                                items: 
+                                  additionalProperties: false 
+                                  properties: 
+                                    StartTime:
+                                      description: "The start time for the time restriction."
+                                      type: time-only
+                                    EndTime:
+                                      description: "The end time for the time restriction."
+                                      type: time-only
+#                                    IncludeExcludeUseInd:
+#                                      description: "When true, the time restriction period should be included (i.e. travel allowed between the start and end times). When false, the time restriction period should be excluded (i.e. no travel allowed between the start and end times.)"
+#                                      type: boolean
+#                                      required: false
+                          Flights:
+                            description: "Container for flight number restrictions."
+                            type: object
+                            required: false
+                            additionalProperties: false 
+                            properties: 
+                              Flight:
+                                description: "Include or exclude a specific flight number."
+                                type: array
+                                minItems: 0
+                                maxItems: 99
+                                items: 
+                                  additionalProperties: false 
+                                  properties: 
+                                    AirlineCode:
+                                      description: "The airline code of the restricted flight."
+                                      type: simpleTypes.StringLength3
+                                      required: false
+                                    FlightNumber:
+                                      description: "The number of the restricted flight."
+                                      type: simpleTypes.FlightNumberType
+                                      required: false
+#                                    IncludeExcludeUseInd:
+#                                      description: "When true, the flight number should be included (i.e., travel allowed on this flight). When false, the flight number should be excluded (i.e., no travel allowed on this flight.)"
+#                                      type: boolean
+#                                      required: false
+                          FlightNumberRange:
+                            description: "Include or exclude a flight number range."
+                            type: array
+                            minItems: 0
+                            maxItems: 5
+                            items: 
+                              additionalProperties: false 
+                              properties: 
+                                AirlineCode:
+                                  description: "The airline code of this range of flight numbers."
+                                  type: simpleTypes.StringLength3
+                                  required: false
+                                RangeStart:
+                                  description: "The start number (inclusive) of the flight number range."
+                                  type: simpleTypes.FlightNumberType
+                                RangeEnd:
+                                  description: "The end number (inclusive) of the flight number range."
+                                  type: simpleTypes.FlightNumberType
+                                IncludeIndicator:
+                                  description: "When true, the flight number range should be included (i.e. travel is allowed on these flights). When false, the flight number range (inclusive) should be excluded (i.e. travel not allowed on these flights)."
+                                  type: boolean
+                                  required: false
+                          ConnectionLocations:
+                            description: "Container for routing restrictions."
+                            type: object
+                            required: false
+                            additionalProperties: false 
+                            properties: 
+                              ConnectionLocation:
+                                type: array
+                                minItems: 0
+                                maxItems: 99
+                                items: ConnectionLocation_LocationType
+#                          GlobalDirection:
+#                            description: "Restrict by Global Direction or Maximum Permitted Mileage."
+#                            type: array
+#                            minItems: 0
+#                            maxItems: 5
+#                            items: airCommonTypes.GlobalDirectionGroup
+                          SaleDateRestriction:
+                            description: "Restrict sale dates for this contract."
+                            type: object
+                            required: false
+                            additionalProperties: false 
+                            properties: 
+                              StartDate:
+                                description: "The start date (inclusive) of the date range within which this fare can be sold."
+                                type: date-only
+                                required: false
+                              EndDate:
+                                description: "The end date (inclusive) of the date range within which this fare can be sold."
+                                type: date-only
+                                required: false
+                              IncludeIndicator:
+                                description: "When true, this fare can be sold within the date range. When false, this fare cannot be sold within the date range."
+                                type: boolean
+                                required: false
+                PricingInfo:
+                  type: object
+                  additionalProperties: false 
+                  properties: 
+                    Content:
+                      type: airCommonTypes.FareType
+                    SeasonalInfo:
+                      description: "Seasonal information for this fare."
+                      type: object
+                      required: false
+                      additionalProperties: false 
+                      properties: 
+                        SeasonalRange:
+                          description: "The date range for the season."
+                          type: array
+                          minItems: 0
+                          maxItems: 2
+                          items: SeasonalRange_Type  
+                        Comment:
+                          description: "Seasonal comment information associated with the fare."
+                          enum: ['NoComment','AllYear','MoreSeasonsInRule','PastDate','UnableToDisplaySeason','NewFare']
+                          required: false
+                        VariationByDatesExistInd:
+                          description: "If true, there is a variation in the fare by the seasonal dates."
+                          type: boolean
+                          required: false
+                        PassengerTypeCode:
+                          description: "Code used to indicate the type of traveler that will be traveling (e.g., ADT, CHD, INF)."
+                          type: simpleTypes.StringLength3
+                          required: false
+                        CodeContext:
+                          description: "Identifies the context of the location code, such as IATA, ARC, or internal code, etc."
+                          type: simpleTypes.StringLength1to32
+                          required: false
+                        ConvertedToEuroInd:
+                          description: "If true, the country where fare was filed has converted to the Euro."
+                          type: boolean
+                          required: false
+                        CodeOnlyFaresInd:
+                          description: "If true, only the fares for the account code requested are being returned."
+                          type: boolean
+                          required: false
+                        AccountCode:
+                          description: "The account code for which fares were requested."
+                          type: simpleTypes.StringLength1to32
+                          required: false
+                        CurrencyOverrideInd:
+                          description: "When true, the fares were converted to the override currency code. When false, the fares were not converted."
+                          type: boolean
+                          required: false
+                NetFare:
+                  description: "Information for a fare that can be distributed by others."
+                  type: array
+                  minItems: 0
+                  maxItems: 99
+                  items: 
+                    additionalProperties: false 
+                    properties: 
+                      MinAmount:
+                        description: "The minimum amount at which this fare can be sold."
+                        type: simpleTypes.Money
+                        required: false
+                      MaxAmount:
+                        description: "The maximum amount at which this fare can be sold."
+                        type: simpleTypes.Money
+                        required: false
+                      DistributorName:
+                        description: "The name of the agency that can distribute the fare."
+                        type: simpleTypes.StringLength1to32
+                        required: false
+                      FareBasisCode:
+                        description: "The fare basis code for this fare."
+                        type: simpleTypes.StringLength1to16
+                        required: false
+                      FareAmount:
+                        description: "The actual fare."
+                        type: simpleTypes.Money
+                        required: false
+                      CurrencyCode:
+                        description: "The code specifying the monetary unit for this fare. Use ISO 4217 3 alpha code."
+                        type: simpleTypes.AlphaLength3
+                        required: false
+                      UnlimitedAmountInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority to sell the fare for any amount."
+                        type: boolean
+                        required: false
+                      UpdateFareInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority to update the fare."
+                        type: boolean
+                        required: false
+                      SellInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority to sell the fare."
+                        type: boolean
+                        required: false
+                      TicketInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority to ticket the fare."
+                        type: boolean
+                        required: false
+                      ViewInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority for the fare to be viewed."
+                        type: boolean
+                        required: false
+                      RedistributeInd:
+                        description: "If true, the airline has granted the distributor of the fare the authority to redistribute the fare."
+                        type: boolean
+                        required: false
+                FareRPH:
+                  description: "A reference used to identify this Fare Contract within this response. Usually an ascending integer starting at 1."
+                  type: simpleTypes.RPH_Type
+                  required: false
+                NotAvailableForFareQuotation:
+                  description: "Indication if fare not available for fare quotation."
+                  type: boolean
+                  required: false
+                FareApplicationType:
+                  description: "Indicates how the fare may be applied, such as one way or roundtrip."
+                  type: airCommonTypes.FareApplicationType
+                  required: false
+                ResBookDesigCode:
+                  description: "Reservation booking designator/Booking code."
+                  type: simpleTypes.AlphaLength1to2
+                  required: false
+                MileageIndicator:
+                  description: "When true, maximum milage applies to the fare. When false, route applies to the fare."
+                  type: boolean
+                  required: false
+                LastFareUpdate:
+                  description: "Date and time of last update to this fare contract."
+                  type: datetime
+                  required: false
+                FareIndication:
+                  description: "Identify the fare contract as private, published or net."
+                  enum: ['private','public','net']
+                  required: false
+                FareStatus:
+                  description: "Identifies whether the returned fare was constructed, published or created."
+                  type: airCommonTypes.FareStatusType
+                  required: false
+                E_TicketRequiredInd:
+                  description: "If true, electronic ticketing is required for this fare."
+                  type: boolean
+                  required: false
+                RestrictAutoPriceInd:
+                  description: "If true, this fare cannot be auto priced."
+                  type: boolean
+                  required: false
+                PenaltyInd:
+                  description: "If true, a penalty applies to this fare for changes or cancellations."
+                  type: boolean
+                  required: false
+                NewFareInd:
+                  description: "If true, this is a new fare."
+                  type: boolean
+                  required: false
+                RoutingNumber:
+                  description: "Specifies the routing number for this fare."
+                  type: simpleTypes.Numeric1to9999
+                  required: false
+          Routing:
+            description: "Specifies the routing for all the fares."
+            type: array
+            minItems: 0
+            maxItems: 99
+            items: 
+              additionalProperties: false 
+              properties: 
+                Info:
+                  description: "The routing direction and city airports for the direction."
+                  type: array
+                  minItems: 0
+                  maxItems: 99
+                  items: 
+                    additionalProperties: false 
+                    properties: 
+                      Direction:
+                        description: "The direction of the routing, such as to or from."
+                        type: simpleTypes.StringLength1to8
+                        required: false
+                      Text:
+                        description: "The routing text associated with the direction."
+                        type: simpleTypes.StringLength1to128
+                        required: false
+                Number:
+                  description: "A routing number for the fare."
+                  type: simpleTypes.Numeric1to9999
+#          GlobalDirection:
+#            description: "The global direction and maximum permitted miles for the fares."
+#            type: array
+#            minItems: 0
+#            maxItems: 5
+#            items: airCommonTypes.GlobalDirectionGroup
+          SystemFaresLoadDate:
+            description: "The system date or datetime when the fare load was initiated."
+            type: simpleTypes.DateOrDateTimeType
+            required: false
+          GMT_FaresLoadDate:
+            description: "The fares load date converted to GMT."
+            type: simpleTypes.DateOrDateTimeType
+            required: false
+          OriginationArea:
+            description: "The IATA origination area for all fares in the response."
+            type: simpleTypes.StringLength1to8
+            required: false
+          DestinationArea:
+            description: "The IATA destination area for all fares in the response."
+            type: simpleTypes.StringLength1to8
+            required: false
+          CurrencyCode:
+            description: "The code specifying the monetary unit in which all the fares are displayed. Use ISO 4217, three alpha code."
+            type: simpleTypes.AlphaLength3
+            required: false
+          JointFareDisplayInd:
+            description: "If true, at least some of the fares being displayed are joint fares."
+            type: boolean
+            required: false
+          FareAccess:
+            description: "The type of fares that were requested."
+            type: airPreferences.FareAccessPrefType
+            required: false
+          MoneySaverDisplayInd:
+            description: "If true, at least some of the fares being displayed are money saver fares."
+            type: boolean
+            required: false
+      OtherFareInformation:
+        description: "Container for information relating to fare contracts that have not been returned in this message."
+        type: object
+        required: false
+        additionalProperties: false 
+        properties: 
+          Airlines:
+            description: "Container for airlines."
+            type: object
+            required: false
+            additionalProperties: false 
+            properties: 
+              Airline:
+                description: "Airline for which fare contracts exist but have not been included in this response."
+                type: array
+                minItems: 0
+                maxItems: 99
+                items: commonTypes.CompanyNameType
+              OtherCarrierFaresExistInd:
+                description: "When true, fare contracts exist for other carriers that match the search criteria but have not been included in this response. When false, no fare contracts exist for other carriers that match the search criteria. If not present, it has not been determined whether fare contracts exist for other carriers that match the search criteria."
+                type: boolean
+                required: false
+              GroupFaresExistInd:
+                description: "When true, group fares exist that match the search criteria but have not been included in this response. When false, no group fares exist that match the search criteria.If not present, it has not been determined whether group fares exist that match the search criteria."
+                type: boolean
+                required: false
+              OtherCurrencyFaresExistInd:
+                description: "When true, fares exist in currencies other than that specified in the request that match the search criteria but have not been included in this response. When false, no fares exist in currencies other than that specified in the request that match the search criteria. If not present, it has not been determined whether fares exist in currencies other than that specified in the request that match the search criteria."
+                type: boolean
+                required: false
+              UnsellableFaresExistInd:
+                description: "When true, unsellable fares exist that match the search criteria but have not been included in this response. When false, no unsellable fares exist that match the search criteria.If not present, it has not been determined whether unsellable fares exist that match the search criteria."
+                type: boolean
+                required: false
+              AirportFaresExistInd:
+                description: "When true, airport fares exist  that match the search criteria but have not been included in this response. When false, no airport fares exist that match the search criteria. If not present, it has not been determined whether airport fares exist that match the search criteria."
+                type: boolean
+                required: false
+#      ExchangeRates:
+#        description: "Container for exchange rates."
+#        type: object
+#        required: false
+#        additionalProperties: false 
+#        properties: 
+#          ExchangeRate:
+#            description: "Indicates a rate of exchange used in fare currency conversions."
+#            type: array
+#            minItems: 0
+#            maxItems: 99
+#            items: commonTypes.ExchangeRateGroup
+      AdvisoryInfo:
+        description: "Advisory information related to all the fare information."
+        type: array
+        minItems: 0
+        maxItems: 5
+        items: commonTypes.FreeTextType

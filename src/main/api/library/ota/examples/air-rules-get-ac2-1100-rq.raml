@@ -1,0 +1,30 @@
+#%RAML 1.0 NamedExample
+
+value: {
+#  "POS":{
+#    "Source":[{
+#      "AgentSine": "acsue"
+#    }]
+#  },
+  "RuleReqInfo":{
+    "DepartureDate": "2002-07-01T13:50:05",
+    "FareReference": [{
+      "ResBookDesigCode": "YT"
+      }],
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin        
+#    "MarketingAirline": [{
+#      "Code": "AC"
+#      }],
+#Temp FIX for OTA Trim End       
+    "DepartureAirport":{
+      "LocationCode": "YEG"
+    },
+    "ArrivalAirport": {
+      "LocationCode": "YYZ"
+    },
+    "FareInfo": [{
+      "FareBasisCode": "L0C4FL"
+      }]
+  }
+}

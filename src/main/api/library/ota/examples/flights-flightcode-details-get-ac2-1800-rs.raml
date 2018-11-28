@@ -1,0 +1,37 @@
+#%RAML 1.0 NamedExample
+
+value: {
+        "FlightInfoDetails": [
+          {
+            "TotalTripTime": "PT2H38M",
+            "TotalMiles": 907,
+            "FlightLegInfo": [
+              {
+                "FlightNumber": "1234",
+                "FlightStatus": "ON TIME",
+                "JourneyDuration": "PT2H38M",
+                "LegDistance": 907,
+                "DepartureAirport": {
+                  "LocationCode": "ATL",
+                  "Terminal": "1"
+                },
+                "ArrivalAirport": [{
+                  "Diversion": "0",
+                  "LocationCode": "MSP",
+                  "Terminal": "1"
+                }],
+                "MarketingAirline": {
+                  "Code": "AC",
+                  "CompanyShortName": "AirCanada"
+                },
+                "DepartureDateTime": {
+                  "Scheduled": "2018-07-07T08:05:00"
+                },
+                "ArrivalDateTime": {
+                  "Scheduled": "2018-07-07T09:43:00"          
+                }
+              }
+            ]
+          }
+        ]
+      }

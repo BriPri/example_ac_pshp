@@ -1,0 +1,110 @@
+#%RAML 1.0 NamedExample
+value:  {
+  "OriginDestinationInformation": [
+    {
+      "DepartureDateTime": {
+        "Date": "2018-12-11T09:10:00",
+      },
+      "OriginLocation": {
+        "LocationCode": "YYZ"
+      },
+      "DestinationLocation": {
+        "LocationCode": "EWR"
+      },
+      "OriginDestinationOptions": {
+        "OriginDestinationOption": [{
+            "FlightSegment": [{
+                "DepartureAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "2"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "EWR",
+                  "Terminal": "4"
+                },
+                "OperatingAirline": {
+                  "Code": "AC"
+                },
+                "Equipment": [{
+                    "AirEquipType": "777"
+                  }
+                ],
+                "DepartureDateTime": "2018-12-11T09:10:00",
+                "ArrivalDateTime": "2018-12-11T11:30:00",
+                "StopQuantity": 0,
+                "MarketingAirline": {
+                  "CompanyShortName": "Air Canada",
+                  "Code": "AC"
+                },
+                "FlightNumber": "8424",
+                "JourneyDuration": "P0Y0M0DT2H20M00S",
+                "BookingClassAvail": [{
+                    "ResBookDesigCode": "M",
+                    "ResBookDesigQuantity": "9"
+                  }, {
+                    "ResBookDesigCode": "K",
+                    "ResBookDesigQuantity": "6"
+                  }
+                ],
+                "DateChangeNbr": "0"
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "DepartureDateTime": {
+        "Date": "2018-12-20T09:10:00",
+      },
+      "OriginLocation": {
+        "LocationCode": "EWR"
+      },
+      "DestinationLocation": {
+        "LocationCode": "YYZ"
+      },
+      "OriginDestinationOptions": {
+        "OriginDestinationOption": [{
+            "FlightSegment": [
+              {
+                "DepartureAirport": {
+                  "LocationCode": "EWR",
+                  "Terminal": "4"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "1"
+                },
+                "OperatingAirline": {
+                  "Code": "AC"
+                },
+                "Equipment": [{
+                    "AirEquipType": "787"
+                  }
+                ],
+                "DepartureDateTime": "2018-12-20T09:30:00",
+                "ArrivalDateTime": "2018-12-20T10:30:00",
+                "StopQuantity": 0,
+                "MarketingAirline": {
+                  "CompanyShortName": "Air Canada",
+                  "Code": "AC"
+                },
+                "FlightNumber": "431",
+                "JourneyDuration": "P0Y0M0DT1H00M00S",
+                "BookingClassAvail": [{
+                    "ResBookDesigCode": "M",
+                    "ResBookDesigQuantity": "9"
+                  }, {
+                    "ResBookDesigCode": "K",
+                    "ResBookDesigQuantity": "6"
+                  }
+                ],
+                "DateChangeNbr": "0"
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+ }

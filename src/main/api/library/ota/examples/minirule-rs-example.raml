@@ -1,0 +1,136 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "responseDetails": {
+    "statusCode": "O"
+  },
+  "errorWarningGroup":[{
+    "errorOrWarningCodeDetails":{
+      "errorDetails": {
+        "errorCode": "20",
+        "errorCategory": ["EC"]
+      }},
+    "errorWarningDescription": [
+      {
+        "freeTextDetails": {
+          "textSubjectQualifier": "3",
+          "language": ["EN"],
+          "source": "S",
+          "encoding": "1"
+        },
+        "freeText":["RESTRICTED"]
+      }
+    ]
+  }],
+  "language":{
+    "languageQualifier": "5",
+    "languageDetails": [{
+      "languageCode": ["EN"]
+      }]
+  },
+  "mnrByPricingRecord":[{
+    "pricingRecordId":{
+      "referenceType": "TKT",
+      "uniqueReference": 572387659043
+    },
+    "paxRef":[{
+      "passengerReference":[{
+        "type":["TST"],
+        "value": [1]
+        }]
+      }],
+    "paxTypeLoc":[{
+      "paxCode":{
+        "statusInformation":[{
+          "indicator": ["PA"]
+        }]
+      },
+      "paxTypeDescription":{
+        "freeTextDetails":{
+          "textSubjectQualifier": "3",
+          "language":["EN"],
+          "source": "M",
+          "encoding": "ZZZ"
+        },
+        "freeText": ["Adult"]
+      }
+      }],
+    "fareComponentInfo":[{
+      "fareQualifierDetails":{
+        "additionalFareDetails": {
+          "rateClass": "MD05"
+        }
+      },
+      "fareComponentRef": {
+        "referenceDetails": [{
+          "type": ["FC"],
+          "value": ["1"]
+          }, 
+        {
+          "type": ["PU"],
+          "value": ["NPU"]
+          }]
+      },
+      "originAndDestination":{
+        "origin": ["NCE"],
+        "destination": ["LHR"]
+      },
+      "originDestinLoc":[{
+        "originDestinCode":{
+          "statusInformation":[{
+            "indicator": ["FRA"]
+            }]
+        },
+        "originDestinDescription":{
+          "freeTextDetails":{
+            "textSubjectQualifier": "3",
+            "language": ["EN"],
+            "source": "M",
+            "encoding": "ZZZ"
+          },
+          "freeText":["Frankfurt"]
+        }
+        },{
+          "originDestinCode":{
+            "statusInformation":[{
+              "indicator": ["PAR"]
+              }]
+          },
+          "originDestinDescription":{
+            "freeTextDetails":{
+              "textSubjectQualifier": "3",
+              "language": ["EN"],
+              "source": "M",
+              "encoding": "ZZZ"
+            },
+            "freeText": ["Paris"]
+          }
+        }
+      ],
+      "segmentRefernce":[{
+        "reference":[{
+          "type": ["ST"],
+          "value": [1]
+      }]
+      }]
+      }],
+      "listSituation":[{
+        "listSituationDum":{},
+        "situationCode":{
+          "statusInformation": [{
+            "description": ["BEFORE_DEPARTURE"]
+            }]
+        },
+        "situationDescription":{
+          "freeTextDetails":{
+            "textSubjectQualifier": "3",
+            "language": ["EN"],
+            "source": "M",
+            "encoding": "ZZZ"
+          },
+          "freeText": ["Before Departure"]
+        }
+        }]
+      
+    }]
+}

@@ -1,0 +1,225 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "AirReservation": [
+    {
+      "AirItinerary": {
+        "OriginDestinationOptions": [
+          {
+            "RPH": "10",
+            "FlightSegment": [
+              {
+                "DepartureAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "1"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "YUL"
+                },
+                "Equipment": [{
+                  "AirEquipType": "320"
+                }],
+                "DepartureDateTime": "2018-11-07T14:00:00",
+                "ArrivalDateTime": "2018-11-07T15:17:00",
+                "StopQuantity": 0,
+                "RPH": "1",
+                "MarketingAirline": {
+                  "Code": "AC"
+                },
+                "OperatingAirline": {
+                  "Code": "AC"
+                },                
+                "NumberInParty": 1,
+                "FlightNumber": "414",
+                "ResBookDesigCode": "K",
+                "Status": "HK"
+              }
+            ]
+          }
+        ]
+      },
+      "PriceInfo": {
+        "ItinTotalFare": [
+          {
+            "BaseFare": {
+              "CurrencyCode": "CAD",
+              "DecimalPlaces": 2,
+              "Amount": 464.00
+            },
+            "TotalFare":
+              {
+                "CurrencyCode": "CAD",
+                "DecimalPlaces": 2,
+                "Amount": 586.81
+              }
+          }
+        ],
+        "PTC_FareBreakdowns": [
+          {
+            "PassengerTypeQuantity": {
+              "Code": "ADT",
+              "Quantity": 1
+            },
+            "FareBasisCodes": [
+              {
+                "Content": "B0A4LT"
+              }
+            ],
+            "PassengerFare": [
+              {
+                "BaseFare": {
+                  "CurrencyCode": "CAD",
+                  "DecimalPlaces": 2,
+                  "Amount": 464.00
+                },
+                "Taxes": {
+                  "Tax": [
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,
+                      "Amount": 7.12,
+                      "TaxCountry": "CA",                   
+                      "TaxCode": "CA",
+                      "RPH": "1"
+                    },
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,
+                      "Amount": 25.36,
+                      "TaxCountry": "CA",                      
+                      "TaxCode": "XG",
+                      "RPH": "2"                      
+                    },
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,
+                      "Amount": 50.59,   
+                      "TaxCountry": "CA",                   
+                      "TaxCode": "XQ",
+                      "RPH": "3"                      
+                    },
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,                      
+                      "Amount": 30.00,   
+                      "TaxCountry": "CA",                   
+                      "TaxCode": "SQ",
+                      "RPH": "4"                      
+                    },
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,                      
+                      "Amount": 1.25,
+                      "TaxCountry": "CA",
+                      "TaxCode": "XG",
+                      "RPH": "21"                      
+                    },
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,
+                      "Amount": 2.49,    
+                      "TaxCountry": "CA",                  
+                      "TaxCode": "XQ",
+                      "RPH": "22"                      
+                    }
+                  ],
+                  "Amount": 116.81
+                },
+                "Fees": {
+                  "CurrencyCode": "CAD",
+                  "DecimalPlaces": 2,
+                  "Amount": 6.00,
+                  "Fee": [
+                    {
+                      "CurrencyCode": "CAD",
+                      "DecimalPlaces": 2,
+                      "Amount": 6.00,                      
+                      "FeeCode": "YQ",
+                      "RPH": "1"
+                    }
+                  ]
+                },
+                "TotalFare": {
+                  "CurrencyCode": "CAD",
+                  "DecimalPlaces": 2,
+                  "Amount": 586.81
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "TravelerInfo": {
+        "AirTraveler": [
+          {
+            "PersonName": {
+               "NamePrefix": ["MR"],
+               "GivenName": ["Monty"],
+              "Surname": "PANE"
+            },
+           "Email": [
+              {
+                "Content": "SSORENSEN@FARELOGIX.COM"
+              }
+           ],
+           "Telephone": [
+              {
+                "PhoneNumber": "16471234567"
+              }
+           ],
+           "PassengerTypeCode": "ADT",
+           "TravelerRefNumber": {
+              "RPH": "1"
+            },          
+           "BirthDate": "1987-07-05",
+            "AccompaniedByInfantInd": false,
+            "Document": [
+               {
+                 "ExpireDate": "2021-01-01",
+                 "BirthDate": "2001-01-01",
+                 "Gender": "Male",
+                 "DocHolderName": "PANE",
+                 "AdditionalPersonNames": [
+                   "Monty"
+                 ],
+                 "DocID": "123456789 SC123",
+                 "DocIssueCountry": "US",
+                 "AC_DocType": "Nexus"
+               }
+            ]
+          }
+        ],
+        "SpecialReqDetails": [{
+          "SeatRequests": [{
+            "SeatNumber": "18K",
+            "SeatPreference": ["W"],
+            "TravelerRefNumberRPHList": ["1"],
+            "FlightRefNumberRPHList": ["1"]
+          }],
+         "SpecialServiceRequests": [{
+             "SSRCode": "MEAL",
+             "FlightRefNumberRPHList": ["1"],
+             "Status": "ML"
+           },
+           {
+             "SSRCode": "PASS",
+             "Airline": {
+               "CompanyShortName": "AC"
+             },
+             "Text": "text"
+          }
+         ]
+       }]
+      },
+      "BookingReferenceID": [
+        {
+          "ID": "LRHFG4",
+          "CompanyName": {
+            "Code": "AC",
+            "Content": "AC2"
+          }           
+        }
+      ]
+    }
+  ]
+}

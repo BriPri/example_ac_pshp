@@ -1,0 +1,332 @@
+#%RAML 1.0 Library
+
+uses:
+  airPreferences: ../../../library/ota/air-preferences.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+
+types:
+  CurrencyCodeType:
+    description: "Defines currency code (ISO 3-letter code) and optional number of decimals. Not that for request messages the NumberOfDecimals has no effect and is not needed."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      Content:
+        type: string
+        pattern: ^[A-Z0-9]{3}$
+      NumberOfDecimals:
+        description: "Decimal position in fare amount.  Example- 2"
+        type: integer
+        required: false
+      Rate:
+        description: "Exchange rate used for the conversion"
+        type: string
+        required: false
+      Table:
+        description: "Table reference for the exchange rate. Sample- BSR"
+        type: string
+        required: false
+  SaleInfo:
+    description: "Point of Sale information"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      CityCode:
+        type: array
+        required: false
+        minItems: 0
+        items: CityCode
+      CountryCode:
+        type: array
+        required: false
+        minItems: 0
+        items: CountryCode
+      Identification:
+        type: array
+        required: false
+        minItems: 0
+        items: Identification
+      CurrencyCode:
+        description: "Point of Sale Currency Code Example- USD"
+        type: CurrencyCodeType
+        required: false
+        additionalProperties: false
+        properties:
+          NumberOfDecimals:
+            type: integer
+            required: false
+  CountryCode:
+    description: "Country where sale takes place or Ticket issuing country. Example- US"
+    type: string
+    minLength: 2
+    maxLength: 2
+  CityCode:
+    description: "Departure or arrival city code.  Example- MIA"
+    type: string
+    minLength: 3
+    maxLength: 3
+  Identification:
+    description: "Identification values for requestor, aggregator and airline"
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      RequestorInfo:
+        description: "Requestor identification values"
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          UserInfo:
+            description: "User Information."
+            type: object
+            required: false
+            additionalProperties: false
+            properties:
+              UserID:
+                description: "In case of an agency this is typically the Agent's ID"
+                type: string
+              UserRole:
+                description: "User's role as set in system provider's requestor profile"
+                type: string
+                required: false
+              UserPW:
+                description: "User's password"
+                type: string
+                required: false
+              DutyCode:
+                description: "Agent duty code. Example- UZ"
+                type: string
+                required: false
+              SignOn:
+                description: "Agent sign on (SINE). Example- 6146TL"
+                type: string
+                required: false
+              LNIATA:
+                description: "Agent CRT or terminal LNIATA number. Example- 956301007"
+                type: string
+                required: false
+          AccountInfo:
+            description: "Account info as it relates to a (customer) account of the requestor such as a corporate booking tool"
+            type: object
+            required: false
+            additionalProperties: false
+            properties:
+              AccountUserInfo:
+                description: "Account User Info"
+                type: object
+                required: false
+                additionalProperties: false
+                properties:
+                  AccountUserID:
+                    description: "User ID of the account"
+                    type: string
+              SourceInfo:
+                description: "System source detail used for auditing and traceability."
+                type: object
+                required: false
+                additionalProperties: false
+                properties:
+                  IPAddress:
+                    description: "IP address of the requestor"
+                    type: string
+                    required: false
+                  IPPort:
+                    description: "IP port associated to above IP address"
+                    type: string
+                    required: false
+              AccountID:
+                description: "In case of an agency this is typically the Account ID as set up between requestor and client, such as a corporate booking tool"
+                type: string
+          SourceInfo:
+            description: "System source detail used for auditing and traceability."
+            type: object
+            required: false
+            additionalProperties: false
+            properties:
+              IPAddress:
+                description: "IP address of the requestor"
+                type: string
+                required: false
+              IPPort:
+                description: "IP port associated to above IP address"
+                type: string
+                required: false
+          RequestorID:
+            description: "In case of an agency this is typically the PCC of the POS agency (PseudoCityCode)"
+            type: string
+          RequestorIATA:
+            description: "Requestor's IATA number (if applicable)"
+            type: string
+            required: false
+          ReportingAgency:
+            description:  "Reporting agency.
+                    Examples-
+                    ARC
+                    BSP
+                    Other"
+            type: string
+            required: false
+          DocStock:
+            description: "Stock to be used. Examples- BSP, AL"
+            type: string
+            required: false
+          RequestorName:
+            description: "Requestor name. Example- UNITED AIRLINES"
+            type: string
+            required: false
+          RequestorPW:
+            description: "Requestor password."
+            type: string
+            required: false
+          RequestorType:
+            description:  "Requestor type.
+                    Example-
+                    A (Airline)
+                    C (Consolidator)
+                    E (Electronic Selling System)
+                    G (General Sales Agent)
+                    I (Internal CRS Locations)
+                    T (Travel Agent)
+                    V (Vendor)
+                    W (Wholesaler/Tour Operator)"
+            type: string
+            required: false
+      AggregatorInfo:
+        description: "Aggregator identification values"
+        type: array
+        minItems: 0
+        maxItems: 2
+        items:
+          additionalProperties: false
+          properties:
+            SourceInfo:
+              description: "System source detail used for auditing and traceability."
+              type: object
+              required: false
+              additionalProperties: false
+              properties:
+                IPAddress:
+                  description: "IP address of the requestor"
+                  type: string
+                  required: false
+                IPPort:
+                  description: "IP port associated to above IP address"
+                  type: string
+                  required: false
+            AggregatorID:
+              description: "ID of the aggregating entity, such as GDS, OTA, MetaSearch, etc."
+              type: string
+            AggregatorPW:
+              description: "Aggregator's password"
+              type: string
+              required: false
+            AggregatorType:
+              description: "Values as per IATA's AIRIMP are as follows-
+                      A - Airline
+                      E - ERSP (Electronic Reservation System Provider)
+                      N - Requestor has no identification
+                      T - Requestor has a user identification number assigned by IATA/ARC other than ERSP"
+              type: string
+              required: false
+  AC_TicketDocumentRQ:
+    description: "The AC_TicketDocumentRQ request message is used to request the details of Air Canada tickets."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+#      POS:
+#        description: "Point of sale object."
+#        type: commonTypes.POS_Type
+#        required: false
+      TicketGroup:
+        description: "Request by ticket numbers."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          TicketNumber:
+            description: "The 13-digit ticket number, including the three digit airline code."
+            type: array
+            minItems: 0
+            maxItems: 9
+            items: string
+      TicketRequest:
+        description: "Request by PNR locator."
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+          UniqueID:
+            description: "A reference to identify the booking."
+            type: commonTypes.UniqueID_Type
+            required: false
+          Verification:
+            description: "This is to be used for verification that the record being sent is the specific record requested. This is requested for Guest requests."
+            type: object
+            required: false
+            additionalProperties: false
+            properties:
+              PersonName:
+                description: "Passenger name on ticket."
+                type: object
+                required: false
+                additionalProperties: false
+                properties:
+                  Surname:
+                    description: "Traveler family (last) name.
+        Example- SMITH"
+                    type: string
+                    minLength: 1
+                  GivenName:
+                    description: "Traveler given (first) name.
+        Example- JOHN"
+                    type: string
+                    minLength: 1
+      Version:
+        description: "Message version number.
+Example- 1.0"
+        type: string
+        required: false
+      TimeStamp:
+        description: "Message creation timestamp.
+Example- 2012-01-13T13-59-38Z"
+        type: datetime
+        required: false
+      TransactionIdentifier:
+        description: "Unique relationship identifier for request and response messages that are part of an on-going transaction.
+Example- TRN12345 =notes=
+1. This is a unique identifier to relate all messages that are part of an on-going transaction. "
+        type: string
+        required: false
+      PrimaryLangID:
+        description: "Primary language preference for message content.
+Example- en-US (English, United States) For maximum interoperability, content language designators are specified using Microsoft National Language Support (NLS) encoding.
+http-//msdn.microsoft.com/en-us/goglobal/bb896001.aspx "
+        type: string
+        minLength: 2
+        maxLength: 5
+        required: false
+      AltLangID:
+        description: "Alternate language preference for message content.
+Example- en-GB (English, United Kingdom) For maximum interoperability, content language designators are specified using Microsoft National Language Support (NLS) encoding.
+http-//msdn.microsoft.com/en-us/goglobal/bb896001.aspx "
+        type: string
+        minLength: 2
+        maxLength: 5
+        required: false
+      TargetSystem:
+        description: "Message target system type.
+Examples-
+PRODUCTION
+STAGING
+TEST"
+        type: string
+        required: false
+      TargetSystemName:
+        description: "Message target system name.
+Example- STG002"
+        type: string
+        required: false

@@ -1,0 +1,236 @@
+#%RAML 1.0 NamedExample
+
+value: {
+
+#  "POS": {
+#    "Source": [{
+#      "TerminalID": "T549k",
+#      "AgentDutyCode": "3",
+#      "AgentSine": "A1234",
+#      "ERSP_UserID": "238940214",
+#      "RequestorID": {
+#        "CompanyName": {
+#          "CompanyShortName": "AirCanada",
+#          "Code": "AC"
+#        },
+#        "Type": "1",
+#        "ID": "1234567"
+#      }
+#    }]
+#  },
+
+"AirItinerary": {
+  "OriginDestinationOptions": [
+    {
+      "FlightSegment": [
+        {
+          "DepartureAirport": {
+            "LocationCode": "DEN",
+            "Terminal": "B",
+            "Gate": "37"
+          },
+          "ArrivalAirport": {
+            "LocationCode": "YYZ",
+            "Terminal": "1",
+            "Gate": "89"
+          },
+          "OperatingAirline": {
+            "CompanyShortName": "UA",
+            "Code": "UA",
+            "Content": "UA",
+            "FlightNumber": "387",
+            "MarketingInd": false
+          },
+          "Equipment": [
+            {
+              "Content": "Car",
+              "AirEquipType": "AR1"
+            }
+          ],
+          "DepartureDateTime": "2018-11-20T12:13:01",
+          "ArrivalDateTime": "2018-11-21T12:13:01",
+          "StopQuantity": 2,
+          "RPH": "32234",
+          "MarketingAirline": {
+            "CompanyShortName": "UA",
+            "Code": "UA",
+            "Content": "UA",
+            "SingleVendorInd": "Alliance"
+          },
+          "FlightNumber": "123",
+          "FareBasisCode": "A1",
+          "ResBookDesigCode": "AB",
+          "AC_Breakpoint": true,
+          "AC_SegmentDuration": "1 Hour",
+          "AC_JourneyDuration": "PT3M",
+          "MarriageGrp": "Y",
+          "BookingClassAvails": [
+            {
+              "BookingClassAvail": [
+                {
+                  "ResBookDesigCode": "AA",
+                  "ResBookDesigQuantity": "12",
+                  "RPH": "2312",
+                  "AC_UpgradeEligibility": {
+                    "CustLoyalty": {
+                      "MembershipID": "string",
+                      "ProgramID": "string"
+                    },
+                    "UpgradeOptions": [
+                      {
+                        "UpgradeFee": {
+                          "Amount": 55.45,
+                          "CurrencyCode": "USD",
+                          "DecimalPlaces": 2
+                        },
+                        "UpgradeCabin": "Business",
+                        "RequiredCredits": 23,
+                        "UpgradeClassAvailability": "33",
+                        "UpgradeWindow": "P0Y0M5D"
+                      }
+                    ],
+                    "LoyalLevel": "Gold",
+                    "Eligible": true
+                  }
+                }
+              ],
+              "CabinType": "F"
+            }
+          ],
+          "Comment": [
+            {
+              "Content": "Very nice"
+            }
+          ],
+          "StopLocation": [
+            {
+              "LocationCode": "string"
+            }
+          ],
+          "NumberInParty": 1,
+          "Status": "AAA",
+          "E_TicketEligibility": "string",
+          "MealCode": "Snack",
+          "DepartureDay": "Mon",
+          "StopoverInd": false,
+          "DateChangeNbr": "string"
+        }
+      ],
+      "RefNumber": 1,
+      "RPH": "23423"
+    }
+  ],
+  "DirectionInd": "OneWay",
+  "AirItineraryRPH": "12345678"
+},
+
+"TravelerInfoSummary": {
+  "SeatsRequested": [
+    2
+  ],
+  "AirTravelerAvail": [
+    {
+      "PassengerTypeQuantity": [
+        {
+          "Age": 34,
+          "Code": "XX",
+          "Quantity": 3
+        }
+      ],
+      "AirTraveler": {
+        "PassengerTypeCode": "YZX",
+        "AccompaniedByInfantInd": false,
+        "TravelerRefNumber": [
+          {
+            "RPH": "234234"
+          }
+        ],
+        "CustLoyalty": {
+          "ProgramID": "ABC",
+          "MembershipID": "Gold",
+          "VendorCode": [
+            "BOX"
+          ],
+          "AllianceLoyaltyLevelName": "TOP",
+          "LoyalLevel": "SUPER",
+          "LoyalLevelCode": 3,
+          "SingleVendorInd": "Alliance",
+          "EffectiveDate": "2018-06-25",
+          "ExpireDate": "2019-06-25",
+          "RPH": "33445599"
+        }
+      }
+    }
+  ],
+  "PriceRequestInformation": {
+    "FareQualifier": "101",
+    "NegotiatedFaresOnly": true,
+    "CurrencyCode": "USD",
+    "PricingSource": "Published",
+    "RequestedTicketingDate": "2018-10-02T10:00:00",
+    "SaleCountry": "US",
+    "NegotiatedFareCode": [
+      {
+        "Content": "ContentCode",
+        "CodeListAirGroup": {
+          "Code": "Code1",
+          "Quantity": 2,
+          "SecondaryCode": "SubCode"
+        },
+        "TicketDesignatorCode": "Business",
+        "OverrideRuleInd": true
+      }
+    ],
+    "CabinType": "PremiumBusiness",
+    "TicketingCountry": "US",
+    "AC_PromoInformation": {
+      "PromoCode": "GoBig"
+    }
+  }
+}
+#OTA Trim Begin
+#    "ConfirmedBookingInfo": {
+#      "AirItinerary": {
+#        "AirItinerary": {
+#          "OriginDestinationOptions": [{
+#            "FlightSegment": [{
+#              "DepartureDateTime": "2018-10-02T10:00:00",
+#              "ArrivalDateTime": "2018-10-02T15:00:00",
+#              "FlightNumber": "1234A",
+#              "DepartureAirport": {
+#                "LocationCode": "YYZ"
+#              },
+#              "ArrivalAirport": {
+#                "LocationCode": "YVR"
+#              },
+#              "MarketingAirline": {
+#                "CompanyShortName": "AirCanada",
+#                "Code": "AC"
+#              },
+#              "BookingClassAvails": [{
+#                "BookingClassAvail": [{
+#                  "ResBookDesigCode": "C",
+#                  "RPH": "1"
+#                }],
+#                "CabinType": "Business"
+#              }]
+#            }]
+#          }]
+#        }
+#      }
+#    },
+#    "Traveler": {
+#      "PassengerTypeQuantity": [{
+#        "Code": "ABC",
+#        "Quantity": 100
+#      }],
+#      "AirTraveler": [{
+#        "PassengerTypeCode": "ADT"
+#      }]
+#    },
+#    "AC_FareBasisCode": {
+#      "FlightSegmentRPH": "1"
+#    }
+#  }
+#OTA Trim End
+}

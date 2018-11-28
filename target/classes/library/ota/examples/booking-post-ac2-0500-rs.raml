@@ -1,0 +1,243 @@
+#%RAML 1.0 NamedExample
+ 
+value: {
+  "AirReservation": [{
+    "AirItinerary": {
+      "OriginDestinationOptions": [{
+        "FlightSegment": [{
+          "Status": "ADT",
+          "BookingClassAvails": [{
+            "BookingClassAvail": [{
+              "AC_UpgradeEligibility": {
+                "LoyalLevel": "A",
+                "Eligible": true,
+                "UpgradeOptions": [{
+                  "UpgradeCabin": "Business",
+                  "RequiredCredits": 100,
+                  "UpgradeFee": {
+                    "Amount": 100,
+                    "CurrencyCode": "CAD",
+                    "DecimalPlaces": 2
+                  }
+                }]
+              }
+            }]
+          }]
+        }]
+      }]
+    },
+    "PriceInfo": {
+      "PTC_FareBreakdowns": [{
+        "PassengerTypeQuantity": {
+          "Code": "ADT",
+          "Quantity": 2
+        },
+        "FareBasisCodes": [{
+          "Content": "KKXNNZO6"
+        }],
+        "PassengerFare": [{
+          "BaseFare": {
+            "Amount": 100,
+            "CurrencyCode": "CAD",
+            "DecimalPlaces": 2
+          },
+          "Taxes": {
+            "Amount": 100,
+            "Tax": [{
+              "TaxCode": "AY",
+              "Amount": 10.00
+            }]
+          },
+          "Fees": {
+            "Fee": [{
+              "Amount": 100,
+              "FeeCode": "TBD"
+            }]
+          },
+          "TotalFare": {
+            "Amount": 100,
+            "CurrencyCode": "CAD",
+            "DecimalPlaces": 2
+          },
+          "AC_Fare": [{
+            "FlightNumber": "1234A",
+            "Amount": 100,
+            "Surcharges": 22
+          }],
+          "AC_FareFamily": {
+            "Content": "FARE",
+            "ResBookDesigCode": "V",
+            "FlightNumber": "1234A"
+          },
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin              
+#          "AC_Discount": [{
+#            "Code": "ACPromo123",
+#            "Amount": 10,
+#            "Description": "AC Promo 123",
+#            "FlightNumber": "1234A",
+#            "Taxes": {
+#              "Amount": 10.00,
+#              "Tax": {
+#                "TaxCode": "AY",
+#                "Amount": 10.00
+#              }
+#            }
+#          }],
+#Temp FIX for OTA Trim End          
+          "AC_eTicketNumber": "12345678901234"
+        }]
+      }],
+      "ItinTotalFare": [{
+        "NegotiatedFareCode": "CODE",
+        "BaseFare": {
+          "Amount": 234.99
+        },
+#Added to resolve OTA Trim Compatibility issues temporarily
+#Temp FIX for OTA Trim Begin             
+        "AC_ChargesRefundSummary": {
+          "Charges": [{
+            "ChargeTypeCode": "Air",
+            "BaseFare": {
+              "Amount": "123.45"
+            },
+            "Taxes": {
+              "Amount": "123.45"
+            },
+            "TotalFare": {
+              "Amount": 123.45
+            }
+          }]
+        },
+        "AC_ImportantInformationOfConfirmationPage": {
+          "CarryOnBaggagePolicy": {
+            "CarryOnBaggageRestrictions": {
+              "StandardArticle": {
+                "Number": 1,
+                "MaximumSize": {
+                  "InCentimeter": 22,
+                  "InInches": 8.67
+                }
+              },
+              "PersonalArticle": {
+                "Number": 2,
+                "MaximumSize": {
+                  "InCentimeter": 22,
+                  "InInches": 8.67
+                }
+              }
+            }
+          },         
+          "CheckedBaggagePolicy": {
+            "CheckedBaggageRestrictions": {
+              "Economyclass": {
+                "Number": 1,
+                "MaximumSize": {
+                  "IN_CENT": 22,
+                  "InInches": 8.67
+                },
+                "MaximumWeight": {
+                  "InKG": 20,
+                  "InLB": 44.1
+                }
+              },
+              "ExecutiveClass": {
+                "Number": 22,
+                "MaximumSize": {
+                  "IN_CENT": 22,
+                  "InInches": 8.67
+                },
+                "MaximumWeight": {
+                  "InKG": 20,
+                  "InLB": 44.1
+                }
+              }
+            }
+          },
+          "CheckInAndBoardingTimes": {
+            "Region": [{
+              "Info": "Kanto",
+              "CheckIn": {
+                "Recommended": "Recommended",
+                "CutOffTime": "12:30:00"
+              },
+              "BoardingGate": {
+                "CutOffTime": "12:30:00"
+              }
+            }]
+          }
+        }
+#Temp FIX for OTA Trim End        
+      }]
+    },
+    "TravelerInfo": {
+      "AirTraveler": [{
+        "PassengerTypeCode": "ADT",
+        "BirthDate": "2000-01-01",
+        "Gender": "Male",
+        "PersonName": {
+          "NamePrefix": ["Mr"],
+          "GivenName": ["James"],
+          "Surname": "Bond"
+        },
+        "Telephone": [{
+          "CountryAccessCode": "1",
+          "AreaCityCode": "416",
+          "PhoneNumber": "111-2222",
+          "PhoneLocationType": "4",
+          "PhoneTechType": "1"
+        }],
+        "Email": [{
+          "Content": "james.bond@aircanada.com"
+        }],
+        "CustLoyalty": [{
+          "ProgramID": "AC",
+          "MembershipID": "1234",
+          "LoyalLevel": "Gold",
+          "VendorCode": ["AC"]
+        }]
+      }],
+      "SpecialReqDetails": [{
+        "SpecialServiceRequests": [{
+          "FlightRefNumberRPHList": ["01"],
+          "TravelerRefNumberRPHList": ["01"],
+          "SSRCode": "WCHR",
+          "Status": "ADT",
+          "Number": 123,
+          "Text": "TBD"
+        }]
+      }]
+    },
+    "Fulfillment": {
+      "PaymentDetails": [{
+        "PaymentTransactionTypeCode": "charge",
+        "PaymentCard": {
+          "ExpireDate": "0604",
+          "CardCode": "AX",
+          "CardNumber": {
+            "PlainText": "111122223333"
+          },
+          "CardType": {
+            "Content": "AmericanExpress"
+          }
+        },
+        "PaymentAmount": [{
+          "Amount": 123.45,
+          "CurrencyCode": "CAD"
+        }]
+      }]
+    },
+    "Ticketing": [{
+      "RequestedTicketingDate": "2018-07-20T11:00:00",
+      "TicketType": "Paper",
+      "PseudoCityCode": "YEG"
+    }],
+    "BookingReferenceID": [{
+      "Type": "ADO",
+      "ID": "MPJGAE",
+      "CompanyName": {
+        "Code": "AC"
+      }
+    }]
+  }]
+}

@@ -1,0 +1,72 @@
+#%RAML 1.0 Library
+
+usage: AirDemandTicketRS
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  OTA_AirDemandTicketRS:
+    description: "Provides the capability to respond to a demand ticket request, returning minimal information about the ticket that was issued."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+      Warnings:  
+        description: "Warnings"  
+        type: commonTypes.WarningsType  
+        required: false 
+      BookingReferenceID:
+        description: "An identifier used to uniquely reference an object in a system (e.g. an airline reservation reference, customer profile reference, booking confirmation number, or a reference to a previous availability quote)."
+        type: commonTypes.UniqueID_Type
+        required: false
+      TicketItemInfo:
+        description: "Information for the ticket that was issued."
+        type: array
+        minItems: 0
+        maxItems: 99
+        required: false
+        items:
+          additionalProperties: false
+          properties:
+            PassengerName:
+              description: "The name of the person for whom the ticket was issued."
+              type: [object, commonTypes.PersonNameType]
+              required: false
+              additionalProperties: false
+              properties:
+                PassengerTypeCode:
+                  description: "Used to identify the PTC code (passenger type code) for the passenger (e.g. infant)."
+                  type: simpleTypes.AlphaLength3
+                  required: false
+            ConjunctiveTicket:
+              description: "Used to specify conjunctive ticket/document numbers."
+              type: array
+              minItems: 0
+              maxItems: 5
+              items:
+                additionalProperties: false
+                properties:
+                  TicketNumber:
+                    description: "The number of the conjunctive ticket/document that was issued."
+                    type: simpleTypes.StringLength1to32
+      QueuePNR:
+        description: "Information to specify which queue a PNR was placed on after the ticket was isssued."
+        type: [object, commonTypes.QueueGroup]
+        required: false
+        additionalProperties: false
+        properties:
+          Date: 
+            description: "The month and day of the queue on which the PNR is to be placed."
+            type: simpleTypes.DateOrMonthDay
+            required: false
+          DateRangeNumber:
+            description: "A number specifying a range of days (e.g., today plus 3, today plus 6) for the queue on which the PNR is to be placed."
+            type: integer
+            required: false
+      Comment:
+        description: "A comment associated with the ticket."
+        type: commonTypes.FreeTextType
+        required: false

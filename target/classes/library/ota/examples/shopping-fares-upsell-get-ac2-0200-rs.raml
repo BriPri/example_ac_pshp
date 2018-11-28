@@ -1,0 +1,192 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "PricedItineraries": [
+    {
+      "SequenceNumber": 1,
+      "AirItinerary": {
+        "OriginDestinationOptions": [
+          {
+            "RefNumber": 1,
+            "FlightSegment": [
+              {
+                "FlightNumber": "868",
+                "DepartureAirport": {
+                  "LocationCode": "YYZ"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "LHR"
+                },
+                "ResBookDesigCode": "K",
+                "BookingClassAvails": [
+                  {
+                    "BookingClassAvail": [
+                      {
+                        "ResBookDesigCode": "K",
+                        "ResBookDesigQuantity": "9"
+                      }
+                    ]
+                  }
+                ],
+                "ArrivalDateTime": "2018-08-29T21:00:00",
+                "DepartureDateTime": "2018-08-29T09:10:00",
+                "Equipment": [
+                  {
+                    "AirEquipType": "789"
+                  }
+                ],
+                "MarketingAirline": {
+                  "Code": "AC"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "SequenceNumber": 2,
+      "AirItinerary": {
+        "OriginDestinationOptions": [
+          {
+            "RefNumber": 2,
+            "FlightSegment": [
+              {
+                "FlightNumber": "869",
+                "E_TicketEligibility": "Y",
+                "DepartureAirport": {
+                  "LocationCode": "LHR",
+                  "Terminal": "2"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "1"
+                },
+                "ResBookDesigCode": "K",
+                "BookingClassAvails": [
+                  {
+                    "BookingClassAvail": [
+                      {
+                        "ResBookDesigCode": "K",
+                        "ResBookDesigQuantity": "9"
+                      }
+                    ]
+                  }
+                ],
+                "ArrivalDateTime": "2018-09-03T11:10:00",
+                "DepartureDateTime": "2018-09-03T08:30:00",
+                "Equipment": [
+                  {
+                    "AirEquipType": "77W"
+                  }
+                ],
+                "MarketingAirline": {
+                  "Code": "AC"
+                }
+              }
+            ]
+          },
+          {
+            "RefNumber": 2,
+            "FlightSegment": [
+              {
+                "FlightNumber": "857",
+                "E_TicketEligibility": "Y",
+                "DepartureAirport": {
+                  "LocationCode": "LHR",
+                  "Terminal": "2"
+                },
+                "ArrivalAirport": {
+                  "LocationCode": "YYZ",
+                  "Terminal": "1"
+                },
+                "ResBookDesigCode": "K",
+                "BookingClassAvails": [
+                  {
+                    "BookingClassAvail": [
+                      {
+                        "ResBookDesigCode": "K",
+                        "ResBookDesigQuantity": "9"
+                      }
+                    ]
+                  }
+                ],
+                "ArrivalDateTime": "2018-09-03T14:45:00",
+                "DepartureDateTime": "2018-09-03T12:05:00",
+                "Equipment": [
+                  {
+                    "AirEquipType": "77W"
+                  }
+                ],
+                "MarketingAirline": {
+                  "Code": "AC"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "AirItineraryPricingInfo": {
+        "ItinTotalFare": [
+          {
+            "BaseFare": {
+              "Amount": 19.00,
+              "CurrencyCode": "CAD"
+            },
+            "TotalFare": {
+              "Amount": 425.57,
+              "CurrencyCode": "CAD"
+            }
+          }
+        ],
+        "PTC_FareBreakdowns": [
+          {
+            "PassengerTypeQuantity": {
+              "Code": "ADT"
+            },
+            "FareBasisCodes": [
+              {
+                "Content": "KKX7RBA"
+              }
+            ],
+            "PassengerFare": [
+              {
+                "BaseFare": {
+                  "Amount": 10.00,
+                  "CurrencyCode": "CAD"
+                },
+                "Taxes": {
+                  "Amount": 215.57,
+                  "Tax": [
+                    {
+                      "Amount": 200.00,
+                      "TaxCode": "YQ",
+                      "TaxCountry": "AD"
+                    },
+                    {
+                      "Amount": 15.57,
+                      "TaxCode": "CA",
+                      "TaxCountry": "AE"
+                    }
+                  ]
+                },
+                "Fees": {
+                  "Fee": [
+                    {
+                      "Amount": 200.00,
+                      "FeeCode": "YQ"
+                    }
+                  ]
+                },
+                "TotalFare": {
+                  "Amount": 425.57,
+                  "CurrencyCode": "CAD"
+                }
+              }
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}

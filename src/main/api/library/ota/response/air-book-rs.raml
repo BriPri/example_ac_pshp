@@ -1,0 +1,55 @@
+#%RAML 1.0 Library
+
+usage: AirBookRS
+
+uses:
+  airCommonTypes: ../../../library/ota/air-common-types.raml
+  commonTypes: ../../../library/ota/common-types.raml
+  simpleTypes: ../../../library/ota/simple-types.raml
+
+types:
+  AirReservation_AirReservationType:
+    type: airCommonTypes.AirReservationType
+    additionalProperties: false
+    properties:
+#      Offer:
+#        description: "Merchandising offer information."
+#        type: airCommonTypes.AirOfferChoiceType
+#        required: false
+      CreateDateTime:
+        description: "Provides the original PNR creation date/time."
+        type: simpleTypes.DateOrDateTimeType
+        required: false
+
+  OTA_AirBookRS:
+    description: "The Book Response message contains the itinerary, passenger and pricing information sent in the request, along with a Booking reference number (PNR Locator) and ticketing information if the booking was successful. This message contains similar information to a standard airline CRS or GDS Display PNR message."
+    type: object
+    required: false
+    additionalProperties: false 
+    properties: 
+#      Cancel:
+#        description: "AWG to revisit. "
+#        type: boolean
+#        required: false
+#      PriceInd:
+#        description: "When true, pricing was requested along with the booking."
+#        type: boolean
+#        required: false
+# Do not need error or success
+#      Errors:
+#        description: "Errors"
+#        type: commonTypes.ErrorsType
+#      Success:
+#        description: "Success"
+#        type: commonTypes.SuccessType
+      Warnings:
+        description: "Warnings"
+        type: commonTypes.WarningsType
+        required: false
+      AirReservation:
+        description: "Contains all booking response information pertaining to a completed reservation."
+        required: false
+        type: array
+        minItems: 0
+        maxItems: 9
+        items: AirReservation_AirReservationType

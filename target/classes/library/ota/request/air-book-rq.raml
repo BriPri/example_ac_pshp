@@ -1,0 +1,141 @@
+#%RAML 1.0 Library
+
+usage: AirBookRQ
+
+uses:
+  airCommonTypes: ../air-common-types.raml
+  commonTypes: ../common-types.raml
+  simpleTypes: ../simple-types.raml
+
+types:
+#  Queue_QueueGroup:
+#    type: commonTypes.QueueGroup
+#    additionalProperties: false
+#    properties:
+#      DateTime:
+#        description: "Date/time when the time initiated queuing should take place."
+#        type: simpleTypes.DateOrDateTimeType
+#        required: false
+#      Text:
+#        description: "Text describing why the queuing takes place."
+#        type: simpleTypes.StringLength1to64
+#        required: false
+  OTA_AirBookRQ:
+    description: "The Book Request message requests the system to book a specific itinerary for one or more identified passengers. The message contains optional pricing information, allowing the booking class availability and pricing to be rechecked as part of the booking process. Optional request information can include- Seat and Meal Requests, SSR, OSI, and Remarks."
+    type: object
+    required: false
+    additionalProperties: false
+    properties:
+# Added back after previous OTA Trim. Needed for AC2_0700 RQ.
+      POS:
+        description: "This identifes the party making the booking request. Trading partners are open to define their own UniqueID."
+        type: commonTypes.POS_Type
+        # EPM-2078 -- Updating POS to be optional
+        required: false
+      AirItinerary:
+        description: "A collection of all flight segments requested for booking."
+        type: airCommonTypes.AirItineraryType
+        # EPM-2078 -- Updating AirItinerary to be optional
+        required: false
+      PriceInfo:
+        description: "Pricing information for the air itinerary to be booked e.g. this data could come from the OTA_AirPriceRS data."
+        # type: [object, airCommonTypes.BookingPriceInfoType] done for ac2-0500. just adding stuff in line for this request
+        type: object
+        required: false
+        additionalProperties: false
+        properties:
+# Added here inline for ac2-0500
+          AC_Discounts:
+            description: "Promotions and other rate qualifying discounts applied to this tee time round. Note that promotions may be tied to individual golfers or to the tee time as a whole."
+            required: false
+            type: array
+            minItems: 0
+            items: airCommonTypes.Discount
+          ItinTotalFare:
+            description: "Total price of the itinerary."
+            type: array
+            minItems: 0
+            maxItems: 2
+            required: false
+            items: airCommonTypes.AirItineraryPricingInfoType_FareType_BookingOnly
+          PriceRequestInformation:
+            description: "Identifies pricing source, if negotiated fares are requested and if it is a reprice request."
+            type: [object, airCommonTypes.PriceRequestInformationType]
+            additionalProperties: false
+            required: false
+            properties:
+              AccountCode:
+                description: "A code to uniquely identify a fare account."
+                type: simpleTypes.StringLength1to32
+                required: false
+          ParticipationLevel:
+            description: "To specify the level of participation by a vendor in another system. Refer to OpenTravel Code List Participation Level Code (PLC)"
+            type: simpleTypes.OTA_CodeType
+            required: false                
+# added here inline for ac2-0500
+# OTA Trim not needed for ac2-0500
+          # PricingPref:
+          #   description: "Identifies a pricing preference for this booking."
+          #   type: array
+          #   minItems: 0
+          #   maxItems: 10
+          #   items: airCommonTypes.PricingInfoGroup
+          #   required: false
+          # ExpandedPricingInd:
+          #   description: "When true, should return expanded pricing  that may include up to 99 taxes and/or service fees."
+          #   type: boolean
+          #   required: false
+# Not needed for ac2-0500
+      TravelerInfo:
+        description: "All traveler information relevant to a booking request."
+        type: airCommonTypes.TravelerInfoType
+        # EPM-2078 -- Updating TravelerInfo to be optional
+        required: false
+      Fulfillment:
+        description: "All payment information relevant to a booking request."
+        type: airCommonTypes.FulfillmentType
+        required: false
+      Ticketing:
+        description: "Information used to specify the ticketing arrangement."
+        type: array
+        minItems: 0
+        maxItems: 99
+        items: airCommonTypes.TicketingInfoType
+        required: false
+#      Queue:
+#        description: "Specifies information necessary to place this booking on a particular host system queue."
+#        type: array
+#        minItems: 0
+#        maxItems: 10
+#        items: Queue_QueueGroup
+#        required: false
+      BookingReferenceID:
+        description: "This is used for PNR record locator."
+        type: commonTypes.UniqueID_Type
+        required: false
+# OTA Trim Booking
+      # EMD_Info:
+      #   description: "Provides the electronic miscellaneous document information for a previously issued EMD."
+      #   type: array
+      #   minItems: 0
+      #   maxItems: 999
+      #   items: airCommonTypes.EMD_Type
+      #   required: false
+# OTA Trim Booking
+#      DonationInformation:
+#        description: "Information about an independent charitable donation made with the air booking."
+#        type: commonTypes.DonationType
+#        required: false
+#      Offer:
+#        description: "Merchandising offers associated with the fare or traveler."
+#        type: airCommonTypes.AirOfferChoiceType
+#        required: false
+        # TPA_Extensions by passed
+#      ResStatus:
+#        description: "Specifies an action to be taken following the booking."
+#        type: simpleTypes.TransactionActionType
+#        required: false
+#      PriceInd:
+#        description: "When true, pricing and booking of flights is requested.  When false, only booking of flights is requested."
+#        type: boolean
+#        required: false

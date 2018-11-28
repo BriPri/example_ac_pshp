@@ -1,0 +1,21 @@
+#%RAML 1.0 NamedExample
+
+value: {
+  "Status": "Cancelled",
+  "Segment": [{
+    "ItinSegNbr": 2
+    }],
+  "CancelInfoRS": {
+    "CancelRules":{
+      "CancelRule":[{
+        "Type": "Charge",
+        "CurrencyCode": "CAD"
+      }]
+    }
+  },
+  "Comment":{
+    "Text":{
+      "Content": "Text comment"
+    }
+  }
+}
