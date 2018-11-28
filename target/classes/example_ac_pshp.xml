@@ -49,6 +49,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 
             </choice>
         </foreach>
+        <set-payload value="{ &quot;message&quot; : &quot;Transforms all individually.  Next step will be to add to FareInfos[] array&quot; }" mimeType="application/json" doc:name="Set Payload"/>
     </flow>
     
 </mule>
