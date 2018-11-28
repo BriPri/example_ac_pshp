@@ -13,11 +13,8 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <flow name="example_ac_pshpFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="examples/mini-rules-sapi-response.json" doc:name="Parse Template - set the payload for sapi response"/>
-        <logger message="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord[0]/mnrRulesInfoGrp[0]/mnrCatInfo/descriptionInfo/number]" level="INFO" doc:name="Logger"/>
-        <logger message="array for  == #[json:/MiniRule_GetFromRecReply/mnrByPricingRecord[0]/mnrRulesInfoGrp]" level="INFO" doc:name="Logger"/>
         <set-payload value="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord[0]/mnrRulesInfoGrp]" doc:name="Set Payload"/>
         <foreach doc:name="For Each" collection="#[payload]">
-            <logger message="In the loop now and about to transfor to java :: #[payload]" level="INFO" doc:name="Logger"/>
             <object-to-string-transformer doc:name="Object to String"/>
             <json:object-to-json-transformer doc:name="Object to JSON"/>
                     <logger level="INFO" doc:name="Logger" message="in the for after transform to JSON  ==  #[json:/mnrCatInfo/descriptionInfo/number]"/>

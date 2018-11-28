@@ -1,0 +1,24 @@
+{
+	"mnrCatInfo": {
+		"descriptionInfo": {
+			"number": 5
+		}
+	},
+	"mnrFCInfoGrp": [{
+		"refInfo": {
+			"referenceDetails": [{
+				"type": "FC",
+				"value": "1"
+			}]
+		}
+	}],
+	"mnrDateInfoGrp": [{
+		"dateInfo": {
+			"dateAndTimeDetails": [{
+				"qualifier": "LTR",
+				"date": "21OCT18",
+				"time": "0000"
+			}]
+		}
+	}]
+}
