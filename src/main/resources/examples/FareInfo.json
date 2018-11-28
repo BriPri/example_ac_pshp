@@ -1,0 +1,63 @@
+{
+	"NegotiatedFareInd": false,
+	"NegotiatedFareCode": "LOW",
+	"DepartureDate": "2018-11-15T13:14:00",
+	"FareReference": [{
+		"Content": "Fare",
+		"ResBookDesigCode": "A",
+		"TicketDesignatorCode": "GOOD",
+		"AccountCode": "BKFLT"
+	}],
+	"RuleInfo": {
+		"AC_Restriction": [{
+			"RestrictionType": "NIGHT",
+			"Applicable": false
+		}],
+		"LengthOfStayRules": {
+			"MinimumStay": {
+				"ReturnTimeOfDay": "2018-12-03T14:21:22",
+				"MinStay": 1,
+				"StayUnit": "Days",
+				"MinStayDate": "2018-12-01T10:13:14",
+				"ComplicatedRulesInd": true
+			},
+			"MaximumStay": {
+				"ReturnType": "C",
+				"ReturnTimeOfDay": "2018-12-03T14:21:22",
+				"MaxStay": 2,
+				"StayUnit": "Days",
+				"MaxStayDate": "2018-12-04T16:00:00",
+				"ComplicatedRulesInd": true
+			},
+			"StayRestrictionsInd": true
+		},
+		"ChargesRules": {
+			"VoluntaryChanges": {
+				"Penalty": {
+					"CurrencyCode": "USD",
+					"DecimalPlaces": 2,
+					"Amount": 123.45,
+					"PenaltyType": "XX",
+					"DepartureStatus": "GOOD",
+					"Percent": 33
+				},
+				"VolChangeInd": true
+			},
+			"VoluntaryRefunds": {
+				"Penalty": {
+					"CurrencyCode": "USD",
+					"DecimalPlaces": 2,
+					"Amount": 12.24,
+					"PenaltyType": "YY",
+					"DepartureStatus": "NO",
+					"Percent": 11
+				},
+				"VolChangeInd": false
+			}
+		}
+	},
+	"AC_DateDetails": [{
+		"DateType": "DATE",
+		"Date": "2018-11-01T13:11:14"
+	}]
+}
