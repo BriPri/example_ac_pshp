@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:core="http://www.mulesoft.org/schema/mule/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd">
+    <munit:config name="munit" doc:name="MUnit configuration"/>
+    <spring:beans>
+        <spring:import resource="classpath:example_ac_pshp.xml"/>
+    </spring:beans>
+    <munit:test name="example_ac_pshp-test-suite-example_ac_pshpFlowTest" description="Test">
+        <flow-ref name="example_ac_pshpFlow" doc:name="Flow-ref to example_ac_pshpFlow"/>
+        <logger message="Exchange Ragte = #[json:/PricedItineraries[0]/ExchangeRate]" level="INFO" doc:name="Logger"/>
+        <munit:assert-on-equals expectedValue="3.34" actualValue="#[json:/PricedItineraries[0]/ExchangeRate]" doc:name="Assert Equals"/>
+    </munit:test>
+</mule>
