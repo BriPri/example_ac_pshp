@@ -1,7 +1,12 @@
 {
 	"mnrCatInfo": {
 		"descriptionInfo": {
-			"number": 5
+			"number": 5,
+			"code": "X13",
+			"name": "Some Code",
+			"language": "ENG",
+			"encoding": "UTF",
+			"freeText": "2/Bill/Denver/Colorado"
 		}
 	},
 	"mnrFCInfoGrp": [{
@@ -10,7 +15,13 @@
 				"type": "FC",
 				"value": "1"
 			}]
-		}
+		},
+		"locationInfo": [{
+			"locationType": "CTY",
+			"locationDescription": {
+				"code": "DEN"
+			}
+		}]
 	}],
 	"mnrDateInfoGrp": [{
 		"dateInfo": {

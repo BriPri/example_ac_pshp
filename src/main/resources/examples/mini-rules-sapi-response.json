@@ -128,6 +128,19 @@
                   }
                 ]
               }
+            ],
+            "mnrDateInfoGrp": [
+              {
+                "dateInfo": {
+                  "dateAndTimeDetails": [
+                    {
+                      "qualifier": "LTR",
+                      "date": "21OCT18",
+                      "time": "0000"
+                    }
+                  ]
+                }
+              }
             ]
           },
           {
@@ -137,7 +150,7 @@
               },
               "processIndicator": "ASS"
             },
-                        "mnrFCInfoGrp": [
+            "mnrFCInfoGrp": [
               {
                 "refInfo": {
                   "referenceDetails": [
@@ -146,15 +159,7 @@
                       "value": "1"
                     }
                   ]
-                },
-                "locationInfo": [
-                  {
-                    "locationType": "CTY",
-                    "locationDescription": {
-                      "code": "DEN"
-                    }
-                  }
-                ]
+                }
               }
             ]
           },
@@ -173,15 +178,7 @@
                       "value": "1"
                     }
                   ]
-                },
-                "locationInfo": [
-                  {
-                    "locationType": "CTY",
-                    "locationDescription": {
-                      "code": "DEN"
-                    }
-                  }
-                ]
+                }
               }
             ],
             "mnrDateInfoGrp": [
@@ -506,15 +503,7 @@
                       "value": "1"
                     }
                   ]
-                },
-                "locationInfo": [
-                  {
-                    "locationType": "CTY",
-                    "locationDescription": {
-                      "code": "DEN"
-                    }
-                  }
-                ]
+                }
               }
             ],
             "mnrMonInfoGrp": [

@@ -1,16 +1,31 @@
 {
-					"mnrCatInfo": {
-						"descriptionInfo": {
-							"number": 6
-						},
-						"processIndicator": "ASS"
-					},
-					"mnrFCInfoGrp": [{
-						"refInfo": {
-							"referenceDetails": [{
-								"type": "FC",
-								"value": "1"
-							}]
-						}
-					}]
-				}
+	"mnrCatInfo": {
+		"descriptionInfo": {
+			"number": 6
+		},
+		"processIndicator": "ASS"
+	},
+	"mnrFCInfoGrp": [{
+		"refInfo": {
+			"referenceDetails": [{
+				"type": "FC",
+				"value": "1"
+			}]
+		},
+		"locationInfo": [{
+			"locationType": "CTY",
+			"locationDescription": {
+				"code": "DEN"
+			}
+		}]
+	}],
+	"mnrDateInfoGrp": [{
+		"dateInfo": {
+			"dateAndTimeDetails": [{
+				"qualifier": "LTR",
+				"date": "21OCT18",
+				"time": "0000"
+			}]
+		}
+	}]
+}

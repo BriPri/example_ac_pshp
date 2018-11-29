@@ -11,6 +11,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <dw:transform-message doc:name="Transform Message" metadata:id="38b99f86-3a5e-47cb-a095-f35563465473">
             <dw:input-payload mimeType="application/json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
+            <dw:input-variable mimeType="application/java" variableName="category"/>
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
