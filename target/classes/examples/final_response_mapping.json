@@ -1,457 +1,451 @@
 {
-  "PricedItineraries": [
-    {
-      "ExchangeRate": 1.2,
-      "AirItinerary": {
-        "DirectionInd": "Return",
-        "OriginDestinationOptions": [
-          {
-            "FlightSegment": [
-              {
-                "DepartureDateTime": "2018-09-02T11:00:00",
-                "ArrivalDateTime": "2018-09-02T12:15:00",
-                "StopQuantity": 0,
-                "RPH": "1",
-                "FlightNumber": "871",
-                "ResBookDesigCode": "K",
-                "MealCode": "Meal",
-                "DepartureAirport": {
-                  "LocationCode": "CDG",
-                  "Terminal": "2"
-                },
-                "ArrivalAirport": {
-                  "LocationCode": "YUL"
-                },
-                "Equipment": [
-                  {
-                    "AirEquipType": "77W"
-                  }
-                ],
-                "MarketingAirline": {
-                  "Code": "AC",
-                  "CompanyShortName": "Air Canada"
-                },
-                "Comment": [
-                  {
-                    "Content": "QI=44B8000C29F92F03*2?O=11?FG=1?T=RT?M=I?AD=2?CH=1?FF=TG?R=0?C=K?E=77W?ML=MS?DT=2A?X=0?D=07H15?FB=8922?PB=9115?TF=3840.72?AF=3840.72?DP=2?SF=Y"
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "FlightSegment": [
-              {
-                "DepartureDateTime": "2018-09-16T17:00:00",
-                "ArrivalDateTime": "2018-09-16T18:21:00",
-                "StopQuantity": 0,
-                "RPH": "2",
-                "FlightNumber": "835",
-                "ResBookDesigCode": "V",
-                "DepartureAirport": {
-                  "LocationCode": "YUL"
-                },
-                "ArrivalAirport": {
-                  "LocationCode": "YYZ",
-                  "Terminal": "1"
-                },
-                "Equipment": [
-                  {
-                    "AirEquipType": "333"
-                  }
-                ],
-                "MarketingAirline": {
-                  "Code": "AC",
-                  "CompanyShortName": "Air Canada"
-                },
-                "MarriageGrp": "01",
-                "Comment": [
-                  {
-                    "Content": "QI=44B8000C29F92F03*2?O=21?FG=75?T=RT?M=I?AD=2?CH=1?FF=FL?R=27?C=V?E=333?AT=1?X=0?D=01H21?FB=68213?PB=68185?TF=3840.72?AF=3840.72?DP=2"
-                  }
-                ]
-              },
-              {
-                "DepartureDateTime": "2018-09-16T19:35:00",
-                "ArrivalDateTime": "2018-09-17T08:45:00",
-                "StopQuantity": 0,
-                "RPH": "3",
-                "FlightNumber": "880",
-                "ResBookDesigCode": "V",
-                "MealCode": "No Meal Service",
-                "DateChangeNbr": "1",
-                "DepartureAirport": {
-                  "LocationCode": "YYZ",
-                  "Terminal": "1"
-                },
-                "ArrivalAirport": {
-                  "LocationCode": "CDG",
-                  "Terminal": "2A"
-                },
-                "Equipment": [
-                  {
-                    "AirEquipType": "77W"
-                  }
-                ],
-                "MarketingAirline": {
-                  "Code": "AC",
-                  "CompanyShortName": "Air Canada"
-                },
-                "MarriageGrp": "01",
-                "Comment": [
-                  {
-                    "Content": "QI=44B8000C29F92F03*2?O=22?FF=FL?C=V?E=77W?ML=KM?DT=1?AT=2A?X=0?DD2=1?D=07H10?SF=Y"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
-      },
-      "AirItineraryPricingInfo": {
-        "ItinTotalFare": [
-          {
-            "BaseFare": {
-              "Amount": 3246.04,
-              "CurrencyCode": "CAD",
-              "DecimalPlaces": 2
-            },
-            "TotalFare": {
-              "Amount": 3840.72,
-              "CurrencyCode": "CAD",
-              "DecimalPlaces": 2
-            },
-            "Taxes": {
-              "Tax": [
-                {
-                  "TaxCode": "AY",
-                  "Amount": 10
-                }
-              ],
-              "Amount": 10
-            },
-            "Fees": {
-              "Fee": [
-                {
-                  "FeeCode": "YQ",
-                  "Amount": 120
-                }
-              ]
-            }
-          }
-        ],
-        "FareInfos": [
-          {
-            "NegotiatedFareInd": false,
-            "NegotiatedFareCode": "LOW",
-            "DepartureDate": "2018-11-15T13:14:00",
-            "FareReference": [
-              {
-                "Content": "Fare",
-                "ResBookDesigCode": "A",
-                "TicketDesignatorCode": "GOOD",
-                "AccountCode": "BKFLT"
-              }
-            ],
-            "RuleInfo": {
-              "AC_Restriction": [
-                {
-                  "RestrictionType": "NIGHT",
-                  "Applicable": false
-                }
-              ],
-              "LengthOfStayRules": {
-                "MinimumStay": {
-                  "ReturnTimeOfDay": "2018-12-03T14:21:22",
-                  "MinStay": 1,
-                  "StayUnit": "Days",
-                  "MinStayDate": "2018-12-01T10:13:14",
-                  "ComplicatedRulesInd": true
-                },
-                "MaximumStay": {
-                  "ReturnType": "C",
-                  "ReturnTimeOfDay": "2018-12-03T14:21:22",
-                  "MaxStay": 2,
-                  "StayUnit": "Days",
-                  "MaxStayDate": "2018-12-04T16:00:00",
-                  "ComplicatedRulesInd": true
-                },
-                "StayRestrictionsInd": true
-              },
-              "ChargesRules": {
-                "VoluntaryChanges": {
-                  "Penalty": {
-                    "CurrencyCode": "USD",
-                    "DecimalPlaces": 2,
-                    "Amount": 123.45,
-                    "PenaltyType": "XX",
-                    "DepartureStatus": "GOOD",
-                    "Percent": 33
-                  },
-                  "VolChangeInd": true
-                },
-                "VoluntaryRefunds": {
-                  "Penalty": {
-                    "CurrencyCode": "USD",
-                    "DecimalPlaces": 2,
-                    "Amount": 12.24,
-                    "PenaltyType": "YY",
-                    "DepartureStatus": "NO",
-                    "Percent": 11
-                  },
-                  "VolChangeInd": false
-                }
-              }
-            },
-            "AC_DateDetails": [
-              {
-                "DateType": "DATE",
-                "Date": "2018-11-01T13:11:14"
-              }
-            ]
-          }
-        ],
-        "PTC_FareBreakdowns": [
-          {
-            "PassengerTypeQuantity": {
-              "Code": "ADT",
-              "Quantity": 3
-            },
-            "FareBasisCodes": [
-              {
-                "Content": "KKXNNZO6"
-              },
-              {
-                "Content": "VKWNCFRW"
-              },
-              {
-                "Content": "VKWNCFRW"
-              }
-            ],
-            "PassengerFare": [
-              {
-                "BaseFare": {
-                  "Amount": 435,
-                  "CurrencyCode": "CAD",
-                  "DecimalPlaces": 2
-                },
-                "Taxes": {
-                  "Amount": 148.67,
-                  "Tax": [
-                    {
-                      "TaxCode": "CA",
-                      "CurrencyCode": "CAD",
-                      "Amount": 25.91,
-                      "RPH": "1",
-                      "Content": "Air Travellers Security Charge (ATSC)"
-                    },
-                    {
-                      "TaxCode": "XG",
-                      "CurrencyCode": "CAD",
-                      "Amount": 1.5,
-                      "RPH": "2",
-                      "Content": "Canada Goods and Services Tax (GST/HST #10009-2287 RT0001)"
-                    },
-                    {
-                      "TaxCode": "RC",
-                      "CurrencyCode": "CAD",
-                      "Amount": 0.52,
-                      "RPH": "3",
-                      "Content": "Canada Harmonized Sales Tax (GST/HST #10009-2287 RT0001)"
-                    },
-                    {
-                      "TaxCode": "XQ",
-                      "CurrencyCode": "CAD",
-                      "Amount": 2.99,
-                      "RPH": "4",
-                      "Content": "Canada Quebec Sales Tax (QST #1000-043-172 TQ1991)"
-                    },
-                    {
-                      "TaxCode": "SQ",
-                      "CurrencyCode": "CAD",
-                      "Amount": 34,
-                      "RPH": "5",
-                      "Content": "Canada Airport Improvement Fee"
-                    },
-                    {
-                      "TaxCode": "QX",
-                      "CurrencyCode": "CAD",
-                      "Amount": 44.54,
-                      "RPH": "6",
-                      "Content": "Passenger Service Charge"
-                    },
-                    {
-                      "TaxCode": "IZ",
-                      "CurrencyCode": "CAD",
-                      "Amount": 7.06,
-                      "RPH": "7",
-                      "Content": "Air Passenger Solidarity Tax"
-                    },
-                    {
-                      "TaxCode": "FR",
-                      "CurrencyCode": "CAD",
-                      "Amount": 32.15,
-                      "RPH": "8",
-                      "Content": "France - Civile Aviation Tax"
-                    }
-                  ]
-                },
-                "Fees": {
-                  "Fee": [
-                    {
-                      "Amount": 400.76,
-                      "CurrencyCode": "CAD",
-                      "FeeCode": "YQ",
-                      "Content": "Fuel Surcharge"
-                    }
-                  ]
-                },
-                "TotalFare": {
-                  "Amount": 984.43,
-                  "CurrencyCode": "CAD",
-                  "DecimalPlaces": 2
-                },
-                "UnstructuredFareCalc": {
-                  "Content": "FareCalcMode TBD",
-                  "FareCalcMode": "1"
-                },
-                "NegotiatedFareCode": "TBD"
-              }
-            ],
-            "TravelerRefNumber": [
-              {
-                "RPH": "1"
-              },
-              {
-                "RPH": "2"
-              },
-              {
-                "RPH": "3"
-              }
-            ]
-          },
-          {
-            "PassengerTypeQuantity": {
-              "Code": "CHD",
-              "Quantity": 1
-            },
-            "FareBasisCodes": [
-              {
-                "Content": "KKXNNZO6"
-              },
-              {
-                "Content": "VKWNCFRW"
-              },
-              {
-                "Content": "VKWNCFRW"
-              }
-            ],
-            "PassengerFare": [
-              {
-                "BaseFare": {
-                  "Amount": 338,
-                  "CurrencyCode": "CAD",
-                  "DecimalPlaces": 2
-                },
-                "Taxes": {
-                  "Amount": 148.67,
-                  "Tax": [
-                    {
-                      "TaxCode": "CA",
-                      "Amount": 25.91,
-                      "RPH": "1",
-                      "Content": "Air Travellers Security Charge (ATSC)"
-                    },
-                    {
-                      "TaxCode": "XG",
-                      "Amount": 1.5,
-                      "RPH": "2",
-                      "Content": "Canada Goods and Services Tax (GST/HST #10009-2287 RT0001)"
-                    },
-                    {
-                      "TaxCode": "RC",
-                      "Amount": 0.52,
-                      "RPH": "3",
-                      "Content": "Canada Harmonized Sales Tax (GST/HST #10009-2287 RT0001)"
-                    },
-                    {
-                      "TaxCode": "XQ",
-                      "Amount": 2.99,
-                      "RPH": "4",
-                      "Content": "Canada Quebec Sales Tax (QST #1000-043-172 TQ1991)"
-                    },
-                    {
-                      "TaxCode": "SQ",
-                      "Amount": 34,
-                      "RPH": "5",
-                      "Content": "Canada Airport Improvement Fee"
-                    },
-                    {
-                      "TaxCode": "QX",
-                      "Amount": 44.54,
-                      "RPH": "6",
-                      "Content": "Passenger Service Charge"
-                    },
-                    {
-                      "TaxCode": "IZ",
-                      "Amount": 7.06,
-                      "RPH": "7",
-                      "Content": "Air Passenger Solidarity Tax"
-                    },
-                    {
-                      "TaxCode": "FR",
-                      "Amount": 32.15,
-                      "RPH": "8",
-                      "Content": "France - Civile Aviation Tax"
-                    }
-                  ]
-                },
-                "Fees": {
-                  "Fee": [
-                    {
-                      "Amount": 400.76,
-                      "CurrencyCode": "CAD",
-                      "FeeCode": "YQ",
-                      "Content": "Fuel Surcharge"
-                    }
-                  ]
-                },
-                "TotalFare": {
-                  "Amount": 887.43,
-                  "CurrencyCode": "CAD",
-                  "DecimalPlaces": 2
-                }
-              }
-            ],
-            "TravelerRefNumber": [
-              {
-                "RPH": "4"
-              }
-            ]
-          }
-        ]
-      },
-      "TicketingInfo": {
-        "TicketTimeLimit": "2018-04-16T11:55:00Z",
-        "PseudoCityCode": "YMQ"
-      },
-      "Notes": [
-        {
-          "Content": "The grand total shown includes all taxes, fees, fuel surcharges where applicable and other charges. Fares shown are the best available uniform rates at this time for the number of tickets requested and the selected travel times and dates. Fares are not guaranteed until you purchase your ticket."
-        },
-        {
-          "Content": "United States federal law forbids the carriage of hazardous materials aboard the aircraft in your baggage or on your person. A violation can result in five years imprisonment and penalties of $250,000 or more."
-        },
-        {
-          "Content": "Hazardous materials include explosives (e.g. fireworks), compressed gases (e.g. oxygen bottles or tear gas), flammable liquids or solids (e.g. paints and lighter fluid), corrosive or oxidizing materials, poisons, and radioactive materials such as radio-pharmaceuticals."
-        },
-        {
-          "Content": "Special exceptions are made for small quantities (up to 2 L/70 fl. oz. total) of medicinal products and toiletry items that are carried in your baggage, as well as for certain smoking products carried on your person."
-        },
-        {
-          "Content": "You are invited to provide us with emergency contact information at your booking request. Emergency contact information is not mandatory but is recommended"
-        }
-      ]
-    }
-  ]
+	"PricedItineraries": [{
+		"ExchangeRate": 1.2,
+		"AirItinerary": {
+			"DirectionInd": "Return",
+			"OriginDestinationOptions": [{
+					"FlightSegment": [{
+						"DepartureDateTime": "2018-09-02T11:00:00",
+						"ArrivalDateTime": "2018-09-02T12:15:00",
+						"StopQuantity": 0,
+						"RPH": "1",
+						"FlightNumber": "871",
+						"ResBookDesigCode": "K",
+						"MealCode": "Meal",
+						"DepartureAirport": {
+							"LocationCode": "CDG",
+							"Terminal": "2"
+						},
+						"ArrivalAirport": {
+							"LocationCode": "YUL"
+						},
+						"Equipment": [{
+							"AirEquipType": "77W"
+						}],
+						"MarketingAirline": {
+							"Code": "AC",
+							"CompanyShortName": "Air Canada"
+						},
+						"Comment": [{
+							"Content": "QI=44B8000C29F92F03*2?O=11?FG=1?T=RT?M=I?AD=2?CH=1?FF=TG?R=0?C=K?E=77W?ML=MS?DT=2A?X=0?D=07H15?FB=8922?PB=9115?TF=3840.72?AF=3840.72?DP=2?SF=Y"
+						}]
+					}]
+				},
+				{
+					"FlightSegment": [{
+							"DepartureDateTime": "2018-09-16T17:00:00",
+							"ArrivalDateTime": "2018-09-16T18:21:00",
+							"StopQuantity": 0,
+							"RPH": "2",
+							"FlightNumber": "835",
+							"ResBookDesigCode": "V",
+							"DepartureAirport": {
+								"LocationCode": "YUL"
+							},
+							"ArrivalAirport": {
+								"LocationCode": "YYZ",
+								"Terminal": "1"
+							},
+							"Equipment": [{
+								"AirEquipType": "333"
+							}],
+							"MarketingAirline": {
+								"Code": "AC",
+								"CompanyShortName": "Air Canada"
+							},
+							"MarriageGrp": "01",
+							"Comment": [{
+								"Content": "QI=44B8000C29F92F03*2?O=21?FG=75?T=RT?M=I?AD=2?CH=1?FF=FL?R=27?C=V?E=333?AT=1?X=0?D=01H21?FB=68213?PB=68185?TF=3840.72?AF=3840.72?DP=2"
+							}]
+						},
+						{
+							"DepartureDateTime": "2018-09-16T19:35:00",
+							"ArrivalDateTime": "2018-09-17T08:45:00",
+							"StopQuantity": 0,
+							"RPH": "3",
+							"FlightNumber": "880",
+							"ResBookDesigCode": "V",
+							"MealCode": "No Meal Service",
+							"DateChangeNbr": "1",
+							"DepartureAirport": {
+								"LocationCode": "YYZ",
+								"Terminal": "1"
+							},
+							"ArrivalAirport": {
+								"LocationCode": "CDG",
+								"Terminal": "2A"
+							},
+							"Equipment": [{
+								"AirEquipType": "77W"
+							}],
+							"MarketingAirline": {
+								"Code": "AC",
+								"CompanyShortName": "Air Canada"
+							},
+							"MarriageGrp": "01",
+							"Comment": [{
+								"Content": "QI=44B8000C29F92F03*2?O=22?FF=FL?C=V?E=77W?ML=KM?DT=1?AT=2A?X=0?DD2=1?D=07H10?SF=Y"
+							}]
+						}
+					]
+				}
+			]
+		},
+		"AirItineraryPricingInfo": {
+			"ItinTotalFare": [{
+				"BaseFare": {
+					"Amount": 3246.04,
+					"CurrencyCode": "CAD",
+					"DecimalPlaces": 2
+				},
+				"TotalFare": {
+					"Amount": 3840.72,
+					"CurrencyCode": "CAD",
+					"DecimalPlaces": 2
+				},
+				"Taxes": {
+					"Tax": [{
+						"TaxCode": "AY",
+						"Amount": 10
+					}],
+					"Amount": 10
+				},
+				"Fees": {
+					"Fee": [{
+						"FeeCode": "YQ",
+						"Amount": 120
+					}]
+				}
+			}],
+			"FareInfos": [{
+				"NegotiatedFareInd": false,
+				"NegotiatedFareCode": "LOW",
+				"DepartureDate": "2018-11-15T13:14:00",
+				"FareReference": [{
+					"Content": "Fare",
+					"ResBookDesigCode": "A",
+					"TicketDesignatorCode": "GOOD",
+					"AccountCode": "BKFLT"
+				}],
+				"RuleInfo": {
+					"AC_Restriction": [{
+						"RestrictionType": "NIGHT",
+						"Applicable": false
+					}],
+					"ResTicketingRules": {
+						"AdvResTicketing": {
+							"AdvReservation": {
+								"LatestTimeOfDay": "2018-12-02T14:21:22",
+								"LatestPeriod": "123",
+								"LatestUnit": "Days",
+								"EarliestPeriods": "234"
+							},
+							"AdvTicketing": {
+								"FromResTimeOfDay": "2018-12-02T14:21:22",
+								"FromResPeriod": "123",
+								"FromResUnit": "Days",
+								"FromDepartTimeOfDay": "2018-12-03T14:21:22",
+								"FromDepartPeriod": "5",
+								"FromDepartUnit": "Days"
+							},
+							"AdvResInd": true,
+							"AdvTicketingInd": true,
+							"RequestedTicketingDate": "2018-12-03T14:21:22"
+						}
+					},
+					"LengthOfStayRules": {
+						"MinimumStay": {
+							"ReturnTimeOfDay": "2018-12-03T14:21:22",
+							"MinStay": 1,
+							"StayUnit": "Days",
+							"MinStayDate": "2018-12-01T10:13:14",
+							"ComplicatedRulesInd": true
+						},
+						"MaximumStay": {
+							"ReturnType": "C",
+							"ReturnTimeOfDay": "2018-12-03T14:21:22",
+							"MaxStay": 2,
+							"StayUnit": "Days",
+							"MaxStayDate": "2018-12-04T16:00:00",
+							"ComplicatedRulesInd": true
+						},
+						"StayRestrictionsInd": true
+					},
+					"ChargesRules": {
+						"VoluntaryChanges": {
+							"Penalty": {
+								"CurrencyCode": "USD",
+								"DecimalPlaces": 2,
+								"Amount": 123.45,
+								"PenaltyType": "XX",
+								"DepartureStatus": "GOOD",
+								"Percent": 33
+							},
+							"VolChangeInd": true
+						},
+						"VoluntaryRefunds": {
+							"Penalty": {
+								"CurrencyCode": "USD",
+								"DecimalPlaces": 2,
+								"Amount": 12.24,
+								"PenaltyType": "YY",
+								"DepartureStatus": "NO",
+								"Percent": 11
+							},
+							"VolChangeInd": false
+						}
+					}
+				},
+				"AC_DateDetails": [{
+					"DateType": "DATE",
+					"Date": "2018-11-01T13:11:14"
+				}],
+				"City": [{
+						"LocationCode": "YYR"
+					},
+					{
+						"LocationCode": "DEN"
+					}
+				],
+				"AC_SegmentRefNumbers": [{
+						"RPH": "54645"
+					},
+					{
+						"RPH": "77654"
+					}
+				],
+				"AC_TravelerRefNumbers": [{
+						"RPH": "75656"
+					},
+					{
+						"RPH": "346565"
+					}
+				],
+				"RPH": "123456"
+			}],
+			"PTC_FareBreakdowns": [{
+					"PassengerTypeQuantity": {
+						"Code": "ADT",
+						"Quantity": 3
+					},
+					"FareBasisCodes": [{
+							"Content": "KKXNNZO6"
+						},
+						{
+							"Content": "VKWNCFRW"
+						},
+						{
+							"Content": "VKWNCFRW"
+						}
+					],
+					"PassengerFare": [{
+						"BaseFare": {
+							"Amount": 435,
+							"CurrencyCode": "CAD",
+							"DecimalPlaces": 2
+						},
+						"Taxes": {
+							"Amount": 148.67,
+							"Tax": [{
+									"TaxCode": "CA",
+									"CurrencyCode": "CAD",
+									"Amount": 25.91,
+									"RPH": "1",
+									"Content": "Air Travellers Security Charge (ATSC)"
+								},
+								{
+									"TaxCode": "XG",
+									"CurrencyCode": "CAD",
+									"Amount": 1.5,
+									"RPH": "2",
+									"Content": "Canada Goods and Services Tax (GST/HST #10009-2287 RT0001)"
+								},
+								{
+									"TaxCode": "RC",
+									"CurrencyCode": "CAD",
+									"Amount": 0.52,
+									"RPH": "3",
+									"Content": "Canada Harmonized Sales Tax (GST/HST #10009-2287 RT0001)"
+								},
+								{
+									"TaxCode": "XQ",
+									"CurrencyCode": "CAD",
+									"Amount": 2.99,
+									"RPH": "4",
+									"Content": "Canada Quebec Sales Tax (QST #1000-043-172 TQ1991)"
+								},
+								{
+									"TaxCode": "SQ",
+									"CurrencyCode": "CAD",
+									"Amount": 34,
+									"RPH": "5",
+									"Content": "Canada Airport Improvement Fee"
+								},
+								{
+									"TaxCode": "QX",
+									"CurrencyCode": "CAD",
+									"Amount": 44.54,
+									"RPH": "6",
+									"Content": "Passenger Service Charge"
+								},
+								{
+									"TaxCode": "IZ",
+									"CurrencyCode": "CAD",
+									"Amount": 7.06,
+									"RPH": "7",
+									"Content": "Air Passenger Solidarity Tax"
+								},
+								{
+									"TaxCode": "FR",
+									"CurrencyCode": "CAD",
+									"Amount": 32.15,
+									"RPH": "8",
+									"Content": "France - Civile Aviation Tax"
+								}
+							]
+						},
+						"Fees": {
+							"Fee": [{
+								"Amount": 400.76,
+								"CurrencyCode": "CAD",
+								"FeeCode": "YQ",
+								"Content": "Fuel Surcharge"
+							}]
+						},
+						"TotalFare": {
+							"Amount": 984.43,
+							"CurrencyCode": "CAD",
+							"DecimalPlaces": 2
+						},
+						"UnstructuredFareCalc": {
+							"Content": "FareCalcMode TBD",
+							"FareCalcMode": "1"
+						},
+						"NegotiatedFareCode": "TBD"
+					}],
+					"TravelerRefNumber": [{
+							"RPH": "1"
+						},
+						{
+							"RPH": "2"
+						},
+						{
+							"RPH": "3"
+						}
+					]
+				},
+				{
+					"PassengerTypeQuantity": {
+						"Code": "CHD",
+						"Quantity": 1
+					},
+					"FareBasisCodes": [{
+							"Content": "KKXNNZO6"
+						},
+						{
+							"Content": "VKWNCFRW"
+						},
+						{
+							"Content": "VKWNCFRW"
+						}
+					],
+					"PassengerFare": [{
+						"BaseFare": {
+							"Amount": 338,
+							"CurrencyCode": "CAD",
+							"DecimalPlaces": 2
+						},
+						"Taxes": {
+							"Amount": 148.67,
+							"Tax": [{
+									"TaxCode": "CA",
+									"Amount": 25.91,
+									"RPH": "1",
+									"Content": "Air Travellers Security Charge (ATSC)"
+								},
+								{
+									"TaxCode": "XG",
+									"Amount": 1.5,
+									"RPH": "2",
+									"Content": "Canada Goods and Services Tax (GST/HST #10009-2287 RT0001)"
+								},
+								{
+									"TaxCode": "RC",
+									"Amount": 0.52,
+									"RPH": "3",
+									"Content": "Canada Harmonized Sales Tax (GST/HST #10009-2287 RT0001)"
+								},
+								{
+									"TaxCode": "XQ",
+									"Amount": 2.99,
+									"RPH": "4",
+									"Content": "Canada Quebec Sales Tax (QST #1000-043-172 TQ1991)"
+								},
+								{
+									"TaxCode": "SQ",
+									"Amount": 34,
+									"RPH": "5",
+									"Content": "Canada Airport Improvement Fee"
+								},
+								{
+									"TaxCode": "QX",
+									"Amount": 44.54,
+									"RPH": "6",
+									"Content": "Passenger Service Charge"
+								},
+								{
+									"TaxCode": "IZ",
+									"Amount": 7.06,
+									"RPH": "7",
+									"Content": "Air Passenger Solidarity Tax"
+								},
+								{
+									"TaxCode": "FR",
+									"Amount": 32.15,
+									"RPH": "8",
+									"Content": "France - Civile Aviation Tax"
+								}
+							]
+						},
+						"Fees": {
+							"Fee": [{
+								"Amount": 400.76,
+								"CurrencyCode": "CAD",
+								"FeeCode": "YQ",
+								"Content": "Fuel Surcharge"
+							}]
+						},
+						"TotalFare": {
+							"Amount": 887.43,
+							"CurrencyCode": "CAD",
+							"DecimalPlaces": 2
+						}
+					}],
+					"TravelerRefNumber": [{
+						"RPH": "4"
+					}]
+				}
+			]
+		},
+		"TicketingInfo": {
+			"TicketTimeLimit": "2018-04-16T11:55:00Z",
+			"PseudoCityCode": "YMQ"
+		},
+		"Notes": [{
+				"Content": "The grand total shown includes all taxes, fees, fuel surcharges where applicable and other charges. Fares shown are the best available uniform rates at this time for the number of tickets requested and the selected travel times and dates. Fares are not guaranteed until you purchase your ticket."
+			},
+			{
+				"Content": "United States federal law forbids the carriage of hazardous materials aboard the aircraft in your baggage or on your person. A violation can result in five years imprisonment and penalties of $250,000 or more."
+			},
+			{
+				"Content": "Hazardous materials include explosives (e.g. fireworks), compressed gases (e.g. oxygen bottles or tear gas), flammable liquids or solids (e.g. paints and lighter fluid), corrosive or oxidizing materials, poisons, and radioactive materials such as radio-pharmaceuticals."
+			},
+			{
+				"Content": "Special exceptions are made for small quantities (up to 2 L/70 fl. oz. total) of medicinal products and toiletry items that are carried in your baggage, as well as for certain smoking products carried on your person."
+			},
+			{
+				"Content": "You are invited to provide us with emergency contact information at your booking request. Emergency contact information is not mandatory but is recommended"
+			}
+		]
+	}]
 }
