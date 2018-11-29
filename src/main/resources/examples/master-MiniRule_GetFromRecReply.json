@@ -1,0 +1,363 @@
+{
+  "MiniRule_GetFromRecReply": {
+    "responseDetails": {
+      "statusCode": "string"
+    },
+    "errorWarningGroup": [
+      {
+        "errorOrWarningCodeDetails": {
+          "errorDetails": {
+            "errorCode": "string",
+            "errorCategory": "string",
+            "errorCodeOwner": "string"
+          }
+        },
+        "errorWarningDescription": {
+          "freeTextDetails": {
+            "textSubjectQualifier": "string",
+            "language": "string",
+            "source": "string",
+            "encoding": "string"
+          },
+          "freeText": [
+            "string"
+          ]
+        }
+      }
+    ],
+    "language": {
+      "languageQualifier": "string",
+      "languageDetails": {
+        "languageCode": "string",
+        "languageName": "string"
+      }
+    },
+    "mnrByPricingRecord": [
+      {
+        "pricingRecordId": {
+          "referenceType": "string",
+          "uniqueReference": "integer"
+        },
+        "errorWarningGroup": {
+          "errorOrWarningCodeDetails": {
+            "errorDetails": {
+              "errorCode": "string",
+              "errorCategory": "string",
+              "errorCodeOwner": "string"
+            }
+          },
+          "errorWarningDescription": {
+            "freeTextDetails": {
+              "textSubjectQualifier": "string",
+              "language": "string",
+              "source": "string",
+              "encoding": "string"
+            },
+            "freeText": [
+              "string"
+            ]
+          }
+        },
+        "offerRef": {
+          "reference": {
+            "type": "string",
+            "value": "string"
+          }
+        },
+        "paxRef": {
+          "passengerReference": [
+            {
+              "type": "string",
+              "value": "integer"
+            }
+          ]
+        },
+        "paxTypeLoc": [
+          {
+            "paxCode": {
+              "statusInformation": [
+                {
+                  "indicator": "string",
+                  "action": "string",
+                  "type": "string",
+                  "description": "string"
+                }
+              ]
+            },
+            "paxTypeDescription": {
+              "freeTextDetails": {
+                "textSubjectQualifier": "string",
+                "informationType": "string",
+                "companyId": "string",
+                "language": "string",
+                "source": "string",
+                "encoding": "string"
+              },
+              "freeText": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "fareComponentInfo": [
+          {
+            "fareQualifierDetails": {
+              "additionalFareDetails": {
+                "rateClass": "string"
+              }
+            },
+            "fareComponentRef": {
+              "referenceDetails": [
+                {
+                  "type": "string",
+                  "value": "string"
+                }
+              ]
+            },
+            "originAndDestination": {
+              "origin": "string",
+              "destination": "string"
+            },
+            "originDestinLoc": [
+              {
+                "originDestinCode": {
+                  "statusInformation": [
+                    {
+                      "indicator": "string",
+                      "action": "string",
+                      "type": "string",
+                      "description": "string"
+                    }
+                  ]
+                },
+                "originDestinDescription": {
+                  "freeTextDetails": {
+                    "textSubjectQualifier": "string",
+                    "informationType": "string",
+                    "companyId": "string",
+                    "language": "string",
+                    "source": "string",
+                    "encoding": "string"
+                  },
+                  "freeText": [
+                    "string"
+                  ]
+                }
+              }
+            ],
+            "segmentRefernce": [
+              {
+                "reference": {
+                  "type": "string",
+                  "value": "integer"
+                }
+              }
+            ]
+          }
+        ],
+        "listSituation": [
+          {
+            "listSituationDum": {},
+            "situationCode": {
+              "statusInformation": [
+                {
+                  "indicator": "string",
+                  "action": "string",
+                  "type": "string",
+                  "description": "string"
+                }
+              ]
+            },
+            "situationDescription": {
+              "freeTextDetails": {
+                "textSubjectQualifier": "string",
+                "informationType": "string",
+                "companyId": "string",
+                "language": "string",
+                "source": "string",
+                "encoding": "string"
+              },
+              "freeText": [
+                "string"
+              ]
+            }
+          }
+        ],
+        "mnrRulesInfoGrp": [
+          {
+            "mnrCatInfo": {
+              "descriptionInfo": {
+                "number": "integer",
+                "code": "string",
+                "name": "string",
+                "language": "string",
+                "encoding": "string",
+                "freeText": "string"
+              },
+              "processIndicator": "string"
+            },
+            "mnrCatLoc": {
+              "catOrder": {
+                "itemNumberDetails": [
+                  {
+                    "number": "string"
+                  }
+                ]
+              },
+              "catAssumption": {
+                "freeTextDetails": {
+                  "textSubjectQualifier": "string",
+                  "informationType": "string",
+                  "companyId": "string",
+                  "language": "string",
+                  "source": "string",
+                  "encoding": "string"
+                },
+                "freeText": [
+                  "string"
+                ]
+              }
+            },
+            "mnrFCInfoGrp": [
+              {
+                "refInfo": {
+                  "referenceDetails": [
+                    {
+                      "type": "string",
+                      "value": "string"
+                    }
+                  ]
+                },
+                "locationInfo": [
+                  {
+                    "locationType": "string",
+                    "locationDescription": {
+                      "code": "string"
+                    }
+                  }
+                ]
+              }
+            ],
+            "mnrDateInfoGrp": [
+              {
+                "dateInfo": {
+                  "dateAndTimeDetails": [
+                    {
+                      "qualifier": "string",
+                      "date": "string",
+                      "time": "string"
+                    }
+                  ]
+                },
+                "valueInfo": {
+                  "quantityDetails": [
+                    {
+                      "numberOfUnit": "integer",
+                      "unitQualifier": "string"
+                    }
+                  ]
+                },
+                "mnrDateLoc": [
+                  {
+                    "ruleDetails": {
+                      "type": "string",
+                      "quantity": "integer",
+                      "quantityUnit": "string",
+                      "qualifier": "string",
+                      "daysOfOperation": "string",
+                      "amount": "number",
+                      "amountQualifier": "string",
+                      "currency": "string"
+                    },
+                    "ruleText": {
+                      "textType": "string",
+                      "infoType": "string",
+                      "freeText": "string",
+                      "language": "string",
+                      "encoding": "string"
+                    }
+                  }
+                ]
+              }
+            ],
+            "mnrMonInfoGrp": [
+              {
+                "monetaryInfo": {
+                  "monetaryDetails": [
+                    {
+                      "typeQualifier": "string",
+                      "amount": "number",
+                      "currency": "string"
+                    }
+                  ]
+                },
+                "valueInfo": {
+                  "quantityDetails": [
+                    {
+                      "numberOfUnit": "integer",
+                      "unitQualifier": "string"
+                    }
+                  ]
+                },
+                "mnrMonLoc": [
+                  {
+                    "ruleDetails": {
+                      "type": "string",
+                      "quantity": "integer",
+                      "quantityUnit": "string",
+                      "qualifier": "string",
+                      "daysOfOperation": "string",
+                      "amount": "number",
+                      "amountQualifier": "string",
+                      "currency": "string"
+                    },
+                    "ruleText": {
+                      "textType": "string",
+                      "infoType": "string",
+                      "freeText": "string",
+                      "language": "string",
+                      "encoding": "string"
+                    }
+                  }
+                ]
+              }
+            ],
+            "mnrRestriAppInfoGrp": [
+              {
+                "mnrRestriAppInfo": {
+                  "statusInformation": [
+                    {
+                      "indicator": "string",
+                      "action": "string"
+                    }
+                  ]
+                },
+                "mnrRestriAppLoc": [
+                  {
+                    "ruleDetails": {
+                      "type": "string",
+                      "quantity": "integer",
+                      "quantityUnit": "string",
+                      "qualifier": "string",
+                      "daysOfOperation": "string",
+                      "amount": "number",
+                      "amountQualifier": "string",
+                      "currency": "string"
+                    },
+                    "ruleText": {
+                      "textType": "string",
+                      "infoType": "string",
+                      "freeText": "string",
+                      "language": "string",
+                      "encoding": "string"
+                    }
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,16 @@
+{
+					"mnrCatInfo": {
+						"descriptionInfo": {
+							"number": 6
+						},
+						"processIndicator": "ASS"
+					},
+					"mnrFCInfoGrp": [{
+						"refInfo": {
+							"referenceDetails": [{
+								"type": "FC",
+								"value": "1"
+							}]
+						}
+					}]
+				}
