@@ -118,7 +118,15 @@
                       "value": "1"
                     }
                   ]
-                }
+                },
+                "locationInfo": [
+                  {
+                    "locationType": "CTY",
+                    "locationDescription": {
+                      "code": "DEN"
+                    }
+                  }
+                ]
               }
             ]
           },
@@ -129,7 +137,7 @@
               },
               "processIndicator": "ASS"
             },
-            "mnrFCInfoGrp": [
+                        "mnrFCInfoGrp": [
               {
                 "refInfo": {
                   "referenceDetails": [
@@ -138,7 +146,15 @@
                       "value": "1"
                     }
                   ]
-                }
+                },
+                "locationInfo": [
+                  {
+                    "locationType": "CTY",
+                    "locationDescription": {
+                      "code": "DEN"
+                    }
+                  }
+                ]
               }
             ]
           },
@@ -157,7 +173,15 @@
                       "value": "1"
                     }
                   ]
-                }
+                },
+                "locationInfo": [
+                  {
+                    "locationType": "CTY",
+                    "locationDescription": {
+                      "code": "DEN"
+                    }
+                  }
+                ]
               }
             ],
             "mnrDateInfoGrp": [
@@ -482,7 +506,15 @@
                       "value": "1"
                     }
                   ]
-                }
+                },
+                "locationInfo": [
+                  {
+                    "locationType": "CTY",
+                    "locationDescription": {
+                      "code": "DEN"
+                    }
+                  }
+                ]
               }
             ],
             "mnrMonInfoGrp": [
