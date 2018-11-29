@@ -13,38 +13,42 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <flow name="example_ac_pshpFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="examples/mini-rules-sapi-response.json" doc:name="Parse Template - set the payload for sapi response"/>
-        <set-payload value="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord[0]/mnrRulesInfoGrp]" doc:name="Set Payload"/>
-        <foreach doc:name="For Each" collection="#[payload]">
-            <object-to-string-transformer doc:name="Object to String"/>
-            <json:object-to-json-transformer doc:name="Object to JSON"/>
-                    <logger level="INFO" doc:name="Logger" message="in the for after transform to JSON  ==  #[json:/mnrCatInfo/descriptionInfo/number]"/>
-            <set-variable variableName="category" value="#[json:/mnrCatInfo/descriptionInfo/number]" doc:name="category"/>
-            <choice doc:name="Choice">
-                <when expression="#[flowVars.category == '5']">
-                    <logger level="INFO" doc:name="Logger5" message="5"/>
-                    <flow-ref name="cat5_Flow" doc:name="Flow Reference"/>
-                </when>
-                <when expression="#[flowVars.category == '6']">
-                    <logger level="INFO" doc:name="Logger6" message="6"/>
-                    <flow-ref name="cat6_Flow" doc:name="Flow Reference"/>
-                </when>
-                <when expression="#[flowVars.category == '7']">
-                    <logger level="INFO" doc:name="Logger7" message="7"/>
-                    <flow-ref name="cat7_Flow" doc:name="Flow Reference"/>
-                </when>
-                <when expression="#[flowVars.category == '31']">
-                    <logger level="INFO" doc:name="Logger31" message="31"/>
-                    <flow-ref name="cat31_Flow" doc:name="Flow Reference"/>
-                </when>
-                <when expression="#[flowVars.category == '33']">
-                    <logger level="INFO" doc:name="Logger33" message="33"/>
-                    <flow-ref name="cat33_Flow" doc:name="Flow Reference"/>
-                </when>
-                <otherwise>
-                    <logger message="***** Did not find the appropriate value for a category *****" level="INFO" doc:name="Logger"/>
-                </otherwise>
-
-            </choice>
+        <foreach collection="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord]" doc:name="For Each - mnrByPricingRecord">
+            <logger message="Found instance of mnrByPricingRecord" level="INFO" doc:name="Logger"/>
+            <set-variable variableName="currentMnrByPricingRecordJson" value="#[payload]" doc:name="Variable - currentMnrByPricingRecordJson"/>
+            <logger message="Just saved the mnrByPricingRecord instance to a flow Var called currentMnrByPricingRecordJson :: mnrByPricingRecord objectd = #[payload]" level="INFO" doc:name="Logger"/>
+            <logger message="Payload for categories = #[json:/mnrRulesInfoGrp]" level="INFO" doc:name="Logger"/>
+            <foreach collection="#[json:/mnrRulesInfoGrp]" doc:name="For Each - mnrRulesInfoGrp">
+                <object-to-string-transformer doc:name="Object to String"/>
+                <json:object-to-json-transformer doc:name="Object to JSON"/>
+                <logger message="in the for after transform to JSON  ==  #[json:/mnrCatInfo/descriptionInfo/number]" level="INFO" doc:name="Logger"/>
+                <set-variable variableName="category" value="#[json:/mnrCatInfo/descriptionInfo/number]" doc:name="category"/>
+                <choice doc:name="Choice">
+                    <when expression="#[flowVars.category == '5']">
+                        <logger message="5" level="INFO" doc:name="Logger5"/>
+                        <flow-ref name="cat5_Flow" doc:name="Flow Reference"/>
+                    </when>
+                    <when expression="#[flowVars.category == '6']">
+                        <logger message="6" level="INFO" doc:name="Logger6"/>
+                        <flow-ref name="cat6_Flow" doc:name="Flow Reference"/>
+                    </when>
+                    <when expression="#[flowVars.category == '7']">
+                        <logger message="7" level="INFO" doc:name="Logger7"/>
+                        <flow-ref name="cat7_Flow" doc:name="Flow Reference"/>
+                    </when>
+                    <when expression="#[flowVars.category == '31']">
+                        <logger message="31" level="INFO" doc:name="Logger31"/>
+                        <flow-ref name="cat31_Flow" doc:name="Flow Reference"/>
+                    </when>
+                    <when expression="#[flowVars.category == '33']">
+                        <logger message="33" level="INFO" doc:name="Logger33"/>
+                        <flow-ref name="cat33_Flow" doc:name="Flow Reference"/>
+                    </when>
+                    <otherwise>
+                        <logger message="***** Did not find the appropriate value for a category *****" level="INFO" doc:name="Logger"/>
+                    </otherwise>
+                </choice>
+            </foreach>
         </foreach>
         <set-payload value="{ &quot;message&quot; : &quot;Transforms all individually.  Next step will be to add to FareInfos[] array&quot; }" mimeType="application/json" doc:name="Set Payload"/>
     </flow>

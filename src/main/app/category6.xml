@@ -10,11 +10,17 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <logger level="INFO" doc:name="Logger" message="flow ref 6"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="38b99f86-3a5e-47cb-a095-f35563465473">
             <dw:input-payload mimeType="application/json"/>
+            <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
 {
-	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string
+	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
+	RuleInfo: {
+		LengthOfStayRules: {
+			StayRestrictionsInd: false when payload.mnrCatInfo.processIndicator == 'ASS' otherwise true			
+		}
+	}
 }]]></dw:set-payload>
         </dw:transform-message>
         <logger message="#[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>

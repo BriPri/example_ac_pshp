@@ -2,7 +2,13 @@
     "inputMessageMetadata": {
         "messagePayload": {
             "connectorName": "#_custom_mule_metadata_type_#",
-            "typeId": "mnrCatInfo-Object"
+            "typeId": "mnrCatInfo-6"
+        },
+        "flowVariables": {
+            "currentMnrByPricingRecordJson": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "mnrByPricingRecord"
+            }
         }
     },
     "outputMessageMetadata": {
