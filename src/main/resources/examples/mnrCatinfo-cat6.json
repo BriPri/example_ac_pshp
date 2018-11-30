@@ -17,6 +17,11 @@
 			"locationDescription": {
 				"code": "DEN"
 			}
+		},{
+			"locationType": "CTY",
+			"locationDescription": {
+				"code": "YYR"
+			}
 		}]
 	}],
 	"mnrDateInfoGrp": [{
@@ -24,7 +29,7 @@
 			"dateAndTimeDetails": [{
 				"qualifier": "LTR",
 				"date": "21OCT18",
-				"time": "0000"
+				"time": "12"
 			}]
 		}
 	}]

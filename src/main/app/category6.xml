@@ -9,8 +9,8 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
      <flow name="cat6_Flow">
         <logger level="INFO" doc:name="Logger" message="flow ref 6"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="38b99f86-3a5e-47cb-a095-f35563465473">
-            <dw:input-payload mimeType="application/json"/>
-            <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
+            <dw:input-payload mimeType="application/json" doc:sample="examples/mnrCatinfo-cat6.json"/>
+            <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="examples/mnrByPricingRecord.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
@@ -22,17 +22,20 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 			StayRestrictionsInd: false when payload.mnrCatInfo.processIndicator == 'ASS' otherwise true
 		}
 	},
-	City: [{
-		LocationCode: payload.mnrFCInfoGrp.locationInfo.locationDescription.code default ""
-	}],
+	
+	City: payload.mnrCatInfo.mnrFCInfoGrp map (
+		$.locationInfo map {
+			LocationCode: $.locationDescription.code
+	}),
+	
 	AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
 		$.segmentRefernce map {
 		RPH: $.reference.value
-	})
-	),
+	})),
+	
 	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
 			RPH: $.value
-		}
+	}
 		
 }]]></dw:set-payload>
         </dw:transform-message>
