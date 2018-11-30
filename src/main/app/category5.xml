@@ -12,45 +12,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <dw:transform-message doc:name="Transform Message" metadata:id="2add139d-59b1-4993-8bd5-f6605a841c77">
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json.json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
-            <dw:set-payload><![CDATA[%dw 1.0
-%output application/json
----
-{
-  NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
-  RuleInfo: {
-    ResTicketingRules: {
-	  AdvResTicketing: {
-	    AdvResInd: true when
-                   (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD'
-                   or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD') 
-                   otherwise false,
-	    AdvTicketingInd: true when
-                         (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD'
-                         or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD' 
-          	             or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR')
-          	             otherwise false,
-	    FirstTicketDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
-	                     payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD' otherwise "",
-	    LastTicketDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
-	                    payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD' otherwise "",
-	    RequestedTicketingDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
-	                            payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR' otherwise "",
-	    AdvReservation: {
-	      LatetPeriod: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
-	                   payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD' otherwise "",
-	      EarliestPeriods: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
-	                       payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD' otherwise ""
-	    }
-	  }
-    }
-  },
-  AC_SegmentRefNumbers: {
-    RPH: ""
-  },
-  AC_TravelerRefNumbers: {
-    RPH: ""
-  }
-}]]></dw:set-payload>
+            <dw:set-payload resource="classpath:dwl/category_5.dwl"/>
         </dw:transform-message>
         <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Post Transform Payload Logger"/>
     </flow>
