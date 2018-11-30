@@ -12,6 +12,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
             <dw:input-payload mimeType="application/json" doc:sample="examples/mnrCatinfo-cat6.json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="examples/mnrByPricingRecord.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
+<<<<<<< HEAD
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
@@ -40,6 +41,9 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 		RPH: $.value
 	}
 }]]></dw:set-payload>
+=======
+            <dw:set-payload resource="classpath:dwl/category6.dwl"/>
+>>>>>>> master
         </dw:transform-message>
         <logger message="Payload after DW for Category 6 :: #[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>
     </flow>
