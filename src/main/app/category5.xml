@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+<mule xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
 	xmlns:spring="http://www.springframework.org/schema/beans" 
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
@@ -9,13 +9,47 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
     <flow name="cat5_Flow">
         <logger level="INFO" doc:name="Logger" message="flow ref 5 "/>
         <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Pre Transform Payload Logger"/>
-        <dw:transform-message doc:name="Transform Message">
+        <dw:transform-message doc:name="Transform Message" metadata:id="2add139d-59b1-4993-8bd5-f6605a841c77">
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json.json"/>
+            <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
             <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
 {
-	NegotiatedFareInd: true,
-	NegotiatedFareCode: 16
+  NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
+  RuleInfo: {
+    ResTicketingRules: {
+	  AdvResTicketing: {
+	    AdvResInd: true when
+                   (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD'
+                   or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD') 
+                   otherwise false,
+	    AdvTicketingInd: true when
+                         (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD'
+                         or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD' 
+          	             or payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR')
+          	             otherwise false,
+	    FirstTicketDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+	                     payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD' otherwise "",
+	    LastTicketDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+	                    payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD' otherwise "",
+	    RequestedTicketingDate: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+	                            payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR' otherwise "",
+	    AdvReservation: {
+	      LatetPeriod: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+	                   payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD' otherwise "",
+	      EarliestPeriods: payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+	                       payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD' otherwise ""
+	    }
+	  }
+    }
+  },
+  AC_SegmentRefNumbers: {
+    RPH: ""
+  },
+  AC_TravelerRefNumbers: {
+    RPH: ""
+  }
 }]]></dw:set-payload>
         </dw:transform-message>
         <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Post Transform Payload Logger"/>
