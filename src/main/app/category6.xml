@@ -29,7 +29,10 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 		$.segmentRefernce map {
 		RPH: $.reference.value
 	})
-	)
+	),
+	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
+			RPH: $.value
+		}
 		
 }]]></dw:set-payload>
         </dw:transform-message>
