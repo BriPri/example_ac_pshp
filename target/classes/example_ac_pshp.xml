@@ -27,10 +27,12 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
                     <when expression="#[flowVars.category == '5']">
                         <logger message="5" level="INFO" doc:name="Logger5"/>
                         <flow-ref name="cat5_Flow" doc:name="Flow Reference"/>
+                        <set-variable variableName="cat5_fareinfo" value="#[payload]" doc:name="cat5_fareinfo"/>
                     </when>
                     <when expression="#[flowVars.category == '6']">
                         <logger message="6" level="INFO" doc:name="Logger6"/>
                         <flow-ref name="cat6_Flow" doc:name="Flow Reference"/>
+                        <set-variable variableName="cat6_fareinfo" value="#[payload]" doc:name="cat6_fareinfo"/>
                     </when>
                     <when expression="#[flowVars.category == '7']">
                         <logger message="7" level="INFO" doc:name="Logger7"/>
