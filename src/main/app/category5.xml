@@ -12,7 +12,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
         <dw:transform-message doc:name="Transform Message" metadata:id="2add139d-59b1-4993-8bd5-f6605a841c77">
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json.json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
-            <dw:set-payload resource="classpath:dwl/category_5.dwl"/>
+            <dw:set-payload resource="classpath:dwl/category5.dwl"/>
         </dw:transform-message>
         <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Post Transform Payload Logger"/>
     </flow>
