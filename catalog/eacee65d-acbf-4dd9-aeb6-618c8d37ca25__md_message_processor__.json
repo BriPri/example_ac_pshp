@@ -1,0 +1,26 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "mnrCatInfo-31"
+        },
+        "flowVariables": {
+            "currentMnrByPricingRecordJson": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "mnrByPricingRecord"
+            },
+            "category": {
+                "connectorName": "#_custom_mule_metadata_type_#",
+                "typeId": "integer"
+            }
+        }
+    },
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "FareInfo-Object"
+        }
+    },
+    "id": "eacee65d-acbf-4dd9-aeb6-618c8d37ca25",
+    "version": "5.2.0.0"
+}

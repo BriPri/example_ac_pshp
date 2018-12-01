@@ -1,0 +1,313 @@
+{
+	"mnrCatInfo": {
+		"descriptionInfo": {
+			"number": 31
+		},
+		"processIndicator": "ASS"
+	},
+	"mnrFCInfoGrp": [{
+		"refInfo": {
+			"referenceDetails": [{
+				"type": "FC",
+				"value": "1"
+			}]
+		}
+	}],
+	"mnrDateInfoGrp": [{
+		"dateInfo": {
+			"dateAndTimeDetails": [{
+					"qualifier": "BDV",
+					"date": "20OCT19",
+					"time": "0000"
+				},
+				{
+					"qualifier": "BNV",
+					"date": "20OCT19",
+					"time": "0000"
+				},
+				{
+					"qualifier": "ADV",
+					"date": "10NOV19",
+					"time": "0000"
+				},
+				{
+					"qualifier": "ANV",
+					"date": "10NOV19",
+					"time": "0000"
+				}
+			]
+		}
+	}],
+	"mnrMonInfoGrp": [{
+			"monetaryInfo": {
+				"monetaryDetails": [{
+						"typeQualifier": "BDM",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDX",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDF",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDG",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDT",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDI",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDU",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDH",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDL",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BDC",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNM",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNX",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNF",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNG",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNT",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNI",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNU",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNH",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNL",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "BNC",
+						"amount": 0,
+						"currency": "CAD"
+					}
+				]
+			}
+		},
+		{
+			"monetaryInfo": {
+				"monetaryDetails": [{
+						"typeQualifier": "ADM",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADX",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADF",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADG",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADT",
+						"amount": 100,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADI",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADU",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADH",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADL",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ADC",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANM",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANX",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANF",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANG",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANT",
+						"amount": 25,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANI",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANU",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANH",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANL",
+						"amount": 0,
+						"currency": "CAD"
+					},
+					{
+						"typeQualifier": "ANC",
+						"amount": 0,
+						"currency": "CAD"
+					}
+				]
+			}
+		}
+	],
+	"mnrRestriAppInfoGrp": [{
+		"mnrRestriAppInfo": {
+			"statusInformation": [{
+					"indicator": "FFT",
+					"action": "0"
+				},
+				{
+					"indicator": "WAI",
+					"action": "0"
+				},
+				{
+					"indicator": "RVA",
+					"action": "0"
+				},
+				{
+					"indicator": "BDA",
+					"action": "1"
+				},
+				{
+					"indicator": "BNW",
+					"action": "0"
+				},
+				{
+					"indicator": "BNR",
+					"action": "0"
+				},
+				{
+					"indicator": "BNA",
+					"action": "1"
+				},
+				{
+					"indicator": "ADW",
+					"action": "0"
+				},
+				{
+					"indicator": "ADR",
+					"action": "0"
+				},
+				{
+					"indicator": "ADA",
+					"action": "1"
+				},
+				{
+					"indicator": "ANW",
+					"action": "0"
+				},
+				{
+					"indicator": "ANR",
+					"action": "0"
+				},
+				{
+					"indicator": "ANA",
+					"action": "1"
+				},
+				{
+					"indicator": "GUA",
+					"action": "1"
+				}
+			]
+		}
+	}]
+}
