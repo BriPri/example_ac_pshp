@@ -7,10 +7,11 @@
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <flow name="cat33_Flow">
-        <logger level="INFO" doc:name="Logger" message="flow ref 33"/>
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="161d739f-08eb-48a3-8fee-9ddb29d57e85">
             <dw:input-payload mimeType="application/json"/>
-            <dw:set-payload resource="classpath:dwl/category33_mapping.dwl"/>
+            <dw:set-payload resource="classpath:dwl/category33.dwl"/>
         </dw:transform-message>
+        <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Logger"/>
     </flow>
 </mule>

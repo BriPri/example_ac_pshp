@@ -23,6 +23,5 @@
 	})),
 	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
 		RPH: $.value
-	}
-		
+	}	
 }
