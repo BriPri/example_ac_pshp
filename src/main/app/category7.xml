@@ -7,10 +7,10 @@
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <flow name="cat7_Flow">
-        <logger level="INFO" doc:name="Logger" message="flow ref 7"/>
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
         <dw:transform-message doc:name="Transform Message">
             <dw:set-payload resource="classpath:dwl/category7.dwl"/>
         </dw:transform-message>
-        <logger level="INFO" doc:name="Logger"/>
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
     </flow>
 </mule>
