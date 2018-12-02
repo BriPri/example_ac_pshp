@@ -6,7 +6,7 @@
 	RuleInfo: {
 		AC_Restriction: [{
 			RestrictionType: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp.mnrRestriAppInfoGrp.mnrRestriAppInfo.statusInformation.indicator,
-			Applicable: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp.mnrRestriAppInfoGrp.mnrRestriAppInfo.statusInformation.action as :boolean
+			Applicable: false when flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp.mnrRestriAppInfoGrp.mnrRestriAppInfo.statusInformation.action == 0 otherwise true as :boolean
 		}],
 		ChargesRules: {
 			VoluntaryChanges: {
