@@ -9,7 +9,8 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
     <flow name="cat33_Flow">
         <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="161d739f-08eb-48a3-8fee-9ddb29d57e85">
-            <dw:input-payload mimeType="application/json"/>
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_10.json"/>
+            <dw:input-variable doc:sample="sample_data/empty.xml" variableName="currentMnrByPricingRecordJson"/>
             <dw:set-payload resource="classpath:dwl/category33.dwl"/>
         </dw:transform-message>
         <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Logger"/>

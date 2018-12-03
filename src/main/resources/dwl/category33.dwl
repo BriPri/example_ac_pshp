@@ -4,21 +4,18 @@
 {
   NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
   RuleInfo: {
-    ChargeRules: {
-      VoluntaryRefunds: {
-        VolChangeInd:
-          false when payload.mnrCatInfo.processIndicator == "ASS"
-          otherwise true,
-        Pentalty: {
-          Amount: payload.mnrMonInfoGrp.monetaryDetails.amount,
-          CurrencyCode: payload.mnrMonInfoGrp.monetaryDetails.currency,
+    ChargesRules: {
+      VoluntaryChanges: {
+        Penalty: {
           DecimalPlaces: 2,
-          PenaltyType: payload.mnrMonInfoGrp.monetaryDetails.typeQualifier
-        }
+          CurrencyCode: payload.mnrMonInfoGrp.monetaryDetails.currency,
+          PenaltyType: payload.mnrMonInfoGrp.monetaryDetails.typeQualifier,
+          Amount: payload.mnrMonInfoGrp.monetaryDetails.amount
+        },
+        VolChangeInd: false when payload.mnrCatInfo.processIndicator == "ASS" otherwise true
       }
-    }
+    }    
   },
-  
   City: flatten (payload.mnrFCInfoGrp map (
     $.locationInfo map {
     LocationCode: $.locationDescription.code
