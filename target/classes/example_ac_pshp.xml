@@ -37,14 +37,17 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
                     <when expression="#[flowVars.category == '7']">
                         <logger message="7" level="INFO" doc:name="Logger7"/>
                         <flow-ref name="cat7_Flow" doc:name="Flow Reference"/>
+                        <set-variable variableName="cat7_fareinfo" value="#[payload]" doc:name="cat7_fareinfo"/>
                     </when>
                     <when expression="#[flowVars.category == '31']">
                         <logger message="31" level="INFO" doc:name="Logger31"/>
                         <flow-ref name="cat31_Flow" doc:name="Flow Reference"/>
+                        <set-variable variableName="cat31_fareinfo" value="#[payload]" doc:name="cat31_fareinfo"/>
                     </when>
                     <when expression="#[flowVars.category == '33']">
                         <logger message="33" level="INFO" doc:name="Logger33"/>
                         <flow-ref name="cat33_Flow" doc:name="Flow Reference"/>
+                        <set-variable variableName="cat33_fareinfo" value="#[payload]" doc:name="cat33_fareinfo"/>
                     </when>
                     <otherwise>
                         <logger message="***** Did not find the appropriate value for a category *****" level="INFO" doc:name="Logger"/>
