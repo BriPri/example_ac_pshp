@@ -4,27 +4,13 @@
 {
 	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
 	RuleInfo: {
-//		AC_Restriction: 	flatten (flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp.mnrRestriAppInfoGrp map (
-//			 $.mnrRestriAppInfo mapObject ((x,y) -> {
-//				RestrictionType: $.mnrRestriAppInfo.statusInformation
-//			})
-//		)),
-//		AC_Restriction: 	flatten (flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp.mnrRestriAppInfoGrp map (
-//			 $.mnrRestriAppInfo.statusInformation  map {
-//			 	RestrictionType: $.indicator,
-//			 	Applicable: false when $.action == "0" otherwise "1"
-//			 } 
-//		)),
-//		AC_Restriction: 	flatten (flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp map (
-//			$.mnrRestriAppInfoGrp map (
-//				$.mnrRestriAppInfo.statusInformation map {
-//			 		RestrictionType: $.indicator,
-//			 		Applicable: false when $.action == "0" otherwise "1"
-//		 		}
-//		 	)
-//		)),
-		AC_Restriction: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp map (
-			$.mnrRestriAppInfoGrp.mnrRestriAppInfo.statusInformation.indicator
+
+		AC_Restriction: flatten (payload.mnrRestriAppInfoGrp map (
+			$.mnrRestriAppInfo.statusInformation map {
+				RestrictionType: $.indicator,
+				Applicable: false when $.action == "0" otherwise true
+			}
+			)
 		),
 		
 		ChargesRules: {
