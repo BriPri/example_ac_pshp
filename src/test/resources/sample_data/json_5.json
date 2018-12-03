@@ -1,0 +1,53 @@
+{
+  "pricingRecordId": {
+    "referenceType": "????",
+    "uniqueReference": 1
+  },
+  "paxRef": {
+    "passengerReference": [
+      {
+        
+      }
+    ]
+  },
+  "fareComponentInfo": [
+    {
+      "fareQualifierDetails": {
+        
+      },
+      "fareComponentRef": {
+        
+      },
+      "originAndDestination": {
+        
+      },
+      "segmentRefernce": [
+        {
+          
+        }
+      ]
+    }
+  ],
+  "mnrRulesInfoGrp": [
+    {
+      "mnrCatInfo": {
+        
+      },
+      "mnrFCInfoGrp": [
+        {
+          
+        }
+      ],
+      "mnrDateInfoGrp": [
+        {
+          
+        }
+      ],
+      "mnrRestriAppInfoGrp": [
+        {
+          
+        }
+      ]
+    }
+  ]
+}

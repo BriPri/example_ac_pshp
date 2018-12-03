@@ -9,7 +9,7 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
     <flow name="cat7_Flow">
         <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="1e832429-e0f1-4f10-be0d-23f10f488933">
-            <dw:input-payload mimeType="application/json"/>
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_8.json"/>
             <dw:set-payload resource="classpath:dwl/category7.dwl"/>
         </dw:transform-message>
         <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>

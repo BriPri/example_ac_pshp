@@ -6,11 +6,14 @@
   RuleInfo: {
     ChargeRules: {
       VoluntaryRefunds: {
-        VolChangeInd: "",
+        VolChangeInd:
+          false when payload.mnrCatInfo.processIndicator == "ASS"
+          otherwise true,
         Pentalty: {
-          Amount: "",
-          CurrencyCode: "",
-          DecimalPlaces: 2
+          Amount: payload.mnrMonInfoGrp.monetaryDetails.amount,
+          CurrencyCode: payload.mnrMonInfoGrp.monetaryDetails.currency,
+          DecimalPlaces: 2,
+          PenaltyType: payload.mnrMonInfoGrp.monetaryDetails.typeQualifier
         }
       }
     }
@@ -24,7 +27,8 @@
   AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
     $.segmentRefernce map {
     RPH: $.reference.value 
-  })),  
+    }
+  )),  
   AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
     RPH: $.value
   }
