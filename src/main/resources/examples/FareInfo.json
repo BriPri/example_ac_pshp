@@ -9,10 +9,12 @@
 		"AccountCode": "BKFLT"
 	}],
 	"RuleInfo": {
-		"AC_Restriction": [{
-			"RestrictionType": "NIGHT",
-			"Applicable": false
-		}],
+		"AC_Restriction": [
+			{
+				"RestrictionType": "NIGHT",
+				"Applicable": false
+			}
+		],
 		"ResTicketingRules": {
 			"AdvResTicketing": {
 				"AdvReservation": {

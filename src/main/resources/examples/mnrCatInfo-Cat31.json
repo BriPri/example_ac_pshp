@@ -251,7 +251,8 @@
 	],
 	"mnrRestriAppInfoGrp": [{
 		"mnrRestriAppInfo": {
-			"statusInformation": [{
+			"statusInformation": [
+			    {
 					"indicator": "FFT",
 					"action": "0"
 				},

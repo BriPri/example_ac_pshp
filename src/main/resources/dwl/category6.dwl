@@ -19,9 +19,9 @@
 	)),
 	AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
 		$.segmentRefernce map {
-		RPH: $.reference.value
+		RPH: $.reference.value as :string
 	})),
 	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
-		RPH: $.value
+		RPH: $.value as :string
 	}	
 }

@@ -7,13 +7,13 @@
 http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <flow name="cat31_Flow">
-        <logger level="INFO" doc:name="Logger" message="flow ref 31"/>
+        <logger level="INFO" doc:name="Logger" message="Starting cat31 flow"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="eacee65d-acbf-4dd9-aeb6-618c8d37ca25">
             <dw:input-payload doc:sample="examples/mnrCatInfo-Cat31.json" mimeType="application/json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="examples/mnrByPricingRecord.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
             <dw:set-payload resource="classpath:dwl/category31.dwl"/>
         </dw:transform-message>
-        <logger level="INFO" doc:name="Logger"/>
+        <logger level="INFO" doc:name="Logger" message="Completed cat31 flow"/>
     </flow>
 </mule>
