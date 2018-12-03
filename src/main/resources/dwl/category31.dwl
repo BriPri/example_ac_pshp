@@ -17,14 +17,22 @@
 			VoluntaryChanges: {
 				Penalty: {
 					DecimalPlaces: 2,
-					CurrencyCode: "<Not complete>",
-					PenaltyType: "<Not complete>",
-					Amount: "<Not complete>"
+					CurrencyCode: "<IMD Conflict - Not completed yet>",
+					PenaltyType: "<IMD Conflict - Not completed yet>",
+					Amount: "<IMD Conflict - Not completed yet>"
 				},
 				VolChangeInd: false when payload.mnrCatInfo.processIndicator == "ASS" otherwise true
 			}
 		}
 	},
+	
+	AC_DateDetails: flatten (payload.mnrDateInfoGrp map (
+		$.dateInfo.dateAndTimeDetails map {
+			DateType: $.qualifier,
+			Date: $.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"}
+		}
+	)),
+	
 	AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
 		$.segmentRefernce map {
 		RPH: $.reference.value as :string
