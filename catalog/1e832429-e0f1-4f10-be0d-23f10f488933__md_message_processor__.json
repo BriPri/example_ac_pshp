@@ -1,0 +1,16 @@
+{
+    "inputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "mnrCatInfo-Object"
+        }
+    },
+    "outputMessageMetadata": {
+        "messagePayload": {
+            "connectorName": "#_custom_mule_metadata_type_#",
+            "typeId": "FareInfo-Object"
+        }
+    },
+    "id": "1e832429-e0f1-4f10-be0d-23f10f488933",
+    "version": "5.2.0.0"
+}
