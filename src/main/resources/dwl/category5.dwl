@@ -16,24 +16,24 @@
             payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR')
             otherwise false,
     	    FirstTicketDate: 
-    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"} when
     	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD'
     	      otherwise "",
     	    LastTicketDate:
-    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"} when
     	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD'
     	      otherwise "",
     	    RequestedTicketingDate: 
-    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+    	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"} when
     	      payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTR'
     	      otherwise "",
     	    AdvReservation: {
     	      LatetPeriod:
-    	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+    	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"} when
     	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD'
     	        otherwise "",
     	      EarliestPeriods:
-    	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date when
+    	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"} when
     	        payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD'
     	        otherwise ""
     	    }
