@@ -1,7 +1,16 @@
 %dw 1.0
 %output application/json
+//%function findElement (arrayToSearch, valueToFind ) { ["brian", "jen"] filter arrayToSearch.value == "brian" 
+%var name1 = "brian"
+%var name2 = "jen"
+// fareComponentInfo -> fareComponentRef -> referenceDetails when “type” = “FC.
+
+%var matchingTypes = flowVars.currentMnrByPricingRecordJson.*referenceDetails.type == "FC"
+%var matchingTypes2 = (flowVars.currentMnrByPricingRecordJson.fareComponentInfo.fareComponentRef.referenceDetails filter $.type == "FC")."value"
 ---
 {
+	value: matchingTypes,
+	value2: matchingTypes2,
 	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
 	RuleInfo: {
 
@@ -37,6 +46,12 @@
 		$.segmentRefernce map {
 		RPH: $.reference.value as :string
 	})),
+	
+//	AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
+//		$.segmentRefernce filter ($.reference.value == "1") map {
+//		RPH: $.reference.value as :string
+//	})),
+	
 	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
 		RPH: $.value as :string
 	}

@@ -13,6 +13,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <flow name="example_ac_pshpFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="examples/mini-rules-sapi-response.json" doc:name="Parse Template - set the payload for sapi response"/>
+        <set-variable variableName="fareinfosArrays" value="#[ new java.util.ArrayList() ]" doc:name="fareinfosArrays"/>
         <foreach collection="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord]" doc:name="For Each - mnrByPricingRecord">
             <logger message="Found instance of mnrByPricingRecord" level="INFO" doc:name="Logger"/>
             <set-variable variableName="currentMnrByPricingRecordJson" value="#[payload]" doc:name="Variable - currentMnrByPricingRecordJson"/>
@@ -27,27 +28,31 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
                     <when expression="#[flowVars.category == '5']">
                         <logger message="5" level="INFO" doc:name="Logger5"/>
                         <flow-ref name="cat5_Flow" doc:name="Flow Reference"/>
-                        <set-variable variableName="cat5_fareinfo" value="#[payload]" doc:name="cat5_fareinfo"/>
+                        <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <expression-component doc:name="Add cat5 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '6']">
                         <logger message="6" level="INFO" doc:name="Logger6"/>
                         <flow-ref name="cat6_Flow" doc:name="Flow Reference"/>
-                        <set-variable variableName="cat6_fareinfo" value="#[payload]" doc:name="cat6_fareinfo"/>
+                        <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <expression-component doc:name="Add cat6 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '7']">
                         <logger message="7" level="INFO" doc:name="Logger7"/>
                         <flow-ref name="cat7_Flow" doc:name="Flow Reference"/>
-                        <set-variable variableName="cat7_fareinfo" value="#[payload]" doc:name="cat7_fareinfo"/>
+                        <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <expression-component doc:name="Add cat7 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '31']">
                         <logger message="31" level="INFO" doc:name="Logger31"/>
-                        <flow-ref name="cat31_Flow" doc:name="Flow Reference"/>
-                        <set-variable variableName="cat31_fareinfo" value="#[payload]" doc:name="cat31_fareinfo"/>
+                        <flow-ref name="cat31_Flow" doc:name="Flow Reference"/><set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <expression-component doc:name="Add cat31 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '33']">
                         <logger message="33" level="INFO" doc:name="Logger33"/>
                         <flow-ref name="cat33_Flow" doc:name="Flow Reference"/>
-                        <set-variable variableName="cat33_fareinfo" value="#[payload]" doc:name="cat33_fareinfo"/>
+                        <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <expression-component doc:name="Add cat33 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <otherwise>
                         <logger message="***** Did not find the appropriate value for a category *****" level="INFO" doc:name="Logger"/>
