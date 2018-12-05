@@ -5,8 +5,9 @@
   RuleInfo: {
     (LengthOfStayRules: {
       MinimumStay: {
-        MxnStay: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp[0].mnrDateInfoGrp[0].dateInfo.dateAndTimeDetails[0].time as :number,
-        MxnStayDate: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp[0].mnrDateInfoGrp[0].dateInfo.dateAndTimeDetails[0].date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"}
+        MaxStay: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp[0].mnrDateInfoGrp[0].dateInfo.dateAndTimeDetails[0].time as :number,
+        MaxStayDate: flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp[0].mnrDateInfoGrp[0].dateInfo.dateAndTimeDetails[0].date as :date {format: "ddMMMyy"} as :string {format: "yyyy-MM-dd"},
+        ReturnType: 'C' when flowVars.currentMnrByPricingRecordJson.mnrRulesInfoGrp[0].mnrDateInfoGrp[0].dateInfo.dateAndTimeDetails[0].qualifier == "MSP" otherwise 'S'
       },
       StayRestrictionsInd: false when payload.mnrCatInfo.processIndicator == 'ASS' otherwise true
     }) when payload.mnrCatInfo.processIndicator == 'ASS'
