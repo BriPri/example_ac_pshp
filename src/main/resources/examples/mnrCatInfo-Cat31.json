@@ -10,6 +10,9 @@
 			"referenceDetails": [{
 				"type": "FC",
 				"value": "1"
+			},{
+				"type": "FC",
+				"value": "2"
 			}]
 		}
 	}],

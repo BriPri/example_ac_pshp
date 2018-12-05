@@ -9,7 +9,8 @@
 			"value": 1
 		}]
 	},
-	"fareComponentInfo": [{
+	"fareComponentInfo": [
+    {
 		"fareQualifierDetails": {
 			"additionalFareDetails": {
 				"rateClass": "V0Q8TG"
@@ -43,7 +44,42 @@
 				}
 			}
 		]
-	}],
+	},
+  {
+  "fareQualifierDetails": {
+    "additionalFareDetails": {
+      "rateClass": "AAA8TG"
+    }
+  },
+  "fareComponentRef": {
+    "referenceDetails": [{
+        "type": "P2",
+        "value": "NPX"
+      },
+      {
+        "type": "FC",
+        "value": "2"
+      }
+    ]
+  },
+  "originAndDestination": {
+    "origin": "YTO",
+    "destination": "DFW"
+  },
+  "segmentRefernce": [{
+      "reference": {
+        "type": "ST",
+        "value": 3
+      }
+    },
+    {
+      "reference": {
+        "type": "ST",
+        "value": 4
+      }
+    }
+  ]
+  }],
 	"mnrRulesInfoGrp": [{
 			"mnrCatInfo": {
 				"descriptionInfo": {
@@ -390,7 +426,8 @@
 			],
 			"mnrRestriAppInfoGrp": [{
 				"mnrRestriAppInfo": {
-					"statusInformation": [{
+					"statusInformation": [
+            {
 							"indicator": "FFT",
 							"action": "0"
 						},
