@@ -1,5 +1,13 @@
 %dw 1.0
 %output application/json
+
+%function fareComponentRefContainsReferenceDetail(fareComponentRef, type, value) (
+  not (fareComponentRef.referenceDetails filter $.type == type and $.value == value) is :empty
+)
+
+%function filterFareComponentInfo(fareComponentInfo, fcType, fcValue) (
+  fareComponentInfo filter fareComponentRefContainsReferenceDetail($.fareComponentRef, fcType, fcValue)
+)
 ---
 {
   RuleInfo: {
