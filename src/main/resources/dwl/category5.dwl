@@ -40,11 +40,16 @@
     	  }
     }
   },
-  AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
-    $.segmentRefernce map {
-	  RPH: $.reference.value 
-  })),	
+  
+  AC_SegmentRefNumbers: (flatten (payload.mnrFCInfoGrp[0].refInfo.referenceDetails map (refDetail) -> (
+      flatten (filterFareComponentInfo(flowVars.currentMnrByPricingRecordJson.fareComponentInfo, refDetail.type, refDetail.value) map (
+        $.segmentRefernce.reference.value
+      ))
+        ))) map {
+          RPH: $
+        },
+  
   AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
-    RPH: $.value
+    RPH: $.value as :string
   }
 }

@@ -9,77 +9,77 @@
 			"value": 1
 		}]
 	},
-	"fareComponentInfo": [
-    {
-		"fareQualifierDetails": {
-			"additionalFareDetails": {
-				"rateClass": "V0Q8TG"
-			}
-		},
-		"fareComponentRef": {
-			"referenceDetails": [{
-					"type": "PU",
-					"value": "NPU"
+	"fareComponentInfo": [{
+			"fareQualifierDetails": {
+				"additionalFareDetails": {
+					"rateClass": "V0Q8TG"
+				}
+			},
+			"fareComponentRef": {
+				"referenceDetails": [{
+						"type": "PU",
+						"value": "NPU"
+					},
+					{
+						"type": "FC",
+						"value": "1"
+					}
+				]
+			},
+			"originAndDestination": {
+				"origin": "YTO",
+				"destination": "DFW"
+			},
+			"segmentRefernce": [{
+					"reference": {
+						"type": "ST",
+						"value": 1
+					}
 				},
 				{
-					"type": "FC",
-					"value": "1"
+					"reference": {
+						"type": "ST",
+						"value": 2
+					}
 				}
 			]
 		},
-		"originAndDestination": {
-			"origin": "YTO",
-			"destination": "DFW"
-		},
-		"segmentRefernce": [{
-				"reference": {
-					"type": "ST",
-					"value": 1
+		{
+			"fareQualifierDetails": {
+				"additionalFareDetails": {
+					"rateClass": "AAA8TG"
 				}
 			},
-			{
-				"reference": {
-					"type": "ST",
-					"value": 2
+			"fareComponentRef": {
+				"referenceDetails": [{
+						"type": "P2",
+						"value": "NPX"
+					},
+					{
+						"type": "FC",
+						"value": "2"
+					}
+				]
+			},
+			"originAndDestination": {
+				"origin": "YTO",
+				"destination": "DFW"
+			},
+			"segmentRefernce": [{
+					"reference": {
+						"type": "ST",
+						"value": 3
+					}
+				},
+				{
+					"reference": {
+						"type": "ST",
+						"value": 4
+					}
 				}
-			}
-		]
-	},
-  {
-  "fareQualifierDetails": {
-    "additionalFareDetails": {
-      "rateClass": "AAA8TG"
-    }
-  },
-  "fareComponentRef": {
-    "referenceDetails": [{
-        "type": "P2",
-        "value": "NPX"
-      },
-      {
-        "type": "FC",
-        "value": "2"
-      }
-    ]
-  },
-  "originAndDestination": {
-    "origin": "YTO",
-    "destination": "DFW"
-  },
-  "segmentRefernce": [{
-      "reference": {
-        "type": "ST",
-        "value": 3
-      }
-    },
-    {
-      "reference": {
-        "type": "ST",
-        "value": 4
-      }
-    }
-  ]
-  }],
+			]
+		}
+	],
 	"mnrRulesInfoGrp": [{
 			"mnrCatInfo": {
 				"descriptionInfo": {
@@ -114,15 +114,14 @@
 					}]
 				}
 			}],
-	      "mnrRestriAppInfoGrp": [{
-	        "mnrRestriAppInfo": {
-	          "statusInformation": [{
-	              "indicator": "FFT",
-	              "action": "0"
-	            }
-	          ]
-	        }
-	      }]
+			"mnrRestriAppInfoGrp": [{
+				"mnrRestriAppInfo": {
+					"statusInformation": [{
+						"indicator": "FFT",
+						"action": "0"
+					}]
+				}
+			}]
 		},
 		{
 			"mnrCatInfo": {
@@ -426,8 +425,7 @@
 			],
 			"mnrRestriAppInfoGrp": [{
 				"mnrRestriAppInfo": {
-					"statusInformation": [
-            {
+					"statusInformation": [{
 							"indicator": "FFT",
 							"action": "0"
 						},

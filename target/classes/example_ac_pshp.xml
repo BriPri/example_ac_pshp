@@ -10,12 +10,14 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd
 http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/json/current/mule-json.xsd">
     <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    
     <flow name="example_ac_pshpFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="examples/mini-rules-sapi-response.json" doc:name="Parse Template - set the payload for sapi response"/>
         <logger level="INFO" doc:name="Logger"/>
         <flow-ref name="minirules_SubFlow" doc:name="Flow Reference"/>
     </flow>
+    
     <sub-flow name="minirules_SubFlow">
         <set-variable variableName="fareinfosArrays" value="#[ new java.util.ArrayList() ]" doc:name="fareinfosArrays"/>
         <foreach collection="#[json:/MiniRule_GetFromRecReply/mnrByPricingRecord]" doc:name="For Each - mnrByPricingRecord">
@@ -31,28 +33,30 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
                 <choice doc:name="Choice">
                     <when expression="#[flowVars.category == '5']">
                         <logger message="5" level="INFO" doc:name="Logger5"/>
-                        <flow-ref name="cat5_Flow" doc:name="Flow Reference"/>
+                        <flow-ref name="cat5_subFlow" doc:name="Flow Reference"/>
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat5 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '6']">
                         <logger message="6" level="INFO" doc:name="Logger6"/>
-                        <flow-ref name="cat6_Flow" doc:name="Flow Reference"/>
+                        <flow-ref name="cat6_subFlow" doc:name="Flow Reference"/>
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat6 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '7']">
                         <logger message="7" level="INFO" doc:name="Logger7"/>
+                        <flow-ref name="cat7_subFlow" doc:name="Flow Reference"/>
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat7 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '31']">
                         <logger message="31" level="INFO" doc:name="Logger31"/>
-                        <flow-ref name="cat31_Flow" doc:name="Flow Reference"/><set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
+                        <flow-ref name="cat31_subFlow" doc:name="Flow Reference"/><set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat31 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
                     <when expression="#[flowVars.category == '33']">
                         <logger message="33" level="INFO" doc:name="Logger33"/>
+                        <flow-ref name="cat33_subFlow" doc:name="Flow Reference"/>
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat33 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
@@ -71,8 +75,19 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
 flowVars.fareinfosArrays]]></dw:set-payload>
         </dw:transform-message>
     </sub-flow>
+
+    <sub-flow name="cat5_subFlow">
+        <logger level="INFO" doc:name="Logger" message="flow ref 5 "/>
+        <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Pre Transform Payload Logger"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="2add139d-59b1-4993-8bd5-f6605a841c77">
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_6.json"/>
+            <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="sample_data/json_7.json"/>
+            <dw:set-payload resource="classpath:dwl/category5.dwl"/>
+        </dw:transform-message>
+        <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Post Transform Payload Logger"/>
+    </sub-flow>
     
-    <sub-flow name="cat6_Flow">
+    <sub-flow name="cat6_subFlow">
      <!--  metadata:id="38b99f86-3a5e-47cb-a095-f35563465473" -->
         <logger level="INFO" doc:name="Logger" message="Starting cat6 transformation"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="9bac77d9-4f5b-4d27-b8a3-8e167a308c70">
@@ -82,12 +97,17 @@ flowVars.fareinfosArrays]]></dw:set-payload>
             <dw:set-payload resource="classpath:dwl/category6.dwl"/>
         </dw:transform-message>
         <logger message="Completed cat6 transformation  ::  Payload after DW for Category 6 :: #[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>
-    </sub-flow>
+
+    </sub-flow><flow name="cat7_subFlow">
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="1e832429-e0f1-4f10-be0d-23f10f488933">
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_8.json"/>
+            <dw:set-payload resource="classpath:dwl/category7.dwl"/>
+        </dw:transform-message>
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
+    </flow>
     
-    
-    
-    
-    <sub-flow name="cat31_Flow">
+    <sub-flow name="cat31_subFlow">
         <logger level="INFO" doc:name="Logger" message="Starting cat31 flow"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="eacee65d-acbf-4dd9-aeb6-618c8d37ca25">
             <dw:input-payload doc:sample="examples/mnrCatInfo-Cat31.json" mimeType="application/json"/>
@@ -98,4 +118,14 @@ flowVars.fareinfosArrays]]></dw:set-payload>
         <logger level="INFO" doc:name="Logger" message="Completed cat31 flow"/>
     </sub-flow>
     
+     <sub-flow name="cat33_subFlow">
+        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
+        <dw:transform-message doc:name="Transform Message" metadata:id="161d739f-08eb-48a3-8fee-9ddb29d57e85">
+            <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_10.json"/>
+            <dw:input-variable doc:sample="sample_data/empty.xml" variableName="currentMnrByPricingRecordJson"/>
+            <dw:set-payload resource="classpath:dwl/category33.dwl"/>
+        </dw:transform-message>
+        <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Logger"/>
+    </sub-flow>
+
 </mule>
