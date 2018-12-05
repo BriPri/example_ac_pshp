@@ -8,25 +8,30 @@
       VoluntaryChanges: {
         Penalty: {
           DecimalPlaces: 2,
-          CurrencyCode: payload.mnrMonInfoGrp.monetaryDetails.currency,
-          PenaltyType: payload.mnrMonInfoGrp.monetaryDetails.typeQualifier,
-          Amount: payload.mnrMonInfoGrp.monetaryDetails.amount
+          CurrencyCode: "<IMD Conflict - Not completed yet>",
+          PenaltyType: "<IMD Conflict - Not completed yet>",
+          Amount: "<IMD Conflict - Not completed yet>"
         },
         VolChangeInd: false when payload.mnrCatInfo.processIndicator == "ASS" otherwise true
       }
-    }    
+    }
   },
-  City: flatten (payload.mnrFCInfoGrp map (
+  
+  (City: flatten (payload.mnrFCInfoGrp map (
     $.locationInfo map {
     LocationCode: $.locationDescription.code
   }
-  )),
-  AC_SegmentRefNumbers: flatten (flowVars.currentMnrByPricingRecordJson.fareComponentInfo map ( 
-    $.segmentRefernce map {
-    RPH: $.reference.value 
-    }
-  )),  
+  ))) when payload.mnrCatInfo.processIndicator == 'ASS',
+  
+  AC_SegmentRefNumbers: (flatten (payload.mnrFCInfoGrp[0].refInfo.referenceDetails map (refDetail) -> (
+      flatten (filterFareComponentInfo(flowVars.currentMnrByPricingRecordJson.fareComponentInfo, refDetail.type, refDetail.value) map (
+        $.segmentRefernce.reference.value
+      ))
+        ))) map {
+          RPH: $
+        },
+        
   AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
-    RPH: $.value
-  }
+    RPH: $.value as :string
+  } 
 }
