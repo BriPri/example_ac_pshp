@@ -10,36 +10,39 @@
 )
 ---
 {
-  NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
-  RuleInfo: {
-    ChargesRules: {
-      VoluntaryChanges: {
-        Penalty: {
-          DecimalPlaces: 2,
-          CurrencyCode: "<IMD Conflict - Not completed yet>",
-          PenaltyType: "<IMD Conflict - Not completed yet>",
-          Amount: "<IMD Conflict - Not completed yet>"
-        },
-        VolChangeInd: false when payload.mnrCatInfo.processIndicator == "ASS" otherwise true
-      }
-    }
-  },
-  
-  (City: flatten (payload.mnrFCInfoGrp map (
-    $.locationInfo map {
-    LocationCode: $.locationDescription.code
-  }
-  ))) when payload.mnrCatInfo.processIndicator == 'ASS',
-  
-  AC_SegmentRefNumbers: (flatten (payload.mnrFCInfoGrp[0].refInfo.referenceDetails map (refDetail) -> (
-      flatten (filterFareComponentInfo(flowVars.currentMnrByPricingRecordJson.fareComponentInfo, refDetail.type, refDetail.value) map (
-        $.segmentRefernce.reference.value
-      ))
-        ))) map {
-          RPH: $
-        },
-        
-  AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
-    RPH: $.value as :string
-  } 
+  flowVar-DW-33: flowVars.currentMnrByPricingRecordJson,
+  fareComponentInfo-DW-33: flowVars.currentMnrByPricingRecordJson.fareComponentInfo
+
+//  NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
+//  RuleInfo: {
+//    ChargesRules: {
+//      VoluntaryChanges: {
+//        Penalty: {
+//          DecimalPlaces: 2,
+//          CurrencyCode: "<IMD Conflict - Not completed yet>",
+//          PenaltyType: "<IMD Conflict - Not completed yet>",
+//          Amount: "<IMD Conflict - Not completed yet>"
+//        },
+//        VolChangeInd: false when payload.mnrCatInfo.processIndicator == "ASS" otherwise true
+//      }
+//    }
+//  },
+//  
+//  (City: flatten (payload.mnrFCInfoGrp map (
+//    $.locationInfo map {
+//    LocationCode: $.locationDescription.code
+//  }
+//  ))) when payload.mnrCatInfo.processIndicator == 'ASS',
+//  
+//  AC_SegmentRefNumbers: (flatten (payload.mnrFCInfoGrp[0].refInfo.referenceDetails map (refDetail) -> (
+//      flatten (filterFareComponentInfo(flowVars.currentMnrByPricingRecordJson.fareComponentInfo, refDetail.type, refDetail.value) map (
+//        $.segmentRefernce.reference.value
+//      ))
+//        ))) map {
+//          RPH: $
+//        },
+//        
+//  AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
+//    RPH: $.value as :string
+//  } 
 }
