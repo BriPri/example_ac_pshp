@@ -11,11 +11,7 @@
 
 ---
 {
-  flowVar-DW-6: flowVars.currentMnrByPricingRecordJson,
-  fareComponentInfo-DW-6: flowVars.currentMnrByPricingRecordJson.fareComponentInfo,
-  
 	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
-	
 	RuleInfo: {
 		(LengthOfStayRules: {
 			MinimumStay: {
@@ -25,13 +21,11 @@
 			StayRestrictionsInd: false when payload.mnrCatInfo.processIndicator == 'ASS' otherwise true
 		}) when payload.mnrCatInfo.processIndicator == 'ASS'
 	},
-	
 	(City: flatten (payload.mnrFCInfoGrp map (
 		$.locationInfo map {
 		LocationCode: $.locationDescription.code
 	}
 	))) when payload.mnrCatInfo.processIndicator == 'ASS',
-	
 	AC_SegmentRefNumbers: (flatten (payload.mnrFCInfoGrp[0].refInfo.referenceDetails map (refDetail) -> (
 			flatten (filterFareComponentInfo(flowVars.currentMnrByPricingRecordJson.fareComponentInfo, refDetail.type, refDetail.value) map (
 				$.segmentRefernce.reference.value
@@ -39,7 +33,6 @@
     		))) map {
     			RPH: $
     		},
-    		
 	AC_TravelerRefNumbers: flowVars.currentMnrByPricingRecordJson.paxRef.passengerReference map {
 		RPH: $.value as :string
 	}	

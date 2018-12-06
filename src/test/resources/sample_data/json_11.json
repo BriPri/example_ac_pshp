@@ -1,0 +1,31 @@
+{
+  "mnrCatInfo": {
+    "descriptionInfo": {
+      "number": 1,
+      "code": "????",
+      "name": "????",
+      "language": "????",
+      "encoding": "????",
+      "freeText": "????"
+    }
+  },
+  "mnrFCInfoGrp": [
+    {
+      "refInfo": {
+        
+      },
+      "locationInfo": [
+        {
+          
+        }
+      ]
+    }
+  ],
+  "mnrDateInfoGrp": [
+    {
+      "dateInfo": {
+        
+      }
+    }
+  ]
+}
