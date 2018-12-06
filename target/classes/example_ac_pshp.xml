@@ -14,7 +14,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
     <flow name="example_ac_pshpFlow">
         <http:listener config-ref="HTTP_Listener_Configuration" path="/" doc:name="HTTP"/>
         <parse-template location="examples/mini-rules-sapi-response.json" doc:name="Parse Template - set the payload for sapi response"/>
-        <logger level="INFO" doc:name="Logger"/>
+        <logger level="INFO" doc:name="Logger" message="Starting the http flow for testing"/>
         <flow-ref name="minirules_SubFlow" doc:name="Flow Reference"/>
     </flow>
     
