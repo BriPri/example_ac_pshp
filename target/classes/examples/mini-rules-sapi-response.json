@@ -151,22 +151,41 @@
 						}
 					}]
 				},
-				{
-					"mnrCatInfo": {
-						"descriptionInfo": {
-							"number": 7
-						},
-						"processIndicator": "ASS"
-					},
-					"mnrFCInfoGrp": [{
-						"refInfo": {
-							"referenceDetails": [{
-								"type": "FC",
-								"value": "1"
-							}]
-						}
-					}]
-				},
+        {
+          "mnrCatInfo": {
+            "descriptionInfo": {
+              "number": 7,
+              "code": "X13",
+              "name": "Some Code",
+              "language": "ENG",
+              "encoding": "UTF",
+              "freeText": "2/Bill/Denver/Colorado"
+            }
+          },
+          "mnrFCInfoGrp": [{
+            "refInfo": {
+              "referenceDetails": [{
+                "type": "FC",
+                "value": "1"
+              }]
+            },
+            "locationInfo": [{
+              "locationType": "CTY",
+              "locationDescription": {
+                "code": "DEN"
+              }
+            }]
+          }],
+          "mnrDateInfoGrp": [{
+            "dateInfo": {
+              "dateAndTimeDetails": [{
+                "qualifier": "LTR",
+                "date": "21OCT18",
+                "time": "0000"
+              }]
+            }
+          }]
+        },
 				{
 					"mnrCatInfo": {
 						"descriptionInfo": {
@@ -181,7 +200,7 @@
 							},
 							{
 								"type": "FC",
-								"value": "1"
+								"value": "2"
 							}]
 						}
 					}],

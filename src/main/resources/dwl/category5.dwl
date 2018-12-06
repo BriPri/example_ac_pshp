@@ -15,9 +15,10 @@
     ResTicketingRules: {
     	  AdvResTicketing: {
     	    AdvResInd: 
-    	    	  true when (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD' or
-              payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD') 
-              otherwise false,
+    	       true when (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ERD' or
+    	       payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LRD'
+    	       ) 
+           otherwise false,
     	    AdvTicketingInd:
     	      true when (payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'ETD' or
             payload.mnrDateInfoGrp.dateInfo.dateAndTimeDetails.qualifier == 'LTD' or

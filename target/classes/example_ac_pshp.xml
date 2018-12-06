@@ -26,12 +26,13 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <logger message="Just saved the mnrByPricingRecord instance to a flow Var called currentMnrByPricingRecordJson :: mnrByPricingRecord objectd = #[payload]" level="INFO" doc:name="Logger"/>
             <logger message="Payload for categories = #[json:/mnrRulesInfoGrp]" level="INFO" doc:name="Logger"/>
             <foreach collection="#[json:/mnrRulesInfoGrp]" doc:name="For Each - mnrRulesInfoGrp">
+                <logger message="#['\n\nflowVar:\n' + flowVars.currentMnrByPricingRecordJson + '\n']" level="INFO" doc:name="Logger"/>
                 <object-to-string-transformer doc:name="Object to String"/>
                 <json:object-to-json-transformer doc:name="Object to JSON"/>
                 <logger message="in the for after transform to JSON  ==  #[json:/mnrCatInfo/descriptionInfo/number]" level="INFO" doc:name="Logger"/>
                 <set-variable variableName="category" value="#[json:/mnrCatInfo/descriptionInfo/number]" doc:name="category"/>
                 <choice doc:name="Choice">
-                    <when expression="#[flowVars.category == '5']">
+                     <when expression="#[flowVars.category == '5']">
                         <logger message="5" level="INFO" doc:name="Logger5"/>
                         <flow-ref name="cat5_subFlow" doc:name="Flow Reference"/>
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
@@ -45,7 +46,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
                     </when>
                     <when expression="#[flowVars.category == '7']">
                         <logger message="7" level="INFO" doc:name="Logger7"/>
-                        <flow-ref name="cat7_subFlow" doc:name="Flow Reference"/>
+                        <!-- <flow-ref name="cat7_subFlow" doc:name="Flow Reference"/> -->
                         <set-payload value="#[message.payloadAs(java.lang.String)]" doc:name="Set Payload"/>
                         <expression-component doc:name="Add cat7 to array"><![CDATA[flowVars.fareinfosArrays.add(payload)]]></expression-component>
                     </when>
@@ -98,14 +99,17 @@ flowVars.fareinfosArrays]]></dw:set-payload>
         </dw:transform-message>
         <logger message="Completed cat6 transformation  ::  Payload after DW for Category 6 :: #[message.payloadAs(java.lang.String)]" level="INFO" doc:name="Logger"/>
 
-    </sub-flow><flow name="cat7_subFlow">
+    </sub-flow>
+    <sub-flow name="cat7_subFlow">
         <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
+        <logger message="#['\n\nflowVar (Cat 7 Sub-flow):\n' + flowVars.currentMnrByPricingRecordJson + '\n']" level="INFO" doc:name="Copy_of_Logger"/>
+        <logger message="#['\n\nflowVar (Cat 7 Sub-flow):\n' + flowVars.currentMnrByPricingRecordJson + '\n']" level="INFO" doc:name="Copy_of_Copy_of_Logger"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="1e832429-e0f1-4f10-be0d-23f10f488933">
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_8.json"/>
             <dw:set-payload resource="classpath:dwl/category7.dwl"/>
         </dw:transform-message>
         <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
-    </flow>
+    </sub-flow>
     
     <sub-flow name="cat31_subFlow">
         <logger level="INFO" doc:name="Logger" message="Starting cat31 flow"/>
@@ -119,13 +123,13 @@ flowVars.fareinfosArrays]]></dw:set-payload>
     </sub-flow>
     
      <sub-flow name="cat33_subFlow">
-        <logger level="INFO" doc:name="Logger" message="#['\n\n******************\n\nPayload:\n\n' + payload]"/>
+        <logger level="INFO" doc:name="Logger" message="Cat 33 - Enter subflow"/>
         <dw:transform-message doc:name="Transform Message" metadata:id="161d739f-08eb-48a3-8fee-9ddb29d57e85">
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_10.json"/>
             <dw:input-variable doc:sample="sample_data/empty.xml" variableName="currentMnrByPricingRecordJson"/>
             <dw:set-payload resource="classpath:dwl/category33.dwl"/>
         </dw:transform-message>
-        <logger message="#['\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Logger"/>
+        <logger message="#['\n\nCat 33 subflow end\n\n******************\n\nPayload:\n\n' + payload]" level="INFO" doc:name="Logger"/>
     </sub-flow>
 
 </mule>

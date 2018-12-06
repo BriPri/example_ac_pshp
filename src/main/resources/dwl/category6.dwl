@@ -10,7 +10,10 @@
 )
 
 ---
-{	
+{
+  flowVar-DW-6: flowVars.currentMnrByPricingRecordJson,
+  fareComponentInfo-DW-6: flowVars.currentMnrByPricingRecordJson.fareComponentInfo,
+  
 	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,
 	
 	RuleInfo: {
