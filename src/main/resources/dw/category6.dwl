@@ -8,7 +8,6 @@
 %function filterFareComponentInfo(fareComponentInfo, fcType, fcValue) (
 	fareComponentInfo filter fareComponentRefContainsReferenceDetail($.fareComponentRef, fcType, fcValue)
 )
-
 ---
 {
 	NegotiatedFareCode: payload.mnrCatInfo.descriptionInfo.number as :string,

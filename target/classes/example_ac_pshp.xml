@@ -74,7 +74,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <dw:transform-message doc:name="Transform Message" metadata:id="09379177-8757-4b29-9594-f8e2d1912a84">
             <dw:input-payload mimeType="application/java"/>
             <dw:input-inbound-property doc:sample="sample_data/map_string_string.dwl" propertyName="http.query.params"/>
-            <dw:set-payload resource="classpath:dwl/arrayToJsonArray.dwl"/>
+            <dw:set-payload resource="classpath:dw/arrayToJsonArray.dwl"/>
         </dw:transform-message>
     </sub-flow>
 
@@ -83,7 +83,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
         <dw:transform-message doc:name="Transform Message" metadata:id="2add139d-59b1-4993-8bd5-f6605a841c77">
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_6.json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="sample_data/json_7.json"/>
-            <dw:set-payload resource="classpath:dwl/category5.dwl"/>
+            <dw:set-payload resource="classpath:dw/category5.dwl"/>
         </dw:transform-message>
         <logger message="Completed cat6 transformation  ::  Payload after DW for Category 5 :: #[message.payloadAs(java.lang.String)]" level="DEBUG" doc:name="Post Transform Payload Logger"/>
     </sub-flow>
@@ -95,7 +95,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <dw:input-payload mimeType="application/json" doc:sample="examples/mnrCatinfo-cat6.json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="examples/mnrByPricingRecord.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
-            <dw:set-payload resource="classpath:dwl/category6.dwl"/>
+            <dw:set-payload resource="classpath:dw/category6.dwl"/>
         </dw:transform-message>
         <logger message="Completed cat6 transformation  ::  Payload after DW for Category 6 :: #[message.payloadAs(java.lang.String)]" level="DEBUG" doc:name="Logger"/>
 
@@ -106,7 +106,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <dw:input-payload mimeType="application/json" doc:sample="sample_data/json_8.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
-            <dw:set-payload resource="classpath:dwl/category7.dwl"/>
+            <dw:set-payload resource="classpath:dw/category7.dwl"/>
         </dw:transform-message>
         <logger level="DEBUG" doc:name="Logger" message="Completed cat76 transformation  ::  Payload after DW for Category 7 :: #[message.payloadAs(java.lang.String)]"/>
     </sub-flow>
@@ -117,7 +117,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <dw:input-payload doc:sample="examples/mnrCatInfo-Cat31.json" mimeType="application/json"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson" doc:sample="examples/mnrByPricingRecord.json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
-            <dw:set-payload resource="classpath:dwl/category31.dwl"/>
+            <dw:set-payload resource="classpath:dw/category31.dwl"/>
         </dw:transform-message>
         <logger level="DEBUG" doc:name="Logger" message="Completed cat31 transformation  ::  Payload after DW for Category 31 :: #[message.payloadAs(java.lang.String)]"/>
     </sub-flow>
@@ -128,7 +128,7 @@ http://www.mulesoft.org/schema/mule/json http://www.mulesoft.org/schema/mule/jso
             <dw:input-payload doc:sample="sample_data/json_11.json" mimeType="application/json"/>
             <dw:input-variable mimeType="application/java" variableName="category"/>
             <dw:input-variable mimeType="application/json" variableName="currentMnrByPricingRecordJson"/>
-            <dw:set-payload resource="classpath:dwl/category33.dwl"/>
+            <dw:set-payload resource="classpath:dw/category33.dwl"/>
         </dw:transform-message>
         <logger message="Completed cat33 transformation  ::  Payload after DW for Category 33 :: #[message.payloadAs(java.lang.String)]" level="DEBUG" doc:name="Logger"/>
     </sub-flow>

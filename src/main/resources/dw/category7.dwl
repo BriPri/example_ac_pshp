@@ -8,7 +8,6 @@
 %function filterFareComponentInfo(fareComponentInfo, fcType, fcValue) (
   fareComponentInfo filter fareComponentRefContainsReferenceDetail($.fareComponentRef, fcType, fcValue)
 )
-
 ---
 {
   RuleInfo: {
